@@ -3,13 +3,13 @@ import javax.swing.JSlider;
 public class config {
 	JSlider dificultad, brotes;
 	
-	static void menu() {
+	static void Menu() {
 		
 	}
-	static void setDificultad() {
+	static void SetDificultad() {
 		
 	}
-	static void setBrotes() {
+	static void SetBrotes() {
 		
 	}
 }

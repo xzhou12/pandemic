@@ -1,0 +1,234 @@
+La ciudad San Francisco está en las coordenadas 235,315 sus ciudades colindates son:
+- Chicago que está a una distancia de 73.824115301167
+- Los Angeles que está a una distancia de 56.568542494923804
+- Manila que está a una distancia de 970.6956268573584
+- Tokio que está a una distancia de 1045.2990002865208
+La ciudad Chicago está en las coordenadas 300,280 sus ciudades colindates son:
+- San Francisco que está a una distancia de 73.824115301167
+- Montreal que está a una distancia de 50.0
+- Atlanta que está a una distancia de 44.721359549995796
+- Mexico DF que está a una distancia de 105.0
+- Los Angeles que está a una distancia de 79.05694150420949
+La ciudad Atlanta está en las coordenadas 320,320 sus ciudades colindates son:
+- Chicago que está a una distancia de 44.721359549995796
+- Miami que está a una distancia de 72.11102550927978
+- Washington que está a una distancia de 41.23105625617661
+La ciudad Montreal está en las coordenadas 350,280 sus ciudades colindates son:
+- Chicago que está a una distancia de 50.0
+- Nueva York que está a una distancia de 31.622776601683793
+- Washington que está a una distancia de 50.99019513592785
+La ciudad Nueva York está en las coordenadas 380,290 sus ciudades colindates son:
+- Montreal que está a una distancia de 31.622776601683793
+- Washington que está a una distancia de 44.721359549995796
+- Londres que está a una distancia de 325.5764119219941
+- Madrid que está a una distancia de 307.0
+La ciudad Washington está en las coordenadas 360,330 sus ciudades colindates son:
+- Montreal que está a una distancia de 50.99019513592785
+- Nueva York que está a una distancia de 44.721359549995796
+- Atlanta que está a una distancia de 41.23105625617661
+- Miami que está a una distancia de 36.05551275463989
+La ciudad Londres está en las coordenadas 700,230 sus ciudades colindates son:
+- Nueva York que está a una distancia de 325.5764119219941
+- Madrid que está a una distancia de 61.39218191268331
+- Paris que está a una distancia de 33.60059523282288
+- Essen que está a una distancia de 68.00735254367721
+La ciudad Madrid está en las coordenadas 687,290 sus ciudades colindates son:
+- Nueva York que está a una distancia de 307.0
+- Londres que está a una distancia de 61.39218191268331
+- Paris que está a una distancia de 56.568542494923804
+- Sao Paulo que está a una distancia de 326.0199380406051
+- Argel que está a una distancia de 58.728187440104094
+La ciudad Paris está en las coordenadas 727,250 sus ciudades colindates son:
+- Madrid que está a una distancia de 56.568542494923804
+- Londres que está a una distancia de 33.60059523282288
+- Essen que está a una distancia de 66.2117814289874
+- Argel que está a una distancia de 80.05623023850174
+- Milan que está a una distancia de 31.76476034853718
+La ciudad Essen está en las coordenadas 755,190 sus ciudades colindates son:
+- Londres que está a una distancia de 68.00735254367721
+- Paris que está a una distancia de 66.2117814289874
+- San Petersburgo que está a una distancia de 63.245553203367585
+- Milan que está a una distancia de 45.0
+La ciudad Milan está en las coordenadas 755,235 sus ciudades colindates son:
+- Essen que está a una distancia de 45.0
+- Paris que está a una distancia de 31.76476034853718
+- Estambul que está a una distancia de 95.42536350467836
+La ciudad San Petersburgo está en las coordenadas 815,210 sus ciudades colindates son:
+- Essen que está a una distancia de 63.245553203367585
+- Estambul que está a una distancia de 85.32877591996736
+- Moscu que está a una distancia de 77.62087348130012
+La ciudad Los Angeles está en las coordenadas 275,355 sus ciudades colindates son:
+- San Francisco que está a una distancia de 56.568542494923804
+- Mexico DF que está a una distancia de 39.05124837953327
+- Chicago que está a una distancia de 79.05694150420949
+- Sidney que está a una distancia de 1084.492969087398
+La ciudad Miami está en las coordenadas 380,360 sus ciudades colindates son:
+- Washington que está a una distancia de 36.05551275463989
+- Atlanta que está a una distancia de 72.11102550927978
+- Mexico DF que está a una distancia de 83.81527307120105
+- Bogota que está a una distancia de 101.9803902718557
+La ciudad Mexico DF está en las coordenadas 300,385 sus ciudades colindates son:
+- Los Angeles que está a una distancia de 39.05124837953327
+- Miami que está a una distancia de 83.81527307120105
+- Chicago que está a una distancia de 105.0
+- Bogota que está a una distancia de 125.0
+- Lima que está a una distancia de 165.07574019219177
+La ciudad Bogota está en las coordenadas 400,460 sus ciudades colindates son:
+- Miami que está a una distancia de 101.9803902718557
+- Mexico DF que está a una distancia de 125.0
+- Lima que está a una distancia de 60.207972893961475
+- Sao Paulo que está a una distancia de 162.78820596099706
+- Buenos Aires que está a una distancia de 216.5848563496534
+La ciudad Lima está en las coordenadas 395,520 sus ciudades colindates son:
+- Mexico DF que está a una distancia de 165.07574019219177
+- Bogota que está a una distancia de 60.207972893961475
+- Santiago de Chile que está a una distancia de 105.94810050208545
+La ciudad Santiago de Chile está en las coordenadas 430,620 sus ciudades colindates son:
+- Lima que está a una distancia de 105.94810050208545
+La ciudad Buenos Aires está en las coordenadas 453,670 sus ciudades colindates son:
+- Sao Paulo que está a una distancia de 120.37026210821342
+- Bogota que está a una distancia de 216.5848563496534
+La ciudad Sao Paulo está en las coordenadas 520,570 sus ciudades colindates son:
+- Bogota que está a una distancia de 162.78820596099706
+- Buenos Aires que está a una distancia de 120.37026210821342
+- Lagos que está a una distancia de 224.72205054244233
+- Madrid que está a una distancia de 326.0199380406051
+La ciudad Lagos está en las coordenadas 710,450 sus ciudades colindates son:
+- Sao Paulo que está a una distancia de 224.72205054244233
+- Kinsasa que está a una distancia de 108.16653826391968
+- Jartum que está a una distancia de 105.0
+La ciudad Kinsasa está en las coordenadas 770,540 sus ciudades colindates son:
+- Lagos que está a una distancia de 108.16653826391968
+- Jartum que está a una distancia de 100.62305898749054
+- Johannesburgo que está a una distancia de 100.62305898749054
+La ciudad Jartum está en las coordenadas 815,450 sus ciudades colindates son:
+- El Cairo que está a una distancia de 100.12492197250393
+- Lagos que está a una distancia de 105.0
+- Kinsasa que está a una distancia de 100.62305898749054
+- Johannesburgo que está a una distancia de 180.0
+La ciudad Johannesburgo está en las coordenadas 815,630 sus ciudades colindates son:
+- Kinsasa que está a una distancia de 100.62305898749054
+- Jartum que está a una distancia de 180.0
+La ciudad Argel está en las coordenadas 730,330 sus ciudades colindates son:
+- Madrid que está a una distancia de 58.728187440104094
+- Paris que está a una distancia de 80.05623023850174
+- Estambul que está a una distancia de 106.28264204469139
+- El Cairo que está a una distancia de 92.19544457292888
+La ciudad El Cairo está en las coordenadas 820,350 sus ciudades colindates son:
+- Argel que está a una distancia de 92.19544457292888
+- Estambul que está a una distancia de 56.88585061331157
+- Bagdad que está a una distancia de 67.08203932499369
+La ciudad Riad está en las coordenadas 895,385 sus ciudades colindates son:
+- El Cairo que está a una distancia de 82.76472678623425
+- Bagdad que está a una distancia de 66.70832032063167
+- Karachi que está a una distancia de 90.13878188659973
+La ciudad Estambul está en las coordenadas 830,294 sus ciudades colindates son:
+- Argel que está a una distancia de 106.28264204469139
+- El Cairo que está a una distancia de 56.88585061331157
+- Bagdad que está a una distancia de 56.356011214421486
+- Moscu que está a una distancia de 87.72684879784524
+La ciudad Bagdad está en las coordenadas 880,320 sus ciudades colindates son:
+- Estambul que está a una distancia de 56.356011214421486
+- Karachi que está a una distancia de 105.94810050208545
+- Riad que está a una distancia de 66.70832032063167
+- El Cairo que está a una distancia de 67.08203932499369
+La ciudad Moscu está en las coordenadas 890,230 sus ciudades colindates son:
+- Teheran que está a una distancia de 85.44003745317531
+- Estambul que está a una distancia de 87.72684879784524
+- San Petersburgo que está a una distancia de 77.62087348130012
+La ciudad Teheran está en las coordenadas 920,310 sus ciudades colindates son:
+- Moscu que está a una distancia de 85.44003745317531
+- Bagdad que está a una distancia de 41.23105625617661
+- Karachi que está a una distancia de 75.0
+- Nueva Delhi que está a una distancia de 106.88779163215975
+La ciudad Karachi está en las coordenadas 980,355 sus ciudades colindates son:
+- Teheran que está a una distancia de 75.0
+- Bagdad que está a una distancia de 105.94810050208545
+- Nueva Delhi que está a una distancia de 51.478150704935004
+- Riad que está a una distancia de 90.13878188659973
+- Bombay que está a una distancia de 47.16990566028302
+- Bombay que está a una distancia de 47.16990566028302
+La ciudad Bombay está en las coordenadas 1005,395 sus ciudades colindates son:
+- Karachi que está a una distancia de 47.16990566028302
+- Nueva Delhi que está a una distancia de 68.00735254367721
+- Madras que está a una distancia de 33.54101966249684
+La ciudad Nueva Delhi está en las coordenadas 1025,330 sus ciudades colindates son:
+- Teheran que está a una distancia de 106.88779163215975
+- Karachi que está a una distancia de 51.478150704935004
+- Bombay que está a una distancia de 68.00735254367721
+- Bombay que está a una distancia de 68.00735254367721
+- Madras que está a una distancia de 80.62257748298549
+- Calcuta que está a una distancia de 60.207972893961475
+La ciudad Calcuta está en las coordenadas 1070,370 sus ciudades colindates son:
+- Nueva Delhi que está a una distancia de 60.207972893961475
+- Hong Kong que está a una distancia de 95.0
+- Madras que está a una distancia de 53.150729063673246
+- Bangkok que está a una distancia de 67.26812023536856
+La ciudad Madras está en las coordenadas 1035,410 sus ciudades colindates son:
+- Bombay que está a una distancia de 33.54101966249684
+- Bombay que está a una distancia de 33.54101966249684
+- Nueva Delhi que está a una distancia de 80.62257748298549
+- Calcuta que está a una distancia de 53.150729063673246
+- Bangkok que está a una distancia de 85.14693182963201
+- Yakarta que está a una distancia de 162.63455967290594
+La ciudad Bombay está en las coordenadas 1005,395 sus ciudades colindates son:
+- Karachi que está a una distancia de 47.16990566028302
+- Madras que está a una distancia de 33.54101966249684
+- Nueva Delhi que está a una distancia de 68.00735254367721
+La ciudad Yakarta está en las coordenadas 1150,525 sus ciudades colindates son:
+- Madras que está a una distancia de 162.63455967290594
+- Bangkok que está a una distancia de 114.0175425099138
+- Ho Chi Minh que está a una distancia de 96.02083107326243
+- Sidney que está a una distancia de 208.08652046684813
+La ciudad Bangkok está en las coordenadas 1120,415 sus ciudades colindates son:
+- Yakarta que está a una distancia de 114.0175425099138
+- Calcuta que está a una distancia de 67.26812023536856
+- Madras que está a una distancia de 85.14693182963201
+- Ho Chi Minh que está a una distancia de 31.304951684997057
+- Hong Kong que está a una distancia de 63.63961030678928
+La ciudad Hong Kong está en las coordenadas 1165,370 sus ciudades colindates son:
+- Bangkok que está a una distancia de 63.63961030678928
+- Ho Chi Minh que está a una distancia de 61.40032573203501
+- Taipei que está a una distancia de 40.311288741492746
+- Manila que está a una distancia de 61.032778078668514
+- Shanghai que está a una distancia de 33.54101966249684
+La ciudad Shanghai está en las coordenadas 1195,355 sus ciudades colindates son:
+- Pekin que está a una distancia de 58.52349955359813
+- Hong Kong que está a una distancia de 33.54101966249684
+- Seul que está a una distancia de 65.29931086925804
+- Tokio que está a una distancia de 107.00467279516349
+- Taipei que está a una distancia de 22.360679774997898
+La ciudad Pekin está en las coordenadas 1175,300 sus ciudades colindates son:
+- Seul que está a una distancia de 50.08991914547278
+- Shanghai que está a una distancia de 58.52349955359813
+La ciudad Seul está en las coordenadas 1225,297 sus ciudades colindates son:
+- Pekin que está a una distancia de 50.08991914547278
+- Tokio que está a una distancia de 55.44366510251645
+La ciudad Tokio está en las coordenadas 1280,290 sus ciudades colindates son:
+- San Francisco que está a una distancia de 1045.2990002865208
+- Seul que está a una distancia de 55.44366510251645
+- Osaka que está a una distancia de 39.05124837953327
+- Shanghai que está a una distancia de 107.00467279516349
+La ciudad Osaka está en las coordenadas 1255,320 sus ciudades colindates son:
+- Tokio que está a una distancia de 39.05124837953327
+- Taipei que está a una distancia de 74.33034373659252
+La ciudad Taipei está en las coordenadas 1205,375 sus ciudades colindates son:
+- Osaka que está a una distancia de 74.33034373659252
+- Shanghai que está a una distancia de 22.360679774997898
+- Hong Kong que está a una distancia de 40.311288741492746
+- Manila que está a una distancia de 45.27692569068709
+La ciudad Ho Chi Minh está en las coordenadas 1148,429 sus ciudades colindates son:
+- Yakarta que está a una distancia de 96.02083107326243
+- Bangkok que está a una distancia de 31.304951684997057
+- Hong Kong que está a una distancia de 61.40032573203501
+- Manila que está a una distancia de 52.773099207835045
+La ciudad Manila está en las coordenadas 1200,420 sus ciudades colindates son:
+- San Francisco que está a una distancia de 970.6956268573584
+- Ho Chi Minh que está a una distancia de 52.773099207835045
+- Taipei que está a una distancia de 45.27692569068709
+- Hong Kong que está a una distancia de 61.032778078668514
+- Sidney que está a una distancia de 255.0
+La ciudad Sidney está en las coordenadas 1320,645 sus ciudades colindates son:
+- Los Angeles que está a una distancia de 1084.492969087398
+- Manila que está a una distancia de 255.0
+- Yakarta que está a una distancia de 208.08652046684813

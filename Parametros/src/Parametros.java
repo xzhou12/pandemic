@@ -77,38 +77,50 @@ public class Parametros {
 			mostrarParametros(parametros);
 			System.out.println("Cual desea modificar? (1-4)");
 			num = s.nextInt();
+			actualizarValor(file, s, num);
 
-			if (num == 1) {
-				System.out.println("Valor?");
-				valor = s.nextInt();
-
-				try {
-					DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-					DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-					Document document = documentBuilder.parse(file);
-
-					Node node = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0);
-					node.appendChild(document.createTextNode("3"));
-
-					TransformerFactory transformerFactory = TransformerFactory.newInstance();
-					Transformer transformer = transformerFactory.newTransformer();
-					transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-					transformer.transform(new DOMSource(document), new StreamResult(file));
-
-				} catch (Exception e) {
-
-				}
-			} else if (num == 2) {
-
-			} else if (num == 3) {
-
-			} else if (num == 4) {
-
-			}
 		}
 	}
 
 	static void actualizarValor(File file, Scanner s, int num) {
+
+		int valor = 0;
+
+		try {
+			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+			Document document = documentBuilder.parse(file);
+
+			System.out.println("Valor?");
+			valor = s.nextInt();
+
+			if (num == 1) {
+				Node node = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0);
+				node.setTextContent(Integer.toString(valor));
+
+			} else if (num == 2) {
+				Node node = document.getElementsByTagName("numCuidadesInfectadasRonda").item(0);
+				node.setTextContent(Integer.toString(valor));
+
+			} else if (num == 3) {
+				Node node = document.getElementsByTagName("numEnfermedadesActivasDerrota").item(0);
+				node.setTextContent(Integer.toString(valor));
+
+			} else if (num == 4) {
+				Node node = document.getElementsByTagName("numBrotesDerrota").item(0);
+				node.setTextContent(Integer.toString(valor));
+
+			} else {
+				System.out.println("ERROR! El numero del parametro no existe");
+			}
+
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+			transformer.transform(new DOMSource(document), new StreamResult(file));
+		} catch (Exception e) {
+
+		}
 
 	}
 

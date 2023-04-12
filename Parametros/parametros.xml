@@ -1,5 +1,5 @@
 <parametros>
-    <numCiudadesInfectadasInicio>10333333333333</numCiudadesInfectadasInicio>
+    <numCiudadesInfectadasInicio>9</numCiudadesInfectadasInicio>
     <numCuidadesInfectadasRonda>4</numCuidadesInfectadasRonda>
     <numEnfermedadesActivasDerrota>30</numEnfermedadesActivasDerrota>
     <numBrotesDerrota>8</numBrotesDerrota>

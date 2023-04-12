@@ -12,7 +12,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-public class Parametros {
+public class parametros {
 
 	public static void main(String[] args) {
 		// Archivo xml

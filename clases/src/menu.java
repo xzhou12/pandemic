@@ -23,43 +23,49 @@ public class menu extends JFrame {
 		JPanel Pciudades = new JPanel();
 		Pciudades.setBounds(0, 0, 1550, 850);
 		Pciudades.setBackground(new Color(5, 153, 209));
+		getContentPane().add(Pciudades);
 		//imagen de fondo
 		ImageIcon Imagen = new ImageIcon("mapa_mundo.png");
+		//cambia las dimensiones de la imagen
+		Image image = Imagen.getImage();
+		Image newimg = image.getScaledInstance(1550, 850,  java.awt.Image.SCALE_SMOOTH); 
+		Imagen = new ImageIcon(newimg);
 		Pciudades.setLayout(null);
+		//botones
 		JButton NuevaPartida = new JButton();
 		NuevaPartida.setText("Nueva partida");
-		NuevaPartida.setBounds(619, 357, 139, 53);
+		NuevaPartida.setBounds(670, 330, 180, 40);
 		JButton CargarPartida = new JButton();
 		CargarPartida.setText("Cargar partida");
-		CargarPartida.setBounds(619, 421, 150, 50);
-		JButton Informacion = new JButton();
-		Informacion.setText("Informacion");
-		Informacion.setBounds(621, 494, 109, 41);
+		CargarPartida.setBounds(670, 373, 180, 40);
 		JButton ResumenPuntuaciones = new JButton();
 		ResumenPuntuaciones.setText("Resumen de puntuaciones");
-		ResumenPuntuaciones.setBounds(619, 585, 173, 41);
+		ResumenPuntuaciones.setBounds(660, 453, 200, 40);
+		JButton Informacion = new JButton();
+		Informacion.setText("Informacion");
+		Informacion.setBounds(670, 660, 180, 40);
 		JButton Autores = new JButton();
 		Autores.setText("Autores");
-		Autores.setBounds(630, 730, 150, 50);
+		Autores.setBounds(710, 730, 100, 40);
 		JButton Version = new JButton();
 		Version.setText("Version");
-		Version.setBounds(50, 730, 250, 50);
+		Version.setBounds(50, 730, 100, 40);
 		Pciudades.add(NuevaPartida);
 		Pciudades.add(CargarPartida);
 		Pciudades.add(Informacion);
 		Pciudades.add(ResumenPuntuaciones);
 		Pciudades.add(Autores);
 		Pciudades.add(Version);
-		getContentPane().add(Pciudades);
+		
 		
 		JButton Salir = new JButton();
 		Salir.setText("Salir");
 		Salir.setName("");
-		Salir.setBounds(1320, 730, 150, 50);
+		Salir.setBounds(1320, 730, 100, 40);
 		Pciudades.add(Salir);
 		JLabel MapaMundi = new JLabel(Imagen);
 		MapaMundi.setFocusable(false);
-		MapaMundi.setBounds(0,0,1540,811);
+		MapaMundi.setBounds(0,0,1550, 850);
 		//añade la imagen al menu
 		Pciudades.add(MapaMundi);
 		setVisible(true);

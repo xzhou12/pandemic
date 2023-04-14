@@ -1,0 +1,10 @@
+Objetivo del juego:	Crear las 4 vacunas o curar a todo el mundo.
+
+
+Enfermedades: Alfa, Beta, Gama, Delta
+
+
+Jugadores: 1 jugador, 4 acciones por turno.
+
+
+En cada turno el jugados se puede mover, puede investigar una cura o puede curar una ciudad.

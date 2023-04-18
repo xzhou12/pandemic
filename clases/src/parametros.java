@@ -46,7 +46,7 @@ public class parametros {
 			// Cargamos DocumentBuilder y documentos
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-			Document document = documentBuilder.parse(archivo);
+			Document document = documentBuilder.parse(archivoParametros);
 
 			// Leemos parametro a parametro y lo guardamos en Strings
 			numCiudadesInfectadasInicio = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0)

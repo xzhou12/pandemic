@@ -1,22 +1,30 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class jugar {
 
 	public static void Main() {
+
+		// Array con las ciudades
 		String[][] ciudades = leerCiudades();
-		String[][] nivelBrote = inicializarNivelBrote(ciudades);
-		inicializarBrotesPartida(nivelBrote);
+
+		// Array con las ciudades y su nivel de brote
+		ArrayList<ArrayList> nivelBrote = inicializarNivelBrote(ciudades);
+
+		System.out.println("INFECTADOS");
+		// Inicializa brotes
+		IA.infectarCiudadesInicio(nivelBrote);
+		IA.comprobarBroteNivel4(nivelBrote);
+//		for (ArrayList aux : nivelBrote) {
+//			System.out.println(aux);
+//		}
 
 	}
 
-	// ************************************************************************************
-	// ** Nombre de la función: leerCiudades()
-	// ** Función: Lee las ciudades que hay en el archivo de ciudades
-	// ** Parámetros de entrada: File
-	// ** Parámetros de salida: int
-	// ************************************************************************************
+	// Lee las ciudades que hay en el archivo de ciudades
 	public static String[][] leerCiudades() {
 		File fileCiudades = new File("ciudades.txt");
 		String s = "";
@@ -42,12 +50,7 @@ public class jugar {
 
 	}
 
-	// ************************************************************************************
-	// ** Nombre de la función: contarLineas()
-	// ** Función: Cuenta la linea de ciudades que hay en el archivo
-	// ** Parámetros de entrada: File
-	// ** Parámetros de salida: int
-	// ************************************************************************************
+	// Cuenta la linea de ciudades que hay en el archivo
 	public static int contarLineas(File fileCiudades) {
 		int contador = 0;
 
@@ -62,36 +65,24 @@ public class jugar {
 		return contador;
 	}
 
-	// ************************************************************************************
-	// ** Nombre de la función: inicializarNivelBrote()
-	// ** Función: Inicializa el nivel de brote a 0
-	// ** Parámetros de entrada: String[][]
-	// ** Parámetros de salida: String[][]
-	// ************************************************************************************
-	public static String[][] inicializarNivelBrote(String[][] ciudades) {
+	// Inicializa el nivel de brote a 0
+	public static ArrayList<ArrayList> inicializarNivelBrote(String[][] ciudades) {
 
+		ArrayList<ArrayList> ciudadesBrotes = new ArrayList<ArrayList>();
 		String[][] ciudadesBrote = new String[ciudades.length][2];
 
 		// Bucle para copiar el nombre de las ciudades y inicializar el nivel
 		// de brote a 0
 		for (int i = 0; i < ciudades.length; i++) {
+			ArrayList<String> ciudad = new ArrayList<String>();
+			ciudad.add(ciudades[i][0]);
+			ciudad.add("0");
+			ciudadesBrotes.add(ciudad);
 			ciudadesBrote[i][0] = ciudades[i][0];
 			ciudadesBrote[i][1] = "0";
 		}
 
-		return ciudadesBrote;
-	}
-
-	// ************************************************************************************
-	// ** Nombre de la función: inicializarBrotesPartida()
-	// ** Función: Inicializa los brotes encima de la partida
-	// ** Parámetros de entrada: String[][]
-	// ** Parámetros de salida: void
-	// ************************************************************************************
-	public static void inicializarBrotesPartida(String[][] ciudadesBrotes) {
-		File fileParametros = new File("parametros.xml");
-		String[] param = parametros.leerArchivo(fileParametros);
-
+		return ciudadesBrotes;
 	}
 
 }

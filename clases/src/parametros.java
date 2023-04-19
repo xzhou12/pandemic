@@ -33,7 +33,7 @@ public class parametros {
 	}
 
 	// Lee el archivo .xml
-	static String[] leerArchivo(File archivo) {
+	static String[] leerArchivo(File archivoParametros) {
 
 		// Variables
 		String numCiudadesInfectadasInicio = "";

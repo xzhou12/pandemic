@@ -2,14 +2,16 @@ import javax.swing.JSlider;
 
 public class config {
 	JSlider dificultad, brotes;
-	
-	static void Menu() {
-		
+
+	static void menu() {
+
 	}
-	static void SetDificultad() {
-		
+
+	static void setDificultad() {
+
 	}
-	static void SetBrotes() {
-		
+
+	static void setBrotes() {
+
 	}
 }

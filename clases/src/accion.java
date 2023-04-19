@@ -2,19 +2,19 @@
 public class accion {
 	int acciones = 4;
 
-	public void Desplazar() {
+	public void desplazar() {
 
 	}
 
-	public void Inversigar() {
+	public void inversigar() {
 
 	}
 
-	public void Curar() {
+	public void curar() {
 
 	}
 
-	public void Saltar() {
+	public void saltar() {
 
 	}
 }

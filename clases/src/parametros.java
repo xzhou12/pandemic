@@ -13,7 +13,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 public class parametros {
-
+static int valor;
 	public static void main(String[] args) {
 		// Archivo xml
 		File file = new File("parametros.xml");
@@ -33,7 +33,7 @@ public class parametros {
 	}
 
 	// Lee el archivo .xml
-	static String[] leerArchivo(File archivoParametros) {
+	static String[] leerArchivo(File archivo) {
 
 		// Variables
 		String numCiudadesInfectadasInicio = "";
@@ -46,7 +46,7 @@ public class parametros {
 			// Cargamos DocumentBuilder y documentos
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-			Document document = documentBuilder.parse(archivoParametros);
+			Document document = documentBuilder.parse(archivo);
 
 			// Leemos parametro a parametro y lo guardamos en Strings
 			numCiudadesInfectadasInicio = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0)
@@ -91,7 +91,9 @@ public class parametros {
 			num = s.nextInt();
 			if (num >= 1 && num <= 4) {
 				// Si el valor esta entre 1 y 4, acutaliza el valor
-				actualizarValor(file, s, num);
+				//ahora pide el nuevo valor del parametro
+				valor = s.nextInt();
+				actualizarValor(file, num, valor);
 			} else if (num == 5) {
 				// Si es 5, sale
 				continue;
@@ -102,20 +104,14 @@ public class parametros {
 		}
 	}
 
-	// Actualiza los valores
-	static void actualizarValor(File file, Scanner s, int num) {
-
-		int valor = 0;
+	// Actualiza los valores(nombre de archivo, numero de parametro, valor nuevo)
+	static void actualizarValor(File file, int num, int valor) {
 
 		try {
 			// Cargamos el documento
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 			Document document = documentBuilder.parse(file);
-
-			// Pedimos el valor
-			System.out.println("Nuevo valor?");
-			valor = s.nextInt();
 
 			if (num == 1) {
 				// Cargamos el dato y lo guardamos en el Nodo

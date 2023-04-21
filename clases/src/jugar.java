@@ -14,13 +14,14 @@ public class jugar {
 		// Array con las ciudades y su nivel de brote
 		ArrayList<ArrayList> nivelBrote = inicializarNivelBrote(ciudades);
 
-		System.out.println("INFECTADOS");
 		// Inicializa brotes
-		IA.infectarCiudadesInicio(nivelBrote);
+//		IA.infectarCiudadesInicio(nivelBrote);
+		nivelBrote.get(0).set(1, "4");
+
 		IA.comprobarBroteNivel4(nivelBrote);
-//		for (ArrayList aux : nivelBrote) {
-//			System.out.println(aux);
-//		}
+		for (ArrayList aux : nivelBrote) {
+			System.out.println(aux);
+		}
 
 	}
 

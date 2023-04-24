@@ -4,20 +4,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Image;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.Font;
+import javax.swing.JSlider;
 
 public class menu extends JFrame {
-	// string para sobreescribir el panel de texto
+	//string para sobreescribir el panel de texto
 	static String StringMenu;
 
 	public menu() {
@@ -28,13 +29,11 @@ public class menu extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-
 		// panel del menu(fondo menu)-----------------------------------
-		JPanel Pciudades = new JPanel();
-		Pciudades.setBounds(0, 0, 1550, 850);
-		Pciudades.setBackground(new Color(6, 153, 209));
-		Pciudades.setLayout(null);
-
+		JPanel PFondo = new JPanel();
+		PFondo.setBounds(0, 0, 1550, 850);
+		PFondo.setBackground(new Color(6, 153, 209));
+		PFondo.setLayout(null);
 		// imagen de fondo(mapa)
 		ImageIcon Imagen = new ImageIcon("mapa_mundo.png");
 		// cambia las dimensiones de la imagen
@@ -44,7 +43,7 @@ public class menu extends JFrame {
 		JLabel MapaMundi = new JLabel(Imagen);
 		MapaMundi.setFocusable(false);
 		MapaMundi.setBounds(0, 0, 1550, 850);
-		Pciudades.add(MapaMundi);
+		PFondo.add(MapaMundi);
 		// panel botones 1(botnes del menu principal)--------------------------
 		JPanel PBotones1 = new JPanel();
 		PBotones1.setBounds(0, 0, 1550, 850);
@@ -80,13 +79,22 @@ public class menu extends JFrame {
 		Version.setText("Version");
 		Version.setBounds(50, 730, 100, 40);
 		PBotones1.add(Version);
+		// configuracion
+		ImageIcon ConfigIcon = new ImageIcon("config.png");
+		Image image2 = ConfigIcon.getImage();
+		Image newimg2 = image2.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+		ConfigIcon = new ImageIcon(newimg2);
+		JLabel ConfigLable = new JLabel(ConfigIcon);
+		ConfigLable.setBounds(20, 20, 45, 45);
+		PBotones1.add(ConfigLable);
 		// salir del juego
 		JButton Salir = new JButton();
 		Salir.setText("Salir");
 		Salir.setName("");
 		Salir.setBounds(1320, 730, 100, 40);
 		PBotones1.add(Salir);
-		// pnael para poner texto (texto de informacion y boton volver)---------------------------------
+		// pnael para poner texto (texto de informacion y boton
+		// volver)---------------------------------
 		JPanel PBotones2 = new JPanel();
 		PBotones2.setBounds(0, 0, 1550, 850);
 		PBotones2.setOpaque(false);
@@ -112,25 +120,135 @@ public class menu extends JFrame {
 		PBotones2.add(textMenu);
 		// marco translucido
 		ImageIcon TransparenteImagen = new ImageIcon("transparente.png");
+		image = TransparenteImagen.getImage();
+		newimg = image.getScaledInstance(500, 400, java.awt.Image.SCALE_SMOOTH);
+		TransparenteImagen = new ImageIcon(newimg);
 		JLabel TransparenteLable = new JLabel(TransparenteImagen);
 		TransparenteLable.setBounds(500, 200, 500, 400);
 		PBotones2.add(TransparenteLable);
-		// añade los menus y hace el marco visible-------------------------------------------------
+		// panel de configuracion
+		JPanel ConfigPanel = new JPanel();
+		ConfigPanel.setVisible(false);
+		ConfigPanel.setOpaque(false);
+		ConfigPanel.setBounds(0, 0, 1550, 850);
+		ConfigPanel.setLayout(null);
+		// boton para volver al menu principal
+		JButton VolverConf = new JButton();
+		VolverConf.setBackground(new Color(72, 72, 72));
+		VolverConf.setForeground(new Color(255, 255, 255));
+		VolverConf.setText("Volver");
+		VolverConf.setBounds(20, 20, 100, 40);
+		ConfigPanel.add(VolverConf);
+		// lable de dificultad
+		JLabel DificultadLable = new JLabel("DIFICULTAD");
+		DificultadLable.setForeground(new Color(255, 255, 255));
+		DificultadLable.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		DificultadLable.setBounds(670, 100, 180, 40);
+		ConfigPanel.add(DificultadLable);
+		// difficultad facil
+		JButton FACIL = new JButton();
+		FACIL.setBackground(new Color(72, 72, 72));
+		FACIL.setForeground(new Color(255, 255, 255));
+		FACIL.setText("FACIL");
+		FACIL.setBounds(670, 170, 180, 40);
+		ConfigPanel.add(FACIL);
+		// dificultad normal
+		JButton NORMAL = new JButton();
+		NORMAL.setBackground(new Color(72, 72, 72));
+		NORMAL.setForeground(new Color(255, 255, 255));
+		NORMAL.setText("NORMAL");
+		NORMAL.setBounds(670, 230, 180, 40);
+		ConfigPanel.add(NORMAL);
+		// dificultad dificil
+		JButton DIFICIL = new JButton();
+		DIFICIL.setBackground(new Color(72, 72, 72));
+		DIFICIL.setForeground(new Color(255, 255, 255));
+		DIFICIL.setText("DIFICIL");
+		DIFICIL.setBounds(670, 290, 180, 40);
+		ConfigPanel.add(DIFICIL);
+		// lable de volumen
+		JLabel VolumenLable = new JLabel("VOLUMEN");
+		VolumenLable.setForeground(new Color(255, 255, 255));
+		VolumenLable.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		VolumenLable.setBounds(670, 530, 180, 40);
+		ConfigPanel.add(VolumenLable);
+		// lable de volumen maestro
+		JLabel VolumenMaestroLable = new JLabel("MAESTRO");
+		VolumenMaestroLable.setForeground(new Color(255, 255, 255));
+		VolumenMaestroLable.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		VolumenMaestroLable.setBounds(530, 580, 100, 40);
+		ConfigPanel.add(VolumenMaestroLable);
+		// lable de volumen musica
+		JLabel VolumenMusicaLable = new JLabel("MUSICA");
+		VolumenMusicaLable.setForeground(new Color(255, 255, 255));
+		VolumenMusicaLable.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		VolumenMusicaLable.setBounds(530, 630, 100, 40);
+		ConfigPanel.add(VolumenMusicaLable);
+		// lable de volumen SFX
+		JLabel VolumenSFXLable = new JLabel("SFX");
+		VolumenSFXLable.setForeground(new Color(255, 255, 255));
+		VolumenSFXLable.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		VolumenSFXLable.setBounds(530, 690, 100, 40);
+		ConfigPanel.add(VolumenSFXLable);
+		// slider del volumen maestro
+		JSlider sliderMaestro = new JSlider();
+		sliderMaestro.setOpaque(false);
+		sliderMaestro.setBounds(660, 580, 200, 40);
+		ConfigPanel.add(sliderMaestro);
+		// slider de la musica
+		JSlider sliderMusica = new JSlider();
+		sliderMusica.setOpaque(false);
+		sliderMusica.setBounds(660, 630, 200, 40);
+		ConfigPanel.add(sliderMusica);
+		// slider de SFX
+		JSlider sliderSFX = new JSlider();
+		sliderSFX.setOpaque(false);
+		sliderSFX.setBounds(660, 690, 200, 40);
+		ConfigPanel.add(sliderSFX);
+		// imagen trasparente de fondo para efecto de menu
+		ImageIcon ConfigImagen = new ImageIcon("transparente.png");
+		image = ConfigImagen.getImage();
+		newimg = image.getScaledInstance(1500, 800, java.awt.Image.SCALE_SMOOTH);
+		ConfigImagen = new ImageIcon(newimg);
+		JLabel ConfigBoxImage = new JLabel(ConfigImagen);
+		ConfigBoxImage.setBounds(15, 15, 1500, 780);
+		ConfigPanel.add(ConfigBoxImage);
+		//panel para nueva partida
+		JPanel PNueva = new JPanel();
+		Image imagenNueva = ConfigImagen.getImage();
+		newimg = image.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon imagen = new ImageIcon(newimg);
+		JLabel LimagenNueva = new JLabel(imagen);
+		LimagenNueva.setBounds(300,400,500,300);
+		PNueva.add(LimagenNueva);
+		PNueva.setVisible(false);
+		// añade los menus y hace el marco
+		// visible-------------------------------------------------
+		getContentPane().add(PNueva);
 		getContentPane().add(PBotones1);
 		getContentPane().add(PBotones2);
-		getContentPane().add(Pciudades);
+		getContentPane().add(ConfigPanel);
+		getContentPane().add(PFondo);
 		setVisible(true);
 		// listeners de los botones
 		Salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Salir();
+				AccionBoton.Salir();
 			}
 		});
+		//boton nueva poartida
+		NuevaPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PBotones1.setVisible(false);
+				PNueva.setVisible(true);
+			}
+		});
+		
 		// los siguientes 3 listeners hacen ciertos botones visibles y ciertos botones
 		// visibles, tambien un texto y una imagen
 		Autores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StringMenu = Autores(StringMenu);
+				StringMenu = AccionBoton.Autores(StringMenu);
 				textMenu.setText(StringMenu);
 				PBotones1.setVisible(false);
 				PBotones2.setVisible(true);
@@ -139,7 +257,7 @@ public class menu extends JFrame {
 
 		Version.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StringMenu = Version(StringMenu);
+				StringMenu = AccionBoton.Version(StringMenu);
 				textMenu.setText(StringMenu);
 				PBotones1.setVisible(false);
 				PBotones2.setVisible(true);
@@ -148,7 +266,7 @@ public class menu extends JFrame {
 
 		Informacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StringMenu = Informacion(StringMenu);
+				StringMenu = AccionBoton.Informacion(StringMenu);
 				textMenu.setText(StringMenu);
 				PBotones1.setVisible(false);
 				PBotones2.setVisible(true);
@@ -162,88 +280,35 @@ public class menu extends JFrame {
 				PBotones2.setVisible(false);
 			}
 		});
-	}
 
-	static void NuevaPartida() {
-
-	}
-
-	static void CargarPartida() {
-
-	}
-
-	static void ResumenPuntuaciones() {
-
-	}
-
-	// obtine el texto del archivo informacion.txt
-	static String Informacion(String StringMenu) {
-		String texto = "";
-		StringMenu = "";
-		try {
-			FileReader fr = new FileReader("informacion.txt");
-			BufferedReader br = new BufferedReader(fr);
-			texto = br.readLine();
-			while (texto != null) {
-				StringMenu = StringMenu + "\n" + texto;
-				texto = br.readLine();
+		// configuracion
+		ConfigLable.addMouseListener((MouseListener) new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				PBotones1.setVisible(false);
+				ConfigPanel.setVisible(true);
 			}
-			fr.close();
-			br.close();
-		} catch (IOException e) {
-			if (texto == null) {
-				texto = "Error al leer los archivos!!\nvuelve a instalar el juego!";
+		});
+		VolverConf.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PBotones1.setVisible(true);
+				ConfigPanel.setVisible(false);
 			}
-		}
-		return StringMenu;
-	}
+		});
 
-	// obtine el texto del archivo autores.txt
-	static String Autores(String StringMenu) {
-		String texto = "";
-		StringMenu = "";
-		try {
-			FileReader fr = new FileReader("autores.txt");
-			BufferedReader br = new BufferedReader(fr);
-			texto = br.readLine();
-			while (texto != null) {
-				StringMenu = StringMenu + "\n" + texto;
-				texto = br.readLine();
+		FACIL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				config.SetDificultad(1);
 			}
-			fr.close();
-			br.close();
-		} catch (IOException e) {
-			if (texto == null) {
-				StringMenu = "Error al leer los archivos!!\nvuelve a instalar el juego!";
+		});
+		NORMAL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				config.SetDificultad(2);
 			}
-		}
-		return StringMenu;
-	}
-
-	// obtine el texto del archivo version.txt
-	static String Version(String StringMenu) {
-		String texto = "";
-		StringMenu = "";
-		try {
-			FileReader fr = new FileReader("version.txt");
-			BufferedReader br = new BufferedReader(fr);
-			texto = br.readLine();
-			while (texto != null) {
-				StringMenu = StringMenu + "\n" + texto;
-				texto = br.readLine();
+		});
+		DIFICIL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				config.SetDificultad(3);
 			}
-			fr.close();
-			br.close();
-		} catch (IOException e) {
-			if (texto == null) {
-				texto = "Error al leer los archivos!!\nvuelve a instalar el juego!";
-			}
-		}
-		return StringMenu;
-	}
-
-	// salir del juego
-	static void Salir() {
-		System.exit(0);
+		});
 	}
 }

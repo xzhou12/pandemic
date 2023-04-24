@@ -49,5 +49,7 @@ public class config{
 			Valor = 5;
 			parametros.actualizarValor(archivo, 4, Valor);
 		}
+		
+		
 	}
 }

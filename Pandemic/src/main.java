@@ -10,6 +10,8 @@ public class main {
 		// Jugar pasandole los parametros
 		jugar.Main();
 
+//		conexionBD.comprobarUsuario("Albert");
+
 	}
 
 }

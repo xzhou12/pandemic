@@ -13,7 +13,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 public class parametros {
-	static int valor;
 
 	// Lee el archivo .xml
 	static String[] leerArchivo(File archivo) {
@@ -55,7 +54,7 @@ public class parametros {
 	}
 
 	// Actualiza los valores(nombre de archivo, numero de parametro, valor nuevo)
-	static void actualizarValor(File file, int num, int valor) {
+	static void actualizarValor(File file, int valor1, int valor2, int valor3, int valor4) {
 
 		try {
 			// Cargamos el documento
@@ -63,27 +62,17 @@ public class parametros {
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 			Document document = documentBuilder.parse(file);
 
-			if (num == 1) {
 				// Cargamos el dato y lo guardamos en el Nodo
 				Node node = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0);
 				// Lo cambiamos por el valor nuevo
-				node.setTextContent(Integer.toString(valor));
-
-			} else if (num == 2) {
-				Node node = document.getElementsByTagName("numCuidadesInfectadasRonda").item(0);
-				node.setTextContent(Integer.toString(valor));
-
-			} else if (num == 3) {
-				Node node = document.getElementsByTagName("numEnfermedadesActivasDerrota").item(0);
-				node.setTextContent(Integer.toString(valor));
-
-			} else if (num == 4) {
-				Node node = document.getElementsByTagName("numBrotesDerrota").item(0);
-				node.setTextContent(Integer.toString(valor));
-
-			}
-
-			// Guardamos el archivo
+				node.setTextContent(Integer.toString(valor1));
+				node = document.getElementsByTagName("numCuidadesInfectadasRonda").item(0);
+				node.setTextContent(Integer.toString(valor2));
+				node = document.getElementsByTagName("numEnfermedadesActivasDerrota").item(0);
+				node.setTextContent(Integer.toString(valor3));
+				node = document.getElementsByTagName("numBrotesDerrota").item(0);
+				node.setTextContent(Integer.toString(valor4));
+			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");

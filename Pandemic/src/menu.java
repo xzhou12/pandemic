@@ -213,8 +213,18 @@ public class menu extends JFrame {
 		JLabel ConfigBoxImage = new JLabel(ConfigImagen);
 		ConfigBoxImage.setBounds(15, 15, 1500, 780);
 		ConfigPanel.add(ConfigBoxImage);
+		//panel para nueva partida
+		JPanel PNueva = new JPanel();
+		Image imagenNueva = ConfigImagen.getImage();
+		newimg = image.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon imagen = new ImageIcon(newimg);
+		JLabel LimagenNueva = new JLabel(imagen);
+		LimagenNueva.setBounds(300,400,500,300);
+		PNueva.add(LimagenNueva);
+		PNueva.setVisible(false);
 		// añade los menus y hace el marco
 		// visible-------------------------------------------------
+		getContentPane().add(PNueva);
 		getContentPane().add(PBotones1);
 		getContentPane().add(PBotones2);
 		getContentPane().add(ConfigPanel);
@@ -226,6 +236,14 @@ public class menu extends JFrame {
 				AccionBoton.Salir();
 			}
 		});
+		//boton nueva poartida
+		NuevaPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PBotones1.setVisible(false);
+				PNueva.setVisible(true);
+			}
+		});
+		
 		// los siguientes 3 listeners hacen ciertos botones visibles y ciertos botones
 		// visibles, tambien un texto y una imagen
 		Autores.addActionListener(new ActionListener() {
@@ -267,7 +285,6 @@ public class menu extends JFrame {
 		ConfigLable.addMouseListener((MouseListener) new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				PBotones1.setVisible(false);
-				PBotones2.setVisible(false);
 				ConfigPanel.setVisible(true);
 			}
 		});

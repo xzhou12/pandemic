@@ -8,7 +8,7 @@ public class AccionBoton {
 	}
 
 	static void CargarPartida() {
-		
+
 	}
 
 	static void ResumenPuntuaciones() {

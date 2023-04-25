@@ -25,7 +25,10 @@ public class vacunas {
 		Random r = new Random();
 
 		int porcentaje = Integer.parseInt((String) vacunasCura.get(vacuna).get(1));
-		porcentaje += (r.nextInt(10) + 5);
+		porcentaje += (r.nextInt(10) + 15);
+		if (porcentaje > 100) {
+			porcentaje = 100;
+		}
 		vacunasCura.get(vacuna).set(1, Integer.toString(porcentaje));
 	}
 

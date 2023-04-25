@@ -14,8 +14,10 @@ import org.w3c.dom.Node;
 
 public class parametros {
 
+	public static final File archivo = new File("parametros.xml");
+
 	// Lee el archivo .xml
-	static String[] leerArchivo(File archivo) {
+	static String[] leerArchivo() {
 
 		// Variables
 		String numCiudadesInfectadasInicio = "";
@@ -62,17 +64,17 @@ public class parametros {
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 			Document document = documentBuilder.parse(file);
 
-				// Cargamos el dato y lo guardamos en el Nodo
-				Node node = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0);
-				// Lo cambiamos por el valor nuevo
-				node.setTextContent(Integer.toString(valor1));
-				node = document.getElementsByTagName("numCuidadesInfectadasRonda").item(0);
-				node.setTextContent(Integer.toString(valor2));
-				node = document.getElementsByTagName("numEnfermedadesActivasDerrota").item(0);
-				node.setTextContent(Integer.toString(valor3));
-				node = document.getElementsByTagName("numBrotesDerrota").item(0);
-				node.setTextContent(Integer.toString(valor4));
-			
+			// Cargamos el dato y lo guardamos en el Nodo
+			Node node = document.getElementsByTagName("numCiudadesInfectadasInicio").item(0);
+			// Lo cambiamos por el valor nuevo
+			node.setTextContent(Integer.toString(valor1));
+			node = document.getElementsByTagName("numCuidadesInfectadasRonda").item(0);
+			node.setTextContent(Integer.toString(valor2));
+			node = document.getElementsByTagName("numEnfermedadesActivasDerrota").item(0);
+			node.setTextContent(Integer.toString(valor3));
+			node = document.getElementsByTagName("numBrotesDerrota").item(0);
+			node.setTextContent(Integer.toString(valor4));
+
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");

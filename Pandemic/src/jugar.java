@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class jugar {
 
 	public static void Main() {
+
+		Scanner s = new Scanner(System.in);
 
 		boolean derrota, victoria;
 		derrota = victoria = false;
@@ -13,21 +16,22 @@ public class jugar {
 		int[] numBrotes = { 0 };
 
 		// Array con las ciudades y su nivel de brote
-		ArrayList<ArrayList> nivelBroteCiudades = IA.inicializarNivelBrote(ciudades);
+		ArrayList<ArrayList> nivelBroteCiudades = brotes.inicializarNivelBrote(ciudades);
 		ArrayList<ArrayList> vacunasCura = vacunas.inicializarVacunas();
 
 		while (derrota == false && victoria == false) {
 			// Turno jugador
+			accion.Main(nivelBroteCiudades, vacunasCura);
 
-			IA.infectarCiudadesRondas(nivelBroteCiudades);
+			// Turno IA
+			ArrayList<String> ciudadesAfectadas = IA.infectarCiudadesRondas(nivelBroteCiudades);
+			System.out.println("CiudaesAfectadas:");
+			System.out.println(ciudadesAfectadas);
+
+			// Comprobaciones
 			IA.comprobarBroteNivel4(nivelBroteCiudades, numBrotes);
-
-			for (ArrayList ciudad : nivelBroteCiudades) {
-				System.out.println(ciudad);
-			}
 			victoria = IA.comprobarVictoria(nivelBroteCiudades);
 			derrota = IA.comprobarDerrota(nivelBroteCiudades, numBrotes);
-			victoria = true;
 
 		}
 

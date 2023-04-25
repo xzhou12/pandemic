@@ -6,12 +6,13 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class IA {
+	public static final File fileCiudades = new File("ciudades.txt");
+	public static final File fileParametros = new File("parametros.xml");
 
 	// Lee las ciudades que hay en el archivo de ciudades
 	public static String[][] leerCiudades() {
-		File fileCiudades = new File("ciudades.txt");
 		String s = "";
-		int tamano = contarLineas(fileCiudades);
+		int tamano = contarLineas();
 		String[][] ciudades = new String[tamano][];
 
 		// Recorre el archivo linea por linea hasta que sea null
@@ -34,7 +35,7 @@ public class IA {
 	}
 
 	// Cuenta la linea de ciudades que hay en el archivo
-	public static int contarLineas(File fileCiudades) {
+	public static int contarLineas() {
 		int contador = 0;
 
 		// Recorre el archivo linea por linea hasta que sea null
@@ -69,13 +70,23 @@ public class IA {
 
 	// Inicializa los brotes encima de la partida
 	public static void infectarCiudadesInicio(ArrayList<ArrayList> ciudadesBrotes) {
-		File fileParametros = new File("parametros.xml");
 		String[] param = parametros.leerArchivo(fileParametros);
 
-		System.out.println(param[0]);
 		// numCiudadesInfectadasInicio
 		int numCII = Integer.parseInt(param[0]);
 		for (int i = 0; i < numCII; i++) {
+			infectarCiudadesAleatorio(ciudadesBrotes);
+		}
+
+	}
+
+	// Infecta las ciudades por ronda
+	public static void infectarCiudadesRondas(ArrayList<ArrayList> ciudadesBrotes) {
+		String[] param = parametros.leerArchivo(fileParametros);
+
+		// numCiudadesInfectadasRondas
+		int numCIR = Integer.parseInt(param[1]);
+		for (int i = 0; i < numCIR; i++) {
 			infectarCiudadesAleatorio(ciudadesBrotes);
 		}
 
@@ -121,12 +132,18 @@ public class IA {
 	}
 
 	// Comprueba si alguna ciudad tiene el nivel 4 de infección
-	static void comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes) {
+	static void comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes, int[] numBrotes) {
+
+		// **************************************************************************
+		// SI UNA CIUDAD YA HA LLEGADO A NIVEL 4, NO PUEDE VOLVER A INFECTASE EN LA
+		// MISMA RONDA
+		// **************************************************************************
 
 		for (ArrayList aux : ciudadesBrotes) {
 			int nivel = Integer.parseInt((String) aux.get(1));
 			if (nivel >= 4) {
 				// Si hay, infecta las colindantes
+				numBrotes[0]++;
 				addBrotesColindante(ciudadesBrotes, (String) aux.get(0));
 			}
 		}
@@ -182,15 +199,11 @@ public class IA {
 
 	}
 
-	static void comprobarCura() {
-
+	public static boolean comprobarVictoria(ArrayList<ArrayList> ciudadesBrotes) {
+		return false;
 	}
 
-	static void comprobarVictoria() {
-
-	}
-
-	static void comprobarDerrota() {
-
+	public static boolean comprobarDerrota(ArrayList<ArrayList> ciudadesBrotes, int[] brotes) {
+		return false;
 	}
 }

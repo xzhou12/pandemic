@@ -73,14 +73,19 @@ public class IA {
 		// MISMA RONDA
 		// **************************************************************************
 
-		for (ArrayList aux : ciudadesBrotes) {
-			int nivel = Integer.parseInt((String) aux.get(1));
+		// No funciona esto del inmune
+		ArrayList<String> inmune = new ArrayList<String>();
+		for (ArrayList ciudad : ciudadesBrotes) {
+			int nivel = Integer.parseInt((String) ciudad.get(1));
 			if (nivel >= 4) {
 				// Si hay, infecta las colindantes
 				numBrotes[0]++;
-				brotes.addBrotesColindante(ciudadesBrotes, (String) aux.get(0));
+				inmune.add((String) ciudad.get(0));
+				brotes.addBrotesColindante(ciudadesBrotes, (String) ciudad.get(0), inmune);
 			}
 		}
+		System.out.println("INMUNE:");
+		System.out.println(inmune);
 
 	}
 
@@ -108,11 +113,11 @@ public class IA {
 		int numBD = Integer.parseInt(param[3]);
 		int contador = enfermedadesActivas(ciudadesBrotes);
 
-		if (brotes[0] >= numBD || contador <= numEAD) {
-			return false;
+		if (brotes[0] >= numBD || contador >= numEAD) {
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	// Contar el numero de enfermedades activas y devolverlas

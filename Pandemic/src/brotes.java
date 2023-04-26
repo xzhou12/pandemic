@@ -13,11 +13,13 @@ public class brotes {
 		// de brote a 0
 		for (int i = 0; i < ciudades.length; i++) {
 			ArrayList<String> ciudad = new ArrayList<String>();
-			ciudad.add(ciudades[i][0]);
-			ciudad.add("0");
+			ciudad.add(ciudades[i][0]); // Nombre
+			ciudad.add("0"); // Nivel de brote
+			ciudad.add(ciudades[i][1]); // Enfermedad
 			ciudadesBrotes.add(ciudad);
 		}
 
+		// Infectar
 		infectarCiudadesInicio(ciudadesBrotes);
 
 		return ciudadesBrotes;
@@ -82,14 +84,14 @@ public class brotes {
 	}
 
 	// Añade brotes a las ciudades colindantes que han llegado a nivel 4
-	static void addBrotesColindante(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
+	static void addBrotesColindante(ArrayList<ArrayList> ciudadesBrotes, String ciudad, ArrayList<String> inmune) {
 
 		String[][] ciudades = IA.leerCiudades();
 		ArrayList<String> colindante = buscarColindantes(ciudades, ciudad);
 
 		// Infecta las ciudades colindantes y baja un nivel a la ciudad que ha llegado a
 		// nivel 4
-		infectarColindantes(ciudadesBrotes, colindante);
+		infectarColindantes(ciudadesBrotes, colindante, inmune);
 		bajarCiudadParametro(ciudadesBrotes, ciudad);
 
 	}
@@ -112,7 +114,8 @@ public class brotes {
 	}
 
 	// Infecta las ciudades scolindantes
-	static void infectarColindantes(ArrayList<ArrayList> ciudadesBrotes, ArrayList<String> colindante) {
+	static void infectarColindantes(ArrayList<ArrayList> ciudadesBrotes, ArrayList<String> colindante,
+			ArrayList<String> inmune) {
 
 		// Bucle que se reptie x veces por ciudadesColindantes
 		for (String ciudadColindante : colindante) {
@@ -121,7 +124,7 @@ public class brotes {
 			for (ArrayList brotes : ciudadesBrotes) {
 
 				String ciudad = (String) brotes.get(0);
-				if (ciudadColindante.equals(ciudad)) {
+				if (ciudadColindante.equals(ciudad) && !inmune.contains(ciudad)) {
 					// Si la encuentra, infecta esa ciudad
 					infectarCiudadParametro(ciudadesBrotes, ciudad);
 				}

@@ -21,7 +21,7 @@ public class jugar {
 
 		while (derrota == false && victoria == false) {
 			// Turno jugador
-			accion.Main(nivelBroteCiudades, vacunasCura);
+//			accion.Main(nivelBroteCiudades, vacunasCura);
 
 			// Turno IA
 			ArrayList<String> ciudadesAfectadas = IA.infectarCiudadesRondas(nivelBroteCiudades);
@@ -32,6 +32,11 @@ public class jugar {
 			IA.comprobarBroteNivel4(nivelBroteCiudades, numBrotes);
 			victoria = IA.comprobarVictoria(nivelBroteCiudades);
 			derrota = IA.comprobarDerrota(nivelBroteCiudades, numBrotes);
+
+			for (ArrayList ciudad : nivelBroteCiudades) {
+				System.out.println(ciudad);
+			}
+			derrota = true;
 
 		}
 

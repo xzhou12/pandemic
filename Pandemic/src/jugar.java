@@ -36,6 +36,7 @@ public class jugar {
 			for (ArrayList ciudad : nivelBroteCiudades) {
 				System.out.println(ciudad);
 			}
+
 			derrota = true;
 
 		}

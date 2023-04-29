@@ -24,14 +24,16 @@ public class vacunas {
 	public static void investigarCura(ArrayList<ArrayList> vacunasCura, int vacuna) {
 		Random r = new Random();
 
+		// Investiga la vacunas, cada investigación suma entre 15 y 25%
 		int porcentaje = Integer.parseInt((String) vacunasCura.get(vacuna).get(1));
 		porcentaje += (r.nextInt(10) + 15);
 		if (porcentaje > 100) {
-			porcentaje = 100;
+			porcentaje = 100; // Si supera los 100, se queda en 100
 		}
 		vacunasCura.get(vacuna).set(1, Integer.toString(porcentaje));
 	}
 
+	// Comprueba si la vacuna ya esta al 100% de su investigación
 	public static boolean comprobarCura(ArrayList<ArrayList> vacunasCura, int vacuna) {
 		Random r = new Random();
 

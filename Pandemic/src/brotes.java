@@ -19,9 +19,10 @@ public class brotes {
 			ciudadesBrotes.add(ciudad);
 		}
 
-		// Infectar
+		// Infecta las ciudades predefinidas al inicio
 		infectarCiudadesInicio(ciudadesBrotes);
 
+		// Retorna la ArrayList
 		return ciudadesBrotes;
 	}
 
@@ -31,7 +32,9 @@ public class brotes {
 
 		// numCiudadesInfectadasInicio
 		int numCII = Integer.parseInt(param[0]);
+		// Infecta x veces, como esta predefinido en el archivo parametros
 		for (int i = 0; i < numCII; i++) {
+			// Infecta las ciudades aleatoriamente
 			infectarCiudadesAleatorio(ciudadesBrotes);
 
 		}
@@ -84,15 +87,24 @@ public class brotes {
 	}
 
 	// Añade brotes a las ciudades colindantes que han llegado a nivel 4
-	static void addBrotesColindante(ArrayList<ArrayList> ciudadesBrotes, String ciudad, ArrayList<String> inmune) {
+	static void addBrotesColindante(ArrayList<String> ciudadesNivel4, ArrayList<ArrayList> ciudadesBrotes) {
 
 		String[][] ciudades = IA.leerCiudades();
-		ArrayList<String> colindante = buscarColindantes(ciudades, ciudad);
 
-		// Infecta las ciudades colindantes y baja un nivel a la ciudad que ha llegado a
-		// nivel 4
-		infectarColindantes(ciudadesBrotes, colindante, inmune);
-		bajarCiudadParametro(ciudadesBrotes, ciudad);
+		for (String ciudad : ciudadesNivel4) {
+			// Busca las ciudades colindantes
+			ArrayList<String> ciudadColindante = buscarColindantes(ciudades, ciudad);
+			// Infecta las ciudades colindantes y baja un nivel a la ciudad que ha llegado a
+			// nivel 4
+			for (String colindante : ciudadColindante) {
+				if (!ciudadesNivel4.contains(colindante)) {
+					infectarCiudadParametro(ciudadesBrotes, colindante);
+				}
+
+			}
+			bajarCiudadParametro(ciudadesBrotes, ciudad);
+
+		}
 
 	}
 
@@ -110,27 +122,6 @@ public class brotes {
 		}
 		// Deuvelve la ArrayList con las ciudades colindantes
 		return colindante;
-
-	}
-
-	// Infecta las ciudades scolindantes
-	static void infectarColindantes(ArrayList<ArrayList> ciudadesBrotes, ArrayList<String> colindante,
-			ArrayList<String> inmune) {
-
-		// Bucle que se reptie x veces por ciudadesColindantes
-		for (String ciudadColindante : colindante) {
-
-			// Busca la ciudad en la lista
-			for (ArrayList brotes : ciudadesBrotes) {
-
-				String ciudad = (String) brotes.get(0);
-				if (ciudadColindante.equals(ciudad) && !inmune.contains(ciudad)) {
-					// Si la encuentra, infecta esa ciudad
-					infectarCiudadParametro(ciudadesBrotes, ciudad);
-				}
-
-			}
-		}
 
 	}
 

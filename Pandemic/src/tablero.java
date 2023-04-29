@@ -1,10 +1,5 @@
 import java.awt.Color;
 import java.awt.Image;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -210,7 +205,6 @@ public class tablero extends JPanel {
 		JLabel Sidney = new JLabel(bola1);
 		Sidney.setBounds(1320, 645, 15, 15);
 		add(Sidney);
-		
 
 		// imagen de fondo(mapa)
 		ImageIcon Imagen = new ImageIcon("mapa_mundo.png");
@@ -223,5 +217,5 @@ public class tablero extends JPanel {
 		MapaMundi.setBounds(0, 0, 1550, 850);
 		add(MapaMundi);
 	}
-	
+
 }

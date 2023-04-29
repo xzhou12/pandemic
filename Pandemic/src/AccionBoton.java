@@ -2,10 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
 public class AccionBoton {
 	void NuevaPartida(String linea) {
 
@@ -64,7 +60,6 @@ public class AccionBoton {
 				texto = "Error al leer los archivos!!\nvuelve a instalar el juego!";
 			}
 		}
-
 
 	}
 

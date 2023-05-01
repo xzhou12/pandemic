@@ -73,13 +73,27 @@ public class brotes {
 	}
 
 	// Baja un nivel a la ciudad que le pasamos por parametro
-	static void bajarCiudadParametro(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
+	public static void bajarCiudadParametro(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
 		for (ArrayList ciudades : ciudadesBrotes) {
 			String ciudadA = (String) ciudades.get(0);
 			if (ciudadA.equals(ciudad)) {
 				// Coge el nivel y lo pasa a int
 				int nivel = Integer.parseInt((String) ciudades.get(1));
 				nivel--; // Baja un nivel
+				// Y lo vuelve a meter
+				ciudades.set(1, Integer.toString(nivel));
+			}
+		}
+	}
+
+	// Cura toda la ciudad si la vacuna esta hecha
+	public static void curarTodo(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
+		for (ArrayList ciudades : ciudadesBrotes) {
+			String ciudadA = (String) ciudades.get(0);
+			if (ciudadA.equals(ciudad)) {
+				// Coge el nivel y lo pasa a int
+				int nivel = Integer.parseInt((String) ciudades.get(1));
+				nivel = 0; // Cura la ciudad
 				// Y lo vuelve a meter
 				ciudades.set(1, Integer.toString(nivel));
 			}

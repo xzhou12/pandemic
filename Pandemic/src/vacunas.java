@@ -47,4 +47,18 @@ public class vacunas {
 
 	}
 
+	// Devuelve el codigo de la enfermedad que tiene x ciudad
+	public static int sacarEnfermedadCiudad(ArrayList<ArrayList> broteCiudades, String ciudadSeleccionado) {
+
+		for (ArrayList ciudad : broteCiudades) {
+			String ciudadAux = (String) ciudad.get(0);
+			if (ciudadAux.equals(ciudadSeleccionado)) {
+				return Integer.parseInt((String)ciudad.get(2));
+			}
+		}
+
+		return -1;
+
+	}
+
 }

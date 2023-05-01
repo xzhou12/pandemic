@@ -190,6 +190,10 @@ public class conexionBD {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+		
+		// **********************************************
+		// HAY QUE VER LA MANERA DE PASAR ESTOS DATOS A MAIN
+		// **********************************************
 
 	}
 

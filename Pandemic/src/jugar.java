@@ -20,19 +20,28 @@ public class jugar {
 		ArrayList<ArrayList> vacunasCura = vacunas.inicializarVacunas();
 
 		for (ArrayList ciudadess : nivelBroteCiudades) {
-			System.out.println(ciudadess.get(0) + "," + ciudadess.get(1));
+			if (!ciudadess.get(1).equals("0"))
+				System.out.println(ciudadess.get(0) + "," + ciudadess.get(1));
 		}
 
 		while (derrota == false && victoria == false) {
-			// Turno jugador
-			System.out.println("-----------------------------------------------");
-			System.out.println("TU TURNO");
-			System.out.println("-----------------------------------------------");
-			accion.Main(nivelBroteCiudades, vacunasCura);
-			// Turno IA
 
-			ArrayList<String> ciudadesAfectadas = IA.infectarCiudadesRondas(nivelBroteCiudades);
-			System.out.println("CIUDADES AFECTADAS: " + ciudadesAfectadas);
+			nivelBroteCiudades.get(0).set(1, "3");
+			if (rondas % 2 == 0) {
+				// Turno jugador
+				System.out.println("-----------------------------------------------");
+				System.out.println("TU TURNO");
+				System.out.println("-----------------------------------------------");
+				accion.Main(nivelBroteCiudades, vacunasCura);
+				// Turno IA
+			} else {
+				ArrayList<String> ciudadesAfectadas = IA.infectarCiudadesRondas(nivelBroteCiudades);
+				System.out.println("CIUDADES AFECTADAS: " + ciudadesAfectadas);
+				for (ArrayList ciudadess : nivelBroteCiudades) {
+					if (!ciudadess.get(1).equals("0"))
+						System.out.println(ciudadess.get(0) + "," + ciudadess.get(1));
+				}
+			}
 
 			// Comprobaciones
 			IA.comprobarBroteNivel4(nivelBroteCiudades, numBrotes);
@@ -41,10 +50,12 @@ public class jugar {
 
 			rondas++;
 
-			for (ArrayList ciudadess : nivelBroteCiudades) {
-				System.out.println(ciudadess.get(0) + "," + ciudadess.get(1));
-			}
+		}
 
+		if (victoria == true) {
+			System.out.println("HAS GANADO!");
+		} else {
+			System.out.println("PRINGAO");
 		}
 
 	}

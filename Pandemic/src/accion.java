@@ -11,7 +11,7 @@ public class accion {
 		if (s.nextInt() == 1) {
 			inversigarCura(vacunasCura);
 		} else {
-			curarCiudades(broteCiudades);
+			curarCiudades(broteCiudades, vacunasCura);
 		}
 
 	}
@@ -28,19 +28,27 @@ public class accion {
 
 	}
 
-	public static void curarCiudades(ArrayList<ArrayList> broteCiudades) {
+	public static void curarCiudades(ArrayList<ArrayList> broteCiudades, ArrayList<ArrayList> vacunasCura) {
 		// CURAR
 		Scanner t = new Scanner(System.in);
 
 		for (int i = 0; i < 4; i++) {
 			System.out.println("CUAL?");
-
+			String ciudadSelect = t.nextLine();
 			// FALTA CURAR TODO SI HAY UNA VACUNA HECHA
+			int enf = vacunas.sacarEnfermedadCiudad(broteCiudades, ciudadSelect);
 
-			brotes.bajarCiudadParametro(broteCiudades, t.nextLine());
+			boolean cura = vacunas.comprobarCura(vacunasCura, enf);
+
+			if (cura == true) {
+				brotes.curarTodo(broteCiudades, ciudadSelect);
+			} else {
+				brotes.bajarCiudadParametro(broteCiudades, ciudadSelect);
+			}
 
 			for (int k = 0; k < broteCiudades.size(); k++) {
-				System.out.println(k + ": " + broteCiudades.get(k).get(0) + ", " + broteCiudades.get(k).get(1));
+				if (!broteCiudades.get(k).get(1).equals("0"))
+					System.out.println(k + ": " + broteCiudades.get(k).get(0) + ", " + broteCiudades.get(k).get(1));
 			}
 
 		}

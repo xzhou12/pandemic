@@ -118,7 +118,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 			menu.repaint();
 		}
 		if (e.getSource() == CargarPartida) {
-
+			
 		}
 		if (e.getSource() == ResumenPuntuaciones) {
 	

@@ -2,9 +2,12 @@
 
 
 
+AUTORES:
 
 
+Albert Barrachina:
+albert.barrachina.ribes@gmail.com
 
 
-
-Version: 1.0
+Xiaobin Zhou :
+xiaobinzhou0212@gmail.com

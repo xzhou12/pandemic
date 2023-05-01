@@ -2,26 +2,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 public class AccionBoton {
-	void NuevaPartida(String linea) {
 
-	}
-
-	static void CargarPartida() {
-
-	}
-
-	static void ResumenPuntuaciones() {
-
-	}
-
-	// obtine el texto del archivo informacion.txt
-	static void Informacion() {
+	// obtine el texto del archivo seleccionado y lo pone en el archivo "info.txt"
+	// para establecerlo en el panel de info mas tarde
+	static void SetTextoInfo(String Archivo) {
 		String textoArchivo = null;
 		String texto = "";
 
 		try {
-			FileReader fr = new FileReader("informacion.txt");
+			FileReader fr = new FileReader(Archivo + ".txt");
 			BufferedReader br = new BufferedReader(fr);
 			textoArchivo = br.readLine();
 			while (textoArchivo != null) {
@@ -36,55 +30,6 @@ public class AccionBoton {
 				texto = "Error al leer los archivos!!\nvuelve a instalar el juego!";
 			}
 		}
-
-	}
-
-	// obtine el texto del archivo autores.txt
-	static void Autores() {
-		String textoArchivo = null;
-		String texto = "";
-
-		try {
-			FileReader fr = new FileReader("autores.txt");
-			BufferedReader br = new BufferedReader(fr);
-			textoArchivo = br.readLine();
-			while (textoArchivo != null) {
-				texto = texto + "\n" + textoArchivo;
-				textoArchivo = br.readLine();
-			}
-			PanelInfo.setTexto(texto);
-			br.close();
-			fr.close();
-		} catch (IOException e) {
-			if (textoArchivo == null) {
-				texto = "Error al leer los archivos!!\nvuelve a instalar el juego!";
-			}
-		}
-
-	}
-
-	// obtine el texto del archivo version.txt
-	static void Version() {
-		String textoArchivo = null;
-		String texto = "";
-
-		try {
-			FileReader fr = new FileReader("version.txt");
-			BufferedReader br = new BufferedReader(fr);
-			textoArchivo = br.readLine();
-			while (textoArchivo != null) {
-				texto = texto + "\n" + textoArchivo;
-				textoArchivo = br.readLine();
-			}
-			PanelInfo.setTexto(texto);
-			br.close();
-			fr.close();
-		} catch (IOException e) {
-			if (textoArchivo == null) {
-				texto = "Error al leer los archivos!!\nvuelve a instalar el juego!";
-			}
-		}
-
 	}
 
 	// salir del juego

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -114,25 +115,31 @@ public class PanelMenu extends JPanel implements ActionListener {
 		if (e.getSource() == NuevaPartida) {
 			JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 			menu.remove(this);
-			menu.getContentPane().add(new PanelNuevaPartida());
+			menu.add(new PanelNuevaPartida());
 			menu.repaint();
 		}
 		if (e.getSource() == CargarPartida) {
-			
+			JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+			menu.remove(this);
+			menu.add(new PanelCargarPartida());
+			menu.repaint();
 		}
 		if (e.getSource() == ResumenPuntuaciones) {
-	
+			JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+			menu.remove(this);
+			menu.add(new PanelRanking());
+			menu.repaint();
 		}
 		if (e.getSource() == Informacion) {
-			AccionBoton.Informacion();
+			AccionBoton.SetTextoInfo("informacion");
 			info();
 		}
 		if (e.getSource() == Autores) {
-			AccionBoton.Autores();
+			AccionBoton.SetTextoInfo("autores");
 			info();
 		}
 		if (e.getSource() == Version) {
-			AccionBoton.Version();
+			AccionBoton.SetTextoInfo("varsion");
 			info();
 		}
 		if (e.getSource() == Salir) {
@@ -140,6 +147,8 @@ public class PanelMenu extends JPanel implements ActionListener {
 		}
 
 	}
+
+
 
 	private void info() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -151,7 +160,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 	private void config() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
-		menu.add(new config());
+		menu.add(new PanelConfig());
 		menu.repaint();
 	}
 

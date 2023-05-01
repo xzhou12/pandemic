@@ -1,11 +1,18 @@
 import java.awt.Color;
 import java.awt.Image;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 public class tablero extends JPanel {
+	static String[] lineas = new String[48];
+	static int[][] coords = new int[48][2];
+	static String[] nombres = new String[48];
+
 	public tablero() {
 		setBounds(0, 0, 1550, 850);
 		setBackground(new Color(6, 153, 209));
@@ -139,7 +146,7 @@ public class tablero extends JPanel {
 		add(Teheran);
 
 		JLabel Karachi = new JLabel(bola1);
-		Karachi.setBounds(980, 230, 15, 15);
+		Karachi.setBounds(980, 355, 15, 15);
 		add(Karachi);
 
 		JLabel Bombay = new JLabel(bola1);
@@ -195,7 +202,7 @@ public class tablero extends JPanel {
 		add(Taipei);
 
 		JLabel Ho_Chi_Minh = new JLabel(bola1);
-		Ho_Chi_Minh.setBounds(1148, 100, 15, 15);
+		Ho_Chi_Minh.setBounds(1148, 429, 15, 15);
 		add(Ho_Chi_Minh);
 
 		JLabel Manila = new JLabel(bola1);
@@ -206,16 +213,58 @@ public class tablero extends JPanel {
 		Sidney.setBounds(1320, 645, 15, 15);
 		add(Sidney);
 
+//		getCiudades();
+//
+//		for (int i = 0; i < 48; i++) {
+//			JTextPane Texto = new JTextPane();
+//			Texto.setBounds(coords[i][0], coords[i][1], 80, 20);
+//			Texto.setText(nombres[i]);
+//			add(Texto);
+//		}
+
+		// imagen de fondo(conexiones)
+		ImageIcon Imagen = new ImageIcon("conexiones.png");
+		JLabel Conexiones = new JLabel(Imagen);
+		Conexiones.setBounds(-10, -20, 1550, 850);
+		add(Conexiones);
+		
 		// imagen de fondo(mapa)
-		ImageIcon Imagen = new ImageIcon("mapa_mundo.png");
-		// cambia las dimensiones de la imagen
-		Image image = Imagen.getImage();
-		image = image.getScaledInstance(1550, 850, java.awt.Image.SCALE_SMOOTH);
-		Imagen = new ImageIcon(image);
-		setLayout(null);
-		JLabel MapaMundi = new JLabel(Imagen);
-		MapaMundi.setBounds(0, 0, 1550, 850);
-		add(MapaMundi);
+				 Imagen = new ImageIcon("mapa_mundo.png");
+				// cambia las dimensiones de la imagen
+				Image image = Imagen.getImage();
+				image = image.getScaledInstance(1550, 850, java.awt.Image.SCALE_SMOOTH);
+				Imagen = new ImageIcon(image);
+				setLayout(null);
+				JLabel MapaMundi = new JLabel(Imagen);
+				MapaMundi.setBounds(0, 0, 1550, 850);
+				add(MapaMundi);
 	}
 
+	static void getCiudades() {
+		String s;
+		String[][] ciudades = new String[48][3];
+		String[][] temp = new String[1][2];
+		int i = 0;
+		try {
+			FileReader fr = new FileReader("ciudades.txt");
+			BufferedReader br = new BufferedReader(fr);
+			do {
+				s = br.readLine();
+				if (s != null) {
+					lineas[i] = s;
+					ciudades[i] = lineas[i].split(";");
+					nombres[i] = ciudades[i][0];
+					temp[0] = ciudades[i][2].split(",");
+					coords[i][0] = Integer.valueOf(temp[0][0]);
+					coords[i][1] = Integer.valueOf(temp[0][1]);
+					i++;
+				}
+			} while (s != null);
+			fr.close();
+			br.close();
+
+		} catch (IOException e) {
+			System.exit(0);
+		}
+	}
 }

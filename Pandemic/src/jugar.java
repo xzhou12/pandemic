@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class jugar {
 
+	static ArrayList<ArrayList> nivelBroteCiudades;
+	static ArrayList<ArrayList> vacunasCura;
 	public static void Main() {
 
 		Scanner s = new Scanner(System.in);
@@ -16,8 +18,8 @@ public class jugar {
 		String[][] ciudades = IA.leerCiudades();
 
 		// Array con las ciudades y su nivel de brote
-		ArrayList<ArrayList> nivelBroteCiudades = brotes.inicializarNivelBrote(ciudades);
-		ArrayList<ArrayList> vacunasCura = vacunas.inicializarVacunas();
+		nivelBroteCiudades = brotes.inicializarNivelBrote(ciudades);
+		vacunasCura = vacunas.inicializarVacunas();
 
 		for (ArrayList ciudadess : nivelBroteCiudades) {
 			if (!ciudadess.get(1).equals("0"))

@@ -71,10 +71,10 @@ public class PanelNuevaPartida extends JPanel {
 				if (linea.length() < 3 || linea.length() > 50) {
 					JOptionPane.showMessageDialog(null, "Introduce un nombre de entre 3 y 50 caracteres.");
 				} else {
-					if (conexionBD.comprobarUsuario(linea)) {
-						conexionBD.guardarUsuario(linea);
-						iniciarJuego();
-					}
+//						if (conexionBD.comprobarUsuario(linea)) {
+//							conexionBD.guardarUsuario(linea);
+					iniciarJuego();
+//						}
 				}
 				NombreUsuario.setText("");
 			}
@@ -84,7 +84,7 @@ public class PanelNuevaPartida extends JPanel {
 	public void iniciarJuego() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
-		menu.add(new tablero());
+		menu.add(new PanelTablero());
 		menu.repaint();
 	}
 }

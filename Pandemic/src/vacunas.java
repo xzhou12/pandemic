@@ -35,7 +35,6 @@ public class vacunas {
 
 	// Comprueba si la vacuna ya esta al 100% de su investigación
 	public static boolean comprobarCura(ArrayList<ArrayList> vacunasCura, int vacuna) {
-		Random r = new Random();
 
 		int porcentaje = Integer.parseInt((String) vacunasCura.get(vacuna).get(1));
 
@@ -53,12 +52,23 @@ public class vacunas {
 		for (ArrayList ciudad : broteCiudades) {
 			String ciudadAux = (String) ciudad.get(0);
 			if (ciudadAux.equals(ciudadSeleccionado)) {
-				return Integer.parseInt((String)ciudad.get(2));
+				return Integer.parseInt((String) ciudad.get(2));
 			}
 		}
 
 		return -1;
 
+	}
+
+	// devuelve los porcentajes de las vacunas
+	public static int[] getPorcentajes(ArrayList<ArrayList> vacunasCura) {
+		int[] porcentaje = new int[4];
+
+		porcentaje[0] = Integer.parseInt((String) vacunasCura.get(0).get(0));
+		porcentaje[1] = Integer.parseInt((String) vacunasCura.get(1).get(1));
+		porcentaje[2] = Integer.parseInt((String) vacunasCura.get(2).get(2));
+		porcentaje[3] = Integer.parseInt((String) vacunasCura.get(3).get(3));
+		return porcentaje;
 	}
 
 }

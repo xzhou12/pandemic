@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
-public class config extends JPanel{
+public class PanelConfig extends JPanel{
 	
 	JLabel MapaMundi;
 	
-	public config() {
+	public PanelConfig() {
 				setBounds(0, 0, 1550, 850);
 				setBackground(new Color(6, 153, 209));
 				setLayout(null);
@@ -125,17 +125,17 @@ public class config extends JPanel{
 
 				FACIL.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						config.SetDificultad(1);
+						SetDificultad(1);
 					}
 				});
 				NORMAL.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						config.SetDificultad(2);
+						SetDificultad(2);
 					}
 				});
 				DIFICIL.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						config.SetDificultad(3);
+						SetDificultad(3);
 					}
 				});
 	}

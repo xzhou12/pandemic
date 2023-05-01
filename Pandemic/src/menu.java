@@ -20,11 +20,5 @@ public class menu extends JFrame {
 	}
 
 	
-	
-	public void MostrarInfo() {
-		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
-		menu.remove(this);
-		menu.add(new PanelInfo());
-		menu.repaint();
-	}
+
 }

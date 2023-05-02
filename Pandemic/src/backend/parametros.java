@@ -1,3 +1,4 @@
+package backend;
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -55,7 +56,7 @@ public class parametros {
 	}
 
 	// Actualiza los valores(nombre de archivo, numero de parametro, valor nuevo)
-	static void actualizarValor(File file, int valor1, int valor2, int valor3, int valor4) {
+	public static void actualizarValor(File file, int valor1, int valor2, int valor3, int valor4) {
 
 		try {
 			// Cargamos el documento

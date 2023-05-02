@@ -1,3 +1,5 @@
+package Paneles;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -15,7 +17,7 @@ import javax.swing.SwingUtilities;
 
 public class PanelNuevaPartida extends JPanel {
 	JTextField NombreUsuario;
-	JButton IniciarPartida;
+	JButton IniciarPartida, Cancelar;
 	JLabel LabelNombre;
 	JLabel LimagenNueva;
 
@@ -25,6 +27,7 @@ public class PanelNuevaPartida extends JPanel {
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
 
+		// area de texto para poner el nombre
 		NombreUsuario = new JTextField();
 		NombreUsuario.setForeground(new Color(255, 255, 255));
 		NombreUsuario.setBackground(new Color(192, 192, 192));
@@ -32,19 +35,30 @@ public class PanelNuevaPartida extends JPanel {
 		NombreUsuario.setColumns(10);
 		add(NombreUsuario);
 
+		// iniciar la partida, abirendo el juego
 		IniciarPartida = new JButton("Iniciar Partida");
 		IniciarPartida.setBackground(new Color(128, 128, 128));
 		IniciarPartida.setForeground(new Color(255, 255, 255));
 		IniciarPartida.setHideActionText(true);
-		IniciarPartida.setBounds(670, 340, 180, 40);
+		IniciarPartida.setBounds(550, 340, 180, 40);
 		add(IniciarPartida);
 
+		// cancelar iniciar partida nueva
+		Cancelar = new JButton("Cancelar");
+		Cancelar.setBackground(new Color(128, 128, 128));
+		Cancelar.setForeground(new Color(255, 255, 255));
+		Cancelar.setHideActionText(true);
+		Cancelar.setBounds(790, 340, 180, 40);
+		add(Cancelar);
+
+		// label indicando donde poner el nombre
 		LabelNombre = new JLabel("Introduze tu nombre");
 		LabelNombre.setFont(new Font("Tahoma", Font.BOLD, 20));
 		LabelNombre.setForeground(new Color(255, 255, 255));
 		LabelNombre.setBounds(660, 170, 250, 40);
 		add(LabelNombre);
 
+		// imagen transparente que hace de marco para el menu
 		ImageIcon imagen = new ImageIcon("transparente.png");
 		Image image = imagen.getImage();
 		image = image.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
@@ -79,12 +93,28 @@ public class PanelNuevaPartida extends JPanel {
 				NombreUsuario.setText("");
 			}
 		});
+//		 inicia la partida cargando el mapa
+		Cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VolverMenuPrincipal();
+			}
+		});
 	}
 
+	// se va al panel de iniciar juego e inicia la partida
 	public void iniciarJuego() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.add(new PanelTablero());
 		menu.repaint();
 	}
+
+	// se va al panel del menu principal
+	public void VolverMenuPrincipal() {
+		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+		menu.remove(this);
+		menu.add(new PanelMenu());
+		menu.repaint();
+	}
+
 }

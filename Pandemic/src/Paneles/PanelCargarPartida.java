@@ -1,3 +1,4 @@
+package Paneles;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
@@ -13,6 +14,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import javax.swing.JList;
 
 public class PanelCargarPartida extends JPanel {
@@ -41,10 +45,14 @@ public class PanelCargarPartida extends JPanel {
 		JTextPane Partida;
 		for (int i = 0; i < 48; i++) {
 			Partida = new JTextPane();
+			Partida.setText("No hay partidas guardadas.");
 			Partida.setOpaque(false);
 			Partida.setSize(100, 30);
 			Partida.setForeground(new Color(255, 255, 255));
-			Partida.setToolTipText("texto");
+			StyledDocument doc = Partida.getStyledDocument();
+			SimpleAttributeSet center = new SimpleAttributeSet();
+			StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+			doc.setParagraphAttributes(0, doc.getLength(), center, false);
 			scrollPane.setViewportView(Partida);
 		}
 

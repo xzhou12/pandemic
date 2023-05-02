@@ -1,3 +1,4 @@
+package backend;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +11,7 @@ public class AccionBoton {
 
 	// obtine el texto del archivo seleccionado y lo pone en el archivo "info.txt"
 	// para establecerlo en el panel de info mas tarde
-	static void SetTextoInfo(String Archivo) {
+	public static void SetTextoInfo(String Archivo) {
 		String textoArchivo = null;
 		String texto = "";
 
@@ -22,7 +23,7 @@ public class AccionBoton {
 				texto = texto + "\n" + textoArchivo;
 				textoArchivo = br.readLine();
 			}
-			PanelInfo.setTexto(texto);
+			Paneles.PanelInfo.setTexto(texto);
 			br.close();
 			fr.close();
 		} catch (IOException e) {
@@ -33,7 +34,7 @@ public class AccionBoton {
 	}
 
 	// salir del juego
-	static void Salir() {
+	public static void Salir() {
 		System.exit(0);
 	}
 }

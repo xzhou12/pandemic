@@ -1,3 +1,4 @@
+package Paneles;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
@@ -46,7 +47,7 @@ public class PanelRanking extends JPanel {
 		// preparaciones para el textpanel
 		ArrayList<ArrayList> ranking = new ArrayList<ArrayList>();
 		String puntuaciones = "";
-		ranking = conexionBD.cargarRanking();
+		ranking = backend.conexionBD.cargarRanking();
 		for (int i = 0; i < ranking.size(); i++) {
 			puntuaciones = puntuaciones + ((String) ranking.get(i).get(0)) + " : " + ((String) ranking.get(i).get(1))
 					+ "\n\n";

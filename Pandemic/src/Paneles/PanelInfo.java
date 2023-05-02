@@ -1,3 +1,4 @@
+package Paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -86,7 +87,7 @@ public class PanelInfo extends JPanel {
 		menu.repaint();
 	}
 
-	static void setTexto(String texto) {
+	public static void setTexto(String texto) {
 		try {
 			FileWriter fw = new FileWriter("Info.txt", false);
 			BufferedWriter bw = new BufferedWriter(fw);

@@ -1,3 +1,4 @@
+package Paneles;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -131,19 +132,19 @@ public class PanelMenu extends JPanel implements ActionListener {
 			menu.repaint();
 		}
 		if (e.getSource() == Informacion) {
-			AccionBoton.SetTextoInfo("informacion");
+			backend.AccionBoton.SetTextoInfo("informacion");
 			info();
 		}
 		if (e.getSource() == Autores) {
-			AccionBoton.SetTextoInfo("autores");
+			backend.AccionBoton.SetTextoInfo("autores");
 			info();
 		}
 		if (e.getSource() == Version) {
-			AccionBoton.SetTextoInfo("varsion");
+			backend.AccionBoton.SetTextoInfo("varsion");
 			info();
 		}
 		if (e.getSource() == Salir) {
-			AccionBoton.Salir();
+			backend.AccionBoton.Salir();
 		}
 
 	}

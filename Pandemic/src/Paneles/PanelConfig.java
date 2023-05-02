@@ -1,3 +1,4 @@
+package Paneles;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,11 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
-public class config extends JPanel{
+public class PanelConfig extends JPanel{
 	
 	JLabel MapaMundi;
 	
-	public config() {
+	public PanelConfig() {
 				setBounds(0, 0, 1550, 850);
 				setBackground(new Color(6, 153, 209));
 				setLayout(null);
@@ -125,17 +126,17 @@ public class config extends JPanel{
 
 				FACIL.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						config.SetDificultad(1);
+						SetDificultad(1);
 					}
 				});
 				NORMAL.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						config.SetDificultad(2);
+						SetDificultad(2);
 					}
 				});
 				DIFICIL.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						config.SetDificultad(3);
+						SetDificultad(3);
 					}
 				});
 	}
@@ -143,11 +144,11 @@ public class config extends JPanel{
 	static void SetDificultad(int Dificultad) {
 		File archivo = new File("parametros.xml");
 		if (Dificultad == 1) {
-			parametros.actualizarValor(archivo, 6, 3, 50, 10);
+			backend.parametros.actualizarValor(archivo, 6, 3, 50, 10);
 		} else if (Dificultad == 2) {
-			parametros.actualizarValor(archivo, 8, 4, 40, 7);
+			backend.parametros.actualizarValor(archivo, 8, 4, 40, 7);
 		} else if (Dificultad == 3) {
-			parametros.actualizarValor(archivo, 10, 5, 35, 5);
+			backend.parametros.actualizarValor(archivo, 10, 5, 35, 5);
 		}
 	}
 	private void volver(){

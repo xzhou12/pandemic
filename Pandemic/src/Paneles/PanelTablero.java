@@ -1,4 +1,5 @@
 package Paneles;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Insets;
@@ -22,7 +23,7 @@ import java.awt.Graphics2D;
 public class PanelTablero extends JPanel {
 	private static int[][] coords = new int[48][2];
 	private static String[] nombres = new String[48];
-	JLabel PuntoCiudad, noticias, brotes;
+	JLabel PuntoCiudad, noticias, brotes, OptionLabel;
 	private static int numeroCiudad;
 	static int[] Porcentajes = new int[4];
 	private static JProgressBar porcentajeA, porcentajeB, porcentajeG, porcentajeD, porcentajeBrotes;
@@ -32,6 +33,14 @@ public class PanelTablero extends JPanel {
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
 
+		// boton de opciones (guardar partida/salir del juego)
+		ImageIcon imagen = new ImageIcon("config.png");
+		Image image = imagen.getImage();
+		image = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+		imagen = new ImageIcon(image);
+		OptionLabel = new JLabel(imagen);
+		OptionLabel.setBounds(20, 20, 45, 45);
+		add(OptionLabel);
 		// tabla de porcentajes y numero de brotes
 		// porcentajes
 		// alfa
@@ -39,7 +48,7 @@ public class PanelTablero extends JPanel {
 		porcentajeA.setStringPainted(true);
 		porcentajeA.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		porcentajeA.setForeground(new Color(128, 128, 128));
-		porcentajeA.setBounds(10, 620,200, 30);
+		porcentajeA.setBounds(10, 620, 200, 30);
 		add(porcentajeA);
 		// beta
 		porcentajeB = new JProgressBar();
@@ -65,13 +74,13 @@ public class PanelTablero extends JPanel {
 		// brotes
 		brotes = new JLabel();
 		brotes.setText("\n\n  4/6");
-		brotes.setBounds(250, 620,30, 180);
+		brotes.setBounds(250, 620, 30, 180);
 		add(brotes);
-		porcentajeBrotes = new JProgressBar(JProgressBar.VERTICAL,0,100);
+		porcentajeBrotes = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
 		porcentajeBrotes.setForeground(new Color(255, 78, 78));
-		porcentajeBrotes.setBounds(250, 620,30, 180);
+		porcentajeBrotes.setBounds(250, 620, 30, 180);
 		add(porcentajeBrotes);
-		//establece los porcentajes y los textos de dentro de los JProgressBar
+		// establece los porcentajes y los textos de dentro de los JProgressBar
 		porcentajes();
 		// imagen para representar una ciudad
 		ImageIcon bola1 = new ImageIcon("punto.png");
@@ -119,13 +128,20 @@ public class PanelTablero extends JPanel {
 		// imagen de fondo(mapa)
 		Imagen = new ImageIcon("mapa_mundo.png");
 		// cambia las dimensiones de la imagen
-		Image image = Imagen.getImage();
+		image = Imagen.getImage();
 		image = image.getScaledInstance(1550, 850, java.awt.Image.SCALE_SMOOTH);
 		Imagen = new ImageIcon(image);
 		setLayout(null);
 		JLabel MapaMundi = new JLabel(Imagen);
 		MapaMundi.setBounds(0, 0, 1550, 850);
 		add(MapaMundi);
+
+		OptionLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MostrarOpciones();
+			}
+		});
 	}
 
 	// -----------------------------------------------------------------
@@ -160,21 +176,59 @@ public class PanelTablero extends JPanel {
 		}
 	}
 
-	//--------------------------------------------------------------------
+	// --------------------------------------------------------------------
 	// cambia al panel de informacion de las cudades con las opciones de
 	// cura/investigacion de la ciudad que se ha seleccionado
-	//--------------------------------------------------------------------
+	// --------------------------------------------------------------------
 	public void MostrarInfo() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.getContentPane().add(new PanelCiudad(numeroCiudad));
 		menu.repaint();
 	}
+	
+	// --------------------------------------------------------------------
+	// cambia al panel de informacion de las cudades con las opciones de
+	// cura/investigacion de la ciudad que se ha seleccionado
+	// --------------------------------------------------------------------
+	public void MostrarOpciones() {
+		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+		menu.remove(this);
+		menu.getContentPane().add(new PanelOpciones());
+		menu.repaint();
+	}
 
-	//---------------------------------------------------------------------------
+	// obtine los porcentajes y los actualiza
+	static void porcentajes() {
+//		porcentaje = vacunas.getPorcentajes(backend.jugar.vacunasCura);
+//		for (int i = 1; i < 5; i++) {
+//			System.out.println(porcentaje[i]);
+//		}
+
+		/// ------------------------------------------------------------------------------------
+		// este for es solo temporal!!! cuando se pueda cambiar para que lea el
+		// orcentaje real esto se va fuera!!!
+		// -------------------------------------------------------------------------------------
+		for (int i = 0; i < 4; i++) {
+			Porcentajes[i] = 50;
+		}
+		// vacunas
+		porcentajeA.setString("Alfa: " + Porcentajes[0] + "%");
+		porcentajeA.setValue(Porcentajes[0]);
+		porcentajeB.setString("Beta: " + Porcentajes[0] + "%");
+		porcentajeB.setValue(Porcentajes[0]);
+		porcentajeG.setString("Gama: " + Porcentajes[0] + "%");
+		porcentajeG.setValue(Porcentajes[0]);
+		porcentajeD.setString("Delta: " + Porcentajes[0] + "%");
+		porcentajeD.setValue(Porcentajes[0]);
+		// brotes
+		porcentajeBrotes.setValue(67);
+	}
+
+	// ---------------------------------------------------------------------------
 	// mueve el texto de noticias de izquieda a derecha constantemente, cuando
 	// desaparece por completo vuelve a empezar
-	//---------------------------------------------------------------------------
+	// ---------------------------------------------------------------------------
 	public void TextoAnimado() {
 
 		Thread animationThread = new Thread(() -> {
@@ -192,32 +246,5 @@ public class PanelTablero extends JPanel {
 			}
 		});
 		animationThread.start();
-	}
-
-	// obtine los porcentajes y los actualiza
-	static void porcentajes() {
-//		porcentaje = vacunas.getPorcentajes(jugar.vacunasCura);
-//		for (int i = 1; i < 5; i++) {
-//			System.out.println(porcentaje[i]);
-//		}
-
-		/// ------------------------------------------------------------------------------------
-		// este for es solo temporal!!! cuando se pueda cambiar para que lea el
-		// orcentaje real esto se va fuera!!!
-		// -------------------------------------------------------------------------------------
-		for (int i = 0; i < 4; i++) {
-			Porcentajes[i] = 50;
-		}
-		//vacunas
-		porcentajeA.setString("Alfa: " + Porcentajes[0] + "%");
-		porcentajeA.setValue(Porcentajes[0]);
-		porcentajeB.setString("Beta: " + Porcentajes[0] + "%");
-		porcentajeB.setValue(Porcentajes[0]);
-		porcentajeG.setString("Gama: " + Porcentajes[0] + "%");
-		porcentajeG.setValue(Porcentajes[0]);
-		porcentajeD.setString("Delta: " + Porcentajes[0] + "%");
-		porcentajeD.setValue(Porcentajes[0]);
-		//brotes
-		porcentajeBrotes.setValue(67);
 	}
 }

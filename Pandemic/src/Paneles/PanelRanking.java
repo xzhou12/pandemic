@@ -1,4 +1,5 @@
 package Paneles;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
@@ -49,16 +50,15 @@ public class PanelRanking extends JPanel {
 		String puntuaciones = "";
 		ranking = backend.conexionBD.cargarRanking();
 		for (int i = 0; i < ranking.size(); i++) {
-			puntuaciones = puntuaciones + ((String) ranking.get(i).get(0)) + " : " + ((String) ranking.get(i).get(1))
-					+ "\n\n";
+			puntuaciones = puntuaciones + "\n\n" + (i+1)+":\t"+((String) ranking.get(i).get(0)) + " : "
+					+ ((String) ranking.get(i).get(1)) + "\n";
 		}
 		// textpanel con las puntuaciones
 		JTextPane posicion = new JTextPane();
 		posicion.setForeground(new Color(255, 255, 255));
 		posicion.setOpaque(false);
 		posicion.setText(puntuaciones);
-		posicion.setFont(
-				new Font("Constantia", Font.BOLD, 25));
+		posicion.setFont(new Font("Constantia", Font.BOLD, 25));
 		posicion.setEditable(false);
 		posicion.setBounds(500, 200, 500, 400);
 		StyledDocument doc = posicion.getStyledDocument();

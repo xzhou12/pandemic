@@ -77,9 +77,9 @@ public class PanelCiudad extends JPanel {
 		add(bloqueTexto);
 		// imagen semitransparente para estetica
 		ImageIcon Imagen = new ImageIcon("transparente2.png");
-		JLabel test = new JLabel(Imagen);
-		test.setBounds(0, 0, 1550, 850);
-		add(test);
+		JLabel transparente2 = new JLabel(Imagen);
+		transparente2.setBounds(0, 0, 1550, 850);
+		add(transparente2);
 		// imagen de fondo(mapa)
 		Imagen = new ImageIcon("mapa_mundo.png");
 		// cambia las dimensiones de la imagen

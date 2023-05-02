@@ -1,3 +1,4 @@
+package backend;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,8 +13,8 @@ public class conexionBD {
 
 	private static final String USER = "DAW_PNDC22_23_XIAL";
 	private static final String PWD = "AX123";
-//	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
-	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+//	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
 
 	private static final Connection con = conectarBD();
 

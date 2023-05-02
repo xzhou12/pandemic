@@ -160,8 +160,6 @@ public class conexionBD {
 			System.out.println(e);
 		}
 
-		System.out.println("COMPLETADO");
-
 	}
 
 	/// COMPLETAR y OPTIMIZAR A TOPEE
@@ -190,10 +188,50 @@ public class conexionBD {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-		
+
+		ArrayList<String> sqlvacunas = conversionDatosVacunas(vacunas);
+		ArrayList<String> sqlciudades = conversionDatosCiudades(ciudadesAlfa, ciudadesDelta, ciudadesGama,
+				ciudadesBeta);
+
 		// **********************************************
 		// HAY QUE VER LA MANERA DE PASAR ESTOS DATOS A MAIN
 		// **********************************************
+
+	}
+
+	// Da un formato legible a los datos recuperados
+	public static ArrayList<String> conversionDatosVacunas(Object[] vacunas) {
+		ArrayList<String> sqlvacunas = new ArrayList<String>();
+
+		for (Object vacuna : vacunas) {
+			sqlvacunas.add(String.valueOf(vacuna));
+		}
+
+		// Y los devuelve en forma de arraylist
+		return sqlvacunas;
+
+	}
+
+	// Da un formato legible a los datos recuperados
+	public static ArrayList<String> conversionDatosCiudades(Object[] ciudadesAlfa, Object[] ciudadesDelta,
+			Object[] ciudadesGama, Object[] ciudadesBeta) {
+		ArrayList<String> sqlciudades = new ArrayList<String>();
+
+		for (Object ciudadAlfa : ciudadesAlfa) {
+			sqlciudades.add(String.valueOf(ciudadAlfa));
+		}
+		for (Object ciudadDelta : ciudadesDelta) {
+			sqlciudades.add(String.valueOf(ciudadDelta));
+		}
+		for (Object ciudadGama : ciudadesGama) {
+			sqlciudades.add(String.valueOf(ciudadGama));
+		}
+		for (Object ciudadBeta : ciudadesBeta) {
+			sqlciudades.add(String.valueOf(ciudadBeta));
+		}
+
+		// Y los devuelve en forma de arraylist
+		return sqlciudades;
 
 	}
 

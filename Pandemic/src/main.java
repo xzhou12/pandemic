@@ -1,5 +1,5 @@
 
-public class main {	
+public class main {
 
 	public static void main(String[] args) {
 		// menu principal del juego
@@ -9,7 +9,9 @@ public class main {
 		// Configuraciónes y estas cosas
 
 //		conexionBD.comprobarUsuario("Albert");
-		
+
+		conexionBD.cargarPartida(1);
+
 	}
 
 }

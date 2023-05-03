@@ -1,28 +1,25 @@
 package Paneles;
-
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
+import backend.*;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 public class PanelTablero extends JPanel {
 	private static int[][] coords = new int[48][2];
-	private static String[] nombres = new String[48];
+	public static String[] nombres = new String[48];
 	JLabel PuntoCiudad, noticias, brotes, OptionLabel;
 	private static int numeroCiudad;
 	static int[] Porcentajes = new int[4];
@@ -33,6 +30,7 @@ public class PanelTablero extends JPanel {
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
 
+		backend.jugar.Main();
 		// boton de opciones (guardar partida/salir del juego)
 		ImageIcon imagen = new ImageIcon("config.png");
 		Image image = imagen.getImage();
@@ -186,7 +184,7 @@ public class PanelTablero extends JPanel {
 		menu.getContentPane().add(new PanelCiudad(numeroCiudad));
 		menu.repaint();
 	}
-	
+
 	// --------------------------------------------------------------------
 	// cambia al panel de informacion de las cudades con las opciones de
 	// cura/investigacion de la ciudad que se ha seleccionado
@@ -196,6 +194,10 @@ public class PanelTablero extends JPanel {
 		menu.remove(this);
 		menu.getContentPane().add(new PanelOpciones());
 		menu.repaint();
+	}
+
+	public static void mostrarInfecciones(ArrayList<String> ciudadesAfectadas) {
+		JOptionPane.showMessageDialog(null, "CIUDADES INFECTADAS:\n" + ciudadesAfectadas);
 	}
 
 	// obtine los porcentajes y los actualiza
@@ -210,17 +212,21 @@ public class PanelTablero extends JPanel {
 		// orcentaje real esto se va fuera!!!
 		// -------------------------------------------------------------------------------------
 		for (int i = 0; i < 4; i++) {
-			Porcentajes[i] = 50;
+			Porcentajes[i] = Integer.parseInt((String) jugar.vacunasCura.get(i).get(1));
 		}
 		// vacunas
-		porcentajeA.setString("Alfa: " + Porcentajes[0] + "%");
+		porcentajeA.setString(
+				(String) jugar.vacunasCura.get(0).get(0) + ": " + (String) jugar.vacunasCura.get(0).get(1) + "%");
 		porcentajeA.setValue(Porcentajes[0]);
-		porcentajeB.setString("Beta: " + Porcentajes[0] + "%");
-		porcentajeB.setValue(Porcentajes[0]);
-		porcentajeG.setString("Gama: " + Porcentajes[0] + "%");
-		porcentajeG.setValue(Porcentajes[0]);
-		porcentajeD.setString("Delta: " + Porcentajes[0] + "%");
-		porcentajeD.setValue(Porcentajes[0]);
+		porcentajeB.setString(
+				(String) jugar.vacunasCura.get(1).get(0) + ": " + (String) jugar.vacunasCura.get(1).get(1) + "%");
+		porcentajeB.setValue(Porcentajes[1]);
+		porcentajeG.setString(
+				(String) jugar.vacunasCura.get(2).get(0) + ": " + (String) jugar.vacunasCura.get(2).get(1) + "%");
+		porcentajeG.setValue(Porcentajes[2]);
+		porcentajeD.setString(
+				(String) jugar.vacunasCura.get(3).get(0) + ": " + (String) jugar.vacunasCura.get(3).get(1) + "%");
+		porcentajeD.setValue(Porcentajes[3]);
 		// brotes
 		porcentajeBrotes.setValue(67);
 	}
@@ -247,4 +253,5 @@ public class PanelTablero extends JPanel {
 		});
 		animationThread.start();
 	}
+
 }

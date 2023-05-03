@@ -67,8 +67,7 @@ public class IA {
 	}
 
 	// Comprueba si alguna ciudad tiene el nivel 4 de infección
-	public static void comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes, int[] numBrotes) {
-
+	public static int comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes, int numBrotes) {
 		// **************************************************************************
 		// SI UNA CIUDAD YA HA LLEGADO A NIVEL 4, NO PUEDE VOLVER A INFECTASE EN LA
 		// MISMA RONDA
@@ -80,13 +79,14 @@ public class IA {
 		for (ArrayList ciudad : ciudadesBrotes) {
 			int nivelBrote = Integer.parseInt((String) ciudad.get(1));
 			if (nivelBrote >= 4) {
-				numBrotes[0]++;
+				numBrotes++;
 				ciudadesNivel4.add((String) ciudad.get(0));
 			}
 
 		}
 
 		brotes.addBrotesColindante(ciudadesNivel4, ciudadesBrotes);
+		return numBrotes;
 
 	}
 
@@ -99,14 +99,12 @@ public class IA {
 			if (nivelBrote != 0) {
 				return false;
 			}
-
 		}
-
 		return true;
 	}
 
 	// Comprueba la derrota, con las dos formas de
-	public static boolean comprobarDerrota(ArrayList<ArrayList> ciudadesBrotes, int[] brotes) {
+	public static boolean comprobarDerrota(ArrayList<ArrayList> ciudadesBrotes, int brotes) {
 		String[] param = parametros.leerArchivo();
 
 		// numEnfermedadesActivasDerrota
@@ -117,8 +115,8 @@ public class IA {
 
 		// Si el numero de brotes o enfermedades activas superan al de la derrota, se
 		// marca como derrota
-		if (brotes[0] >= numBD || contador >= numEAD) {
-			System.out.println("NUM BROTES: " + brotes[0]);
+		if (brotes >= numBD || contador >= numEAD) {
+			System.out.println("NUM BROTES: " + brotes);
 			System.out.println("ENF ACTIVAS " + contador);
 			return true;
 		}

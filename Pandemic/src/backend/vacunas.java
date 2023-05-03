@@ -1,4 +1,5 @@
 package backend;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,16 +23,16 @@ public class vacunas {
 	}
 
 	// Investiga la cura que le pasamos por parametro
-	public static void investigarCura(ArrayList<ArrayList> vacunasCura, int vacuna) {
+	public static void investigarCura(int vacuna) {
 		Random r = new Random();
 
 		// Investiga la vacunas, cada investigación suma entre 15 y 25%
-		int porcentaje = Integer.parseInt((String) vacunasCura.get(vacuna).get(1));
+		int porcentaje = Integer.parseInt((String) jugar.vacunasCura.get(vacuna).get(1));
 		porcentaje += (r.nextInt(10) + 15);
 		if (porcentaje > 100) {
 			porcentaje = 100; // Si supera los 100, se queda en 100
 		}
-		vacunasCura.get(vacuna).set(1, Integer.toString(porcentaje));
+		jugar.vacunasCura.get(vacuna).set(1, Integer.toString(porcentaje));
 	}
 
 	// Comprueba si la vacuna ya esta al 100% de su investigación
@@ -48,9 +49,9 @@ public class vacunas {
 	}
 
 	// Devuelve el codigo de la enfermedad que tiene x ciudad
-	public static int sacarEnfermedadCiudad(ArrayList<ArrayList> broteCiudades, String ciudadSeleccionado) {
+	public static int sacarEnfermedadCiudad(String ciudadSeleccionado) {
 
-		for (ArrayList ciudad : broteCiudades) {
+		for (ArrayList ciudad : jugar.nivelBroteCiudades) {
 			String ciudadAux = (String) ciudad.get(0);
 			if (ciudadAux.equals(ciudadSeleccionado)) {
 				return Integer.parseInt((String) ciudad.get(2));

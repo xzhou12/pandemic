@@ -1,4 +1,5 @@
 package Paneles;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.io.BufferedReader;
@@ -9,9 +10,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
+
+import backend.jugar;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -37,7 +42,16 @@ public class PanelCiudad extends JPanel {
 		add(curar);
 		curar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				accion.curarCiudades(accion.broteCiudades, ciudades[numeroCiudad]);
+				if (jugar.acciones > 0) {
+					jugar.acciones--;
+					backend.accion.Main(1, numero, PanelTablero.nombres[numeroCiudad]);
+					VolverJuego();
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"No tienes suficientes acciones en este turno para curar.\nNecesarios: 1 Actuales: "
+									+ jugar.acciones);
+				}
+
 			}
 		});
 		// boton de investigar ennfermedad
@@ -47,9 +61,19 @@ public class PanelCiudad extends JPanel {
 		investigar.setForeground(new Color(255, 255, 255));
 		investigar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		add(investigar);
+
 		investigar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				accion.inversigarCura(accion.vacunasCura, numero);
+				if (jugar.acciones == 4) {
+					jugar.acciones = 0;
+					backend.accion.Main(2, numero, ciudades[numeroCiudad]);
+					VolverJuego();
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"No tienes suficientes acciones en este turno para investigar.\nNecesarios: 4 Actuales: "
+									+ jugar.acciones);
+				}
+
 			}
 		});
 		// boton de cancelar accion
@@ -72,7 +96,6 @@ public class PanelCiudad extends JPanel {
 		bloqueTexto.setForeground(new Color(255, 255, 255));
 		bloqueTexto.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		bloqueTexto.setBounds(269, 140, 1000, 500);
-		getText();
 		setText();
 		add(bloqueTexto);
 		// imagen semitransparente para estetica
@@ -119,7 +142,7 @@ public class PanelCiudad extends JPanel {
 	// ----------------------------------------------
 	// establece el texto que se mostrra por pantalla
 	// ----------------------------------------------
-	static void setText() {
+	public static void setText() {
 		bloqueTexto.setText(ciudades[numeroCiudad] + "\n\n\nEnfermedad principal: "
 				+ "\n\nNivel de enfermedad de la ciudad: " + "\n\n\n\n\n\t\t\t\t\t\t       Que quieres hacer?");
 	}

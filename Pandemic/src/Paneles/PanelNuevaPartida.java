@@ -103,6 +103,10 @@ public class PanelNuevaPartida extends JPanel {
 
 	// se va al panel de iniciar juego e inicia la partida
 	public void iniciarJuego() {
+		// carga la info de las ciudades
+		PanelCiudad.getText();
+		// Va a la clase jugar
+		backend.jugar.inicializarPartida();
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.add(new PanelTablero());

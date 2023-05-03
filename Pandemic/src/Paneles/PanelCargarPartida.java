@@ -43,7 +43,7 @@ public class PanelCargarPartida extends JPanel {
 		add(scrollPane);
 
 		JTextPane Partida;
-		for (int i = 0; i < 48; i++) {
+//		for (int i = 0; i < 48; i++) {
 			Partida = new JTextPane();
 			Partida.setText("No hay partidas guardadas.");
 			Partida.setOpaque(false);
@@ -54,7 +54,7 @@ public class PanelCargarPartida extends JPanel {
 			StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
 			doc.setParagraphAttributes(0, doc.getLength(), center, false);
 			scrollPane.setViewportView(Partida);
-		}
+//		}
 
 		// imagen trasparente de fondo para efecto de menu
 		ImageIcon imagen = new ImageIcon("transparente.png");

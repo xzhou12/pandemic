@@ -45,7 +45,7 @@ public class PanelCiudad extends JPanel {
 					int nivelBrote = Integer.parseInt((String) jugar.nivelBroteCiudades.get(numero).get(1));
 					if (nivelBrote >= 1) {
 						jugar.acciones--;
-						accion.Main(1, numero, PanelTablero.nombres[numeroCiudad]);
+						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
 						VolverJuego();
 					} else {
 						JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
@@ -71,7 +71,7 @@ public class PanelCiudad extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (jugar.acciones == 4) {
 					jugar.acciones = 0;
-					backend.accion.Main(2, numero, ciudades[numeroCiudad]);
+					accion.investigar(numero, ciudades[numeroCiudad]);
 					VolverJuego();
 				} else {
 					JOptionPane.showMessageDialog(null,

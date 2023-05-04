@@ -1,24 +1,21 @@
 package backend;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class accion {
 
 	/* ESTO ES PROVISIONAL, PUEDE SER ELIMINADO */
 
-	public static void Main(int opcion, int numero, String ciudad) {
+	public static void investigar(int numero, String ciudad) {
+		int codVacuna = Integer.parseInt((String)jugar.nivelBroteCiudades.get(numero).get(2));
+		vacunas.investigarCura(codVacuna);
+	}
 
-		if (opcion == 2) {
-			vacunas.investigarCura(3);
+	public static void curar(int numero, String ciudad) {
+		int enf = vacunas.sacarEnfermedadCiudad(ciudad);
+		boolean cura = vacunas.comprobarCura(jugar.vacunasCura, enf);
+		if (cura == true) {
+			brotes.curarTodo(jugar.nivelBroteCiudades, ciudad);
 		} else {
-			int enf = vacunas.sacarEnfermedadCiudad(ciudad);
-			boolean cura = vacunas.comprobarCura(jugar.vacunasCura, enf);
-			if (cura == true) {
-				brotes.curarTodo(jugar.nivelBroteCiudades, ciudad);
-			} else {
-				brotes.bajarCiudadParametro(jugar.nivelBroteCiudades, ciudad);
-			}
+			brotes.bajarCiudadParametro(jugar.nivelBroteCiudades, ciudad);
 		}
 	}
 }

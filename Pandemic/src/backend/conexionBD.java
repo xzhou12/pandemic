@@ -1,4 +1,5 @@
 package backend;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import Paneles.PanelNuevaPartida;
 import oracle.sql.STRUCT;
 
 public class conexionBD {
@@ -100,9 +102,16 @@ public class conexionBD {
 	}
 
 	// Guarda la partida terminada
-	public static void guardarPartidaAcabada(int idUsuario, int rondas, String resultado) {
+	public static void guardarPartidaAcabada() {
+		String resultado = "";
+		int idJugador = selectIdJugador(PanelNuevaPartida.nombreUsuario);
+		if (jugar.comprobarVictoria() == true) {
+			resultado = "V";
+		} else {
+			resultado = "D";
+		}
 
-		String sql = "BEGIN addPartida(" + idUsuario + ", " + rondas + ", '" + resultado + "'); END;";
+		String sql = "BEGIN addPartida(" + idJugador + ", " + jugar.rondas + ", '" + resultado + "'); END;";
 
 		try {
 			Statement st = con.createStatement();
@@ -141,18 +150,18 @@ public class conexionBD {
 	}
 
 	// Ya esta
-	public static void guardarPartida(int idJugador, ArrayList<ArrayList> vacunas, ArrayList<ArrayList> ciudadesBrotes,
-			int brotes, int rondas) {
+	public static void guardarPartida() {
 
-		String sqlVacunas = darFormatoVacunas(vacunas);
-		String ciudadesAlfa = darFormatoCiudades(ciudadesBrotes, 0);
-		String ciudadesBeta = darFormatoCiudades(ciudadesBrotes, 1);
-		String ciudadesGama = darFormatoCiudades(ciudadesBrotes, 2);
-		String ciudadesDelta = darFormatoCiudades(ciudadesBrotes, 3);
+		int idJugador = selectIdJugador(PanelNuevaPartida.nombreUsuario);
+		String sqlVacunas = darFormatoVacunas(jugar.vacunasCura);
+		String ciudadesAlfa = darFormatoCiudades(jugar.nivelBroteCiudades, 0);
+		String ciudadesBeta = darFormatoCiudades(jugar.nivelBroteCiudades, 1);
+		String ciudadesGama = darFormatoCiudades(jugar.nivelBroteCiudades, 2);
+		String ciudadesDelta = darFormatoCiudades(jugar.nivelBroteCiudades, 3);
 
 		String sql = "INSERT INTO P_GUARDADAS VALUES (" + idJugador + ", vacunas(" + sqlVacunas + "), ciudadesAlfa("
 				+ ciudadesAlfa + "), ciudadesBeta(" + ciudadesBeta + "), ciudadesGama(" + ciudadesGama
-				+ "), ciudadesDelta(" + ciudadesDelta + "), " + brotes + ", " + rondas + ")";
+				+ "), ciudadesDelta(" + ciudadesDelta + "), " + jugar.numBrotes + ", " + jugar.rondas + ")";
 
 		try {
 			Statement st = con.createStatement();
@@ -194,10 +203,7 @@ public class conexionBD {
 		ArrayList<String> sqlciudades = conversionDatosCiudades(ciudadesAlfa, ciudadesDelta, ciudadesGama,
 				ciudadesBeta);
 
-		// **********************************************
-		// HAY QUE VER LA MANERA DE PASAR ESTOS DATOS A MAIN
-		// **********************************************
-
+		jugar.cargarDatosPartida(sqlvacunas, sqlciudades);
 	}
 
 	// Da un formato legible a los datos recuperados

@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 
-import backend.jugar;
+import backend.*;
 
 public class PanelOpciones extends JPanel {
 
@@ -43,6 +43,8 @@ public class PanelOpciones extends JPanel {
 
 				if (opcionDialogo == JOptionPane.YES_OPTION) {
 					VolverMenu();
+					System.out.println("GUARDAR");
+					conexionBD.guardarPartida();
 				} else if (opcionDialogo == JOptionPane.NO_OPTION) {
 					VolverMenu();
 				} else if (opcionDialogo == JOptionPane.CLOSED_OPTION) {
@@ -58,6 +60,11 @@ public class PanelOpciones extends JPanel {
 		Guardar.setForeground(new Color(255, 255, 255));
 		Guardar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		add(Guardar);
+		Guardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				conexionBD.guardarPartida();
+			}
+		});
 
 		// boton de volver
 		JButton Volver = new JButton("Volver");

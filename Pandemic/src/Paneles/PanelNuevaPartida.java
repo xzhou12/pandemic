@@ -14,12 +14,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import backend.*;
 
 public class PanelNuevaPartida extends JPanel {
 	JTextField NombreUsuario;
 	JButton IniciarPartida, Cancelar;
 	JLabel LabelNombre;
 	JLabel LimagenNueva;
+	public static String nombreUsuario;
 
 	public PanelNuevaPartida() {
 		// panel para nueva partida
@@ -81,14 +83,16 @@ public class PanelNuevaPartida extends JPanel {
 //			 inicia la partida cargando el mapa
 		IniciarPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String linea = NombreUsuario.getText();
-				if (linea.length() < 3 || linea.length() > 50) {
+				nombreUsuario = NombreUsuario.getText();
+				if (nombreUsuario.length() < 3 || nombreUsuario.length() > 50) {
 					JOptionPane.showMessageDialog(null, "Introduce un nombre de entre 3 y 50 caracteres.");
 				} else {
-//						if (backend.conexionBD.comprobarUsuario(linea)) {
-//							backend.conexionBD.guardarUsuario(linea);
+//					if (conexionBD.comprobarUsuario(nombreUsuario)) {
+//						conexionBD.guardarUsuario(nombreUsuario);
 					iniciarJuego();
-//						}
+//					} else {
+//						iniciarJuego();
+//					}
 				}
 				NombreUsuario.setText("");
 			}

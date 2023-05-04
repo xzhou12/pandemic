@@ -31,7 +31,7 @@ public class PanelTablero extends JPanel {
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
 
-		backend.jugar.Main();
+		jugar.Main();
 		// boton de opciones (guardar partida/salir del juego)
 		ImageIcon imagen = new ImageIcon("config.png");
 		Image image = imagen.getImage();
@@ -86,21 +86,68 @@ public class PanelTablero extends JPanel {
 		ImageIcon bola20 = new ImageIcon("puntoBeta0.png");
 		ImageIcon bola30 = new ImageIcon("puntoGama0.png");
 		ImageIcon bola40 = new ImageIcon("puntoDelta0.png");
+		ImageIcon bola11 = new ImageIcon("puntoAlfa1.png");
+		ImageIcon bola21 = new ImageIcon("puntoBeta1.png");
+		ImageIcon bola31 = new ImageIcon("puntoGama1.png");
+		ImageIcon bola41 = new ImageIcon("puntoDelta1.png");
+		ImageIcon bola12 = new ImageIcon("puntoAlfa2.png");
+		ImageIcon bola22 = new ImageIcon("puntoBeta2.png");
+		ImageIcon bola32 = new ImageIcon("puntoGama2.png");
+		ImageIcon bola42 = new ImageIcon("puntoDelta2.png");
+		ImageIcon bola13 = new ImageIcon("puntoAlfa3.png");
+		ImageIcon bola23 = new ImageIcon("puntoBeta3.png");
+		ImageIcon bola33 = new ImageIcon("puntoGama3.png");
+		ImageIcon bola43 = new ImageIcon("puntoDelta3.png");
+		System.out.println("");
 		// guarda los nombres y coordenadas de las ciudades en dos arrays que se han
 		// creado antes
 		getCiudades();
 
 		// bucle para crear todos los iconos de las ciudades
 		for (int i = 0; i < 48; i++) {
+			// establece el icono de la ciudad
 			if (coords[i][2] == 0) {
-				PuntoCiudad = new JLabel(bola10);
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola10);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola11);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola12);
+				} else {
+					PuntoCiudad = new JLabel(bola13);
+				}
 			} else if (coords[i][2] == 1) {
-				PuntoCiudad = new JLabel(bola20);
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola20);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola21);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola22);
+				} else {
+					PuntoCiudad = new JLabel(bola23);
+				}
 			} else if (coords[i][2] == 2) {
-				PuntoCiudad = new JLabel(bola30);
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola30);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola31);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola32);
+				} else {
+					PuntoCiudad = new JLabel(bola33);
+				}
 			} else if (coords[i][2] == 3) {
-				PuntoCiudad = new JLabel(bola40);
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola40);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola41);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola42);
+				} else {
+					PuntoCiudad = new JLabel(bola43);
+				}
 			}
+			// establece las coordenadas y las dimensiones de la ciudad
 			PuntoCiudad.setBounds(coords[i][0], coords[i][1], 15, 15);
 			PuntoCiudad.setToolTipText(nombres[i]);
 			add(PuntoCiudad);

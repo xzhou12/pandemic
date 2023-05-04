@@ -1,4 +1,5 @@
 package Paneles;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -18,12 +19,12 @@ import backend.*;
 import java.awt.Font;
 
 public class PanelTablero extends JPanel {
-	private static int[][] coords = new int[48][2];
-	public static String[] nombres = new String[48];
-	JLabel PuntoCiudad, noticias, brotes, OptionLabel;
+	private static int[][] coords = new int[48][3];
+	static String[] nombres = new String[48];
 	private static int numeroCiudad;
-	static int[] Porcentajes = new int[4];
+	private static int[] Porcentajes = new int[4];
 	private static JProgressBar porcentajeA, porcentajeB, porcentajeG, porcentajeD, porcentajeBrotes;
+	JLabel PuntoCiudad, noticias, brotes, OptionLabel;
 
 	public PanelTablero() {
 		setBounds(0, 0, 1550, 850);
@@ -81,14 +82,25 @@ public class PanelTablero extends JPanel {
 		// establece los porcentajes y los textos de dentro de los JProgressBar
 		porcentajes();
 		// imagen para representar una ciudad
-		ImageIcon bola1 = new ImageIcon("punto.png");
+		ImageIcon bola10 = new ImageIcon("puntoAlfa0.png");
+		ImageIcon bola20 = new ImageIcon("puntoBeta0.png");
+		ImageIcon bola30 = new ImageIcon("puntoGama0.png");
+		ImageIcon bola40 = new ImageIcon("puntoDelta0.png");
 		// guarda los nombres y coordenadas de las ciudades en dos arrays que se han
 		// creado antes
 		getCiudades();
 
 		// bucle para crear todos los iconos de las ciudades
 		for (int i = 0; i < 48; i++) {
-			PuntoCiudad = new JLabel(bola1);
+			if (coords[i][2] == 0) {
+				PuntoCiudad = new JLabel(bola10);
+			} else if (coords[i][2] == 1) {
+				PuntoCiudad = new JLabel(bola20);
+			} else if (coords[i][2] == 2) {
+				PuntoCiudad = new JLabel(bola30);
+			} else if (coords[i][2] == 3) {
+				PuntoCiudad = new JLabel(bola40);
+			}
 			PuntoCiudad.setBounds(coords[i][0], coords[i][1], 15, 15);
 			PuntoCiudad.setToolTipText(nombres[i]);
 			add(PuntoCiudad);
@@ -163,6 +175,7 @@ public class PanelTablero extends JPanel {
 					temp[0] = ciudades[i][2].split(",");
 					coords[i][0] = Integer.valueOf(temp[0][0]);
 					coords[i][1] = Integer.valueOf(temp[0][1]);
+					coords[i][2] = Integer.valueOf(ciudades[i][1]);
 					i++;
 				}
 			} while (s != null);

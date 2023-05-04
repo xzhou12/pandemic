@@ -140,7 +140,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 			info();
 		}
 		if (e.getSource() == Version) {
-			backend.AccionBoton.SetTextoInfo("varsion");
+			backend.AccionBoton.SetTextoInfo("version");
 			info();
 		}
 		if (e.getSource() == Salir) {

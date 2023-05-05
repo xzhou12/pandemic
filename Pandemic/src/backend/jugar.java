@@ -39,23 +39,31 @@ public class jugar {
 		vacunasCura = vacunas.inicializarVacunas();
 	}
 
-	// -----------------------------------
-	// Comprobar si el jugador ha ganado
-	// -----------------------------------
+	// --------------------------------------------------
+	// Comprobar si el jugador ha ganado mediante ciudades
+	// ---------------------------------------------------
 	public static boolean comprobarVictoria() {
-		return IA.comprobarVictoria();
+		boolean ciudades = IA.comprobarVictoriaCiudades();
+		boolean vacunas = IA.comprobarVictoriaVacunas();
+
+		if (ciudades && true || vacunas && true) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	// --------------------------------------
 	// Comprobar si el jugador ha perdido
 	// --------------------------------------
 	public static boolean comprobarDerrota() {
-		return IA.comprobarDerrota(nivelBroteCiudades, numBrotes);
+		return IA.comprobarDerrota(numBrotes);
 	}
 
-	//-------------------------------
+	// -------------------------------
 	// carga los datos de la partida
-	//-------------------------------
+	// -------------------------------
 	public static void cargarDatosPartida(ArrayList<String> sqlvacunas, ArrayList<String> sqlciudades) {
 
 		int x = 0;

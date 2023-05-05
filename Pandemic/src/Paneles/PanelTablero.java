@@ -89,12 +89,12 @@ public class PanelTablero extends JPanel {
 		porcentajeD.setBorder(BorderFactory.createLineBorder(Color.black));
 		porcentajeD.setBounds(10, 770, 200, 30);
 		add(porcentajeD);
-		//enfermedades activas
+		// enfermedades activas
 		String[] parametro = new String[4];
 		parametro = parametros.leerArchivo();
 		enfermedadesActivas = new JLabel();
 		enfermedadesActivas.setBounds(32, 585, 200, 30);
-		enfermedadesActivas.setText("Enfermedades activas: "+ "/" +parametro[2]);
+		enfermedadesActivas.setText("Enfermedades activas: " + IA.enfermedadesActivas() + "/" + parametro[2]);
 		add(enfermedadesActivas);
 		// brotes
 		brotes = new JLabel();
@@ -234,8 +234,11 @@ public class PanelTablero extends JPanel {
 			}
 		});
 		if (jugar.comprobarVictoria()) {
-			JOptionPane.showMessageDialog(null,
-					"¡Victoria! has creado las 4 vacunas antes de que todo el mundo se contamine!");
+			JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
+			conexionBD.guardarPartidaAcabada();
+			// FALLA
+			VolverMenuPrincipal();
+
 		}
 	}
 
@@ -350,6 +353,17 @@ public class PanelTablero extends JPanel {
 			}
 		});
 		animationThread.start();
+	}
+
+	// -------------------------
+	// vuelve al menu principal
+	// FALLA
+	// -------------------------
+	public void VolverMenuPrincipal() {
+		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+		menu.remove(this);
+		menu.add(new PanelMenu());
+		menu.repaint();
 	}
 
 }

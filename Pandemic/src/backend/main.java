@@ -1,6 +1,6 @@
 package backend;
 
-import Paneles.*;
+import Paneles.menu;
 
 public class main {
 

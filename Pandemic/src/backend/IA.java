@@ -79,12 +79,7 @@ public class IA {
 	// Comprueba si alguna ciudad tiene el nivel 4 de infección
 	// ---------------------------------------------------------
 	public static int comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes, int numBrotes) {
-		// **************************************************************************
-		// SI UNA CIUDAD YA HA LLEGADO A NIVEL 4, NO PUEDE VOLVER A INFECTASE EN LA
-		// MISMA RONDA
-		// **************************************************************************
 
-		// Sigue sin funcionar, poner cada dos turnos :)
 		ArrayList<String> ciudadesNivel4 = new ArrayList<String>();
 
 		for (ArrayList ciudad : ciudadesBrotes) {
@@ -102,10 +97,10 @@ public class IA {
 
 	}
 
-	// ------------------------------------------------------------------------------
-	// Comprueba la victoria de las dos formas(no enfermedades o todas las vacunas)
-	// ------------------------------------------------------------------------------
-	public static boolean comprobarVictoria() {
+	// -----------------------------------------------
+	// Comprueba la victoria de parte de las ciudades
+	// -----------------------------------------------
+	public static boolean comprobarVictoriaCiudades() {
 		// Comprueba si todas las ciudades han sido curadas o no
 		for (ArrayList ciudad : jugar.nivelBroteCiudades) {
 			int nivelBrote = Integer.parseInt((String) ciudad.get(1));
@@ -113,12 +108,19 @@ public class IA {
 				return false;
 			}
 		}
-		int suma = Integer.parseInt((String) jugar.vacunasCura.get(0).get(1))
-				+ Integer.parseInt((String) jugar.vacunasCura.get(1).get(1))
-				+ Integer.parseInt((String) jugar.vacunasCura.get(2).get(1))
-				+ Integer.parseInt((String) jugar.vacunasCura.get(3).get(1));
-		if (suma < -1) {
-			return false;
+		return true;
+	}
+
+	// --------------------------------------
+	// Comprueba la victoria de las vacunas
+	// --------------------------------------
+	public static boolean comprobarVictoriaVacunas() {
+		// Comprueba si todas las vacunas han sido investigadas o no
+		for (ArrayList vacuna : jugar.vacunasCura) {
+			int nivelBrote = Integer.parseInt((String) vacuna.get(1));
+			if (nivelBrote != 100) {
+				return false;
+			}
 		}
 		return true;
 	}
@@ -126,14 +128,14 @@ public class IA {
 	// -------------------------------------------------------
 	// Comprueba la derrota, con las dos formas de derrota
 	// -------------------------------------------------------
-	public static boolean comprobarDerrota(ArrayList<ArrayList> ciudadesBrotes, int brotes) {
+	public static boolean comprobarDerrota(int brotes) {
 		String[] param = parametros.leerArchivo();
 
 		// numEnfermedadesActivasDerrota
 		int numEAD = Integer.parseInt(param[2]);
 		// numBrotesDerrota
 		int numBD = Integer.parseInt(param[3]);
-		int contador = enfermedadesActivas(ciudadesBrotes);
+		int contador = enfermedadesActivas();
 
 		// Si el numero de brotes o enfermedades activas superan al de la derrota, se
 		// marca como derrota
@@ -151,10 +153,10 @@ public class IA {
 	// -----------------------------------------------------------------
 	// Cuenta el numero de enfermedades activas y devolvuelve el valor
 	// -----------------------------------------------------------------
-	public static int enfermedadesActivas(ArrayList<ArrayList> ciudadesBrotes) {
+	public static int enfermedadesActivas() {
 		int contador = 0;
 
-		for (ArrayList ciudad : ciudadesBrotes) {
+		for (ArrayList ciudad : jugar.nivelBroteCiudades) {
 			int nivelBrote = Integer.parseInt((String) ciudad.get(1));
 			if (nivelBrote != 0) { // Cuenta las ciudades estan infectadas
 				contador++;

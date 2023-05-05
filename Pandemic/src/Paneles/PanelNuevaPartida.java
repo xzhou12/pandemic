@@ -87,16 +87,16 @@ public class PanelNuevaPartida extends JPanel {
 				if (nombreUsuario.length() < 3 || nombreUsuario.length() > 50) {
 					JOptionPane.showMessageDialog(null, "Introduce un nombre de entre 3 y 50 caracteres.");
 				} else {
-//					if (conexionBD.comprobarUsuario(nombreUsuario)) {
-//						conexionBD.guardarUsuario(nombreUsuario);
+					if (conexionBD.comprobarUsuario(nombreUsuario)) {
+						conexionBD.guardarUsuario(nombreUsuario);
 					iniciarJuego();
-//					} else {
-//						iniciarJuego();
-//					}
+					} else {
+						iniciarJuego();
+					}
 				}
 			}
 		});
-//		 inicia la partida cargando el mapa
+		// inicia la partida cargando el mapa
 		Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VolverMenuPrincipal();
@@ -104,7 +104,9 @@ public class PanelNuevaPartida extends JPanel {
 		});
 	}
 
+	// ----------------------------------------------------
 	// se va al panel de iniciar juego e inicia la partida
+	// ----------------------------------------------------
 	public void iniciarJuego() {
 		// carga la info de las ciudades
 		PanelCiudad.getText();
@@ -116,7 +118,9 @@ public class PanelNuevaPartida extends JPanel {
 		menu.repaint();
 	}
 
+	// ----------------------------------
 	// se va al panel del menu principal
+	// ----------------------------------
 	public void VolverMenuPrincipal() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

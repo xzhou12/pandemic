@@ -1,12 +1,16 @@
 package Paneles;
+
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +22,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.JList;
+
+import backend.*;
 
 public class PanelCargarPartida extends JPanel {
 	public PanelCargarPartida() {
@@ -32,30 +38,29 @@ public class PanelCargarPartida extends JPanel {
 		VolverConf.setText("Volver");
 		VolverConf.setBounds(200, 20, 100, 40);
 		add(VolverConf);
-
-		// scrollpane para que se autoextenda
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setOpaque(false);
-		scrollPane.getViewport().setOpaque(false);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(410, 100, 700, 600);
-		scrollPane.getViewport().setViewPosition(new Point(0, 0));
-		add(scrollPane);
-
+		// texto
 		JTextPane Partida;
-//		for (int i = 0; i < 48; i++) {
-			Partida = new JTextPane();
-			Partida.setText("No hay partidas guardadas.");
-			Partida.setOpaque(false);
-			Partida.setSize(100, 30);
-			Partida.setForeground(new Color(255, 255, 255));
-			StyledDocument doc = Partida.getStyledDocument();
-			SimpleAttributeSet center = new SimpleAttributeSet();
-			StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-			doc.setParagraphAttributes(0, doc.getLength(), center, false);
-			scrollPane.setViewportView(Partida);
-//		}
+		Partida = new JTextPane();
+		Partida.setText("Selecciona una partida.");
+		Partida.setOpaque(false);
+		Partida.setEditable(false);
+		Partida.setBounds(640, 200, 200, 100);
+		Partida.setForeground(new Color(255, 255, 255));
+		Partida.setFont(new Font("Tahoma", Font.BOLD, 24));
+		StyledDocument doc = Partida.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		add(Partida);
+		// desplegable con las partidas guardadas (nombres de usuarios)
 
+		ArrayList<String> nombreJugador = conexionBD.cargarNombresPartidas();
+		JComboBox<String> cajaOpciones = new JComboBox<String>();
+		for (int i = 0; i < nombreJugador.size(); i++) {
+			cajaOpciones.addItem(nombreJugador.get(i));
+		}
+		cajaOpciones.setBounds(640, 300, 200, 30);
+		add(cajaOpciones);
 		// imagen trasparente de fondo para efecto de menu
 		ImageIcon imagen = new ImageIcon("transparente.png");
 		Image image = imagen.getImage();
@@ -83,14 +88,14 @@ public class PanelCargarPartida extends JPanel {
 		});
 	}
 
-	
-	//---------------------------
-	//velve al menu principal
-	//---------------------------
+	// ---------------------------
+	// velve al menu principal
+	// ---------------------------
 	private void volver() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.getContentPane().add(new PanelMenu());
 		menu.repaint();
 	}
+
 }

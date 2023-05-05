@@ -47,7 +47,7 @@ public class PanelOpciones extends JPanel {
 				} else if (opcionDialogo == JOptionPane.NO_OPTION) {
 					VolverMenu();
 				} else if (opcionDialogo == JOptionPane.CLOSED_OPTION) {
-					JOptionPane.showMessageDialog(null, "Has perdido la partida, felicidades! :3");
+					JOptionPane.showMessageDialog(null, "Has perdido el progreso, felicidades! :3");
 				}
 			}
 		});
@@ -96,13 +96,19 @@ public class PanelOpciones extends JPanel {
 		add(MapaMundi);
 	}
 
+	//---------------------------
+	//vuelve al tablero de juego
+	//---------------------------
 	void VolverJuego() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.add(new PanelTablero());
 		menu.repaint();
 	}
-
+	
+	//-------------------------
+	//vuelve al menu principal
+	//-------------------------
 	void VolverMenu() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

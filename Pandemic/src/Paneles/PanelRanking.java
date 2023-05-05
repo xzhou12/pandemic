@@ -19,6 +19,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import backend.conexionBD;
+
 import java.awt.Dimension;
 
 public class PanelRanking extends JPanel {
@@ -48,9 +51,9 @@ public class PanelRanking extends JPanel {
 		// preparaciones para el textpanel
 		ArrayList<ArrayList> ranking = new ArrayList<ArrayList>();
 		String puntuaciones = "";
-		ranking = backend.conexionBD.cargarRanking();
+		ranking = conexionBD.cargarRanking();
 		for (int i = 0; i < ranking.size(); i++) {
-			puntuaciones = puntuaciones + "\n\n" + (i+1)+":\t"+((String) ranking.get(i).get(0)) + " : "
+			puntuaciones = puntuaciones + "\n\n" + (i + 1) + ":\t" + ((String) ranking.get(i).get(0)) + " : "
 					+ ((String) ranking.get(i).get(1)) + "\n";
 		}
 		// textpanel con las puntuaciones
@@ -94,6 +97,9 @@ public class PanelRanking extends JPanel {
 		});
 	}
 
+	// ------------------------
+	// vuelve al menu principal
+	// ------------------------
 	private void volver() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

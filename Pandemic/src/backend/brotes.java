@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class brotes {
-
+	//----------------------------------
 	// Inicializa el nivel de brote a 0
+	//-----------------------------------
 	public static ArrayList<ArrayList> inicializarNivelBrote(String[][] ciudades) {
 
 		ArrayList<ArrayList> ciudadesBrotes = new ArrayList<ArrayList>();
@@ -26,8 +27,9 @@ public class brotes {
 		// Retorna la ArrayList
 		return ciudadesBrotes;
 	}
-
+	//-------------------------------------------
 	// Inicializa los brotes encima de la partida
+	//-------------------------------------------
 	public static void infectarCiudadesInicio(ArrayList<ArrayList> ciudadesBrotes) {
 		String[] param = parametros.leerArchivo();
 
@@ -41,8 +43,9 @@ public class brotes {
 		}
 
 	}
-
+	//----------------------------------------
 	// Infecta las ciudades de forma aleatoria
+	//----------------------------------------
 	public static String infectarCiudadesAleatorio(ArrayList<ArrayList> ciudades) {
 		Random r = new Random();
 		// Escoge un numero entre el 0 y el numero de ciudades
@@ -57,8 +60,9 @@ public class brotes {
 		return (String) ciudades.get(numR).get(0);
 
 	}
-
+	//-----------------------------------------------
 	// Infecta la ciudad que le pasamos por parametro
+	//-----------------------------------------------
 	public static void infectarCiudadParametro(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
 
 		// Busca la ciudad que le pasamos por parametro
@@ -72,8 +76,9 @@ public class brotes {
 			}
 		}
 	}
-
+	//-------------------------------------------------------
 	// Baja un nivel a la ciudad que le pasamos por parametro
+	//-------------------------------------------------------
 	public static void bajarCiudadParametro(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
 		for (ArrayList ciudades : ciudadesBrotes) {
 			String ciudadA = (String) ciudades.get(0);

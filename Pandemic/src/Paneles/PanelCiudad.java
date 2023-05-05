@@ -13,10 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 
-import backend.jugar;
+import backend.*;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -43,9 +42,15 @@ public class PanelCiudad extends JPanel {
 		curar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jugar.acciones > 0) {
-					jugar.acciones--;
-					backend.accion.Main(1, numero, PanelTablero.nombres[numeroCiudad]);
-					VolverJuego();
+					int nivelBrote = Integer.parseInt((String) jugar.nivelBroteCiudades.get(numero).get(1));
+					if (nivelBrote >= 1) {
+						jugar.acciones--;
+						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
+						VolverJuego();
+					} else {
+						JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
+					}
+
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para curar.\nNecesarios: 1 Actuales: "
@@ -66,7 +71,7 @@ public class PanelCiudad extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (jugar.acciones == 4) {
 					jugar.acciones = 0;
-					backend.accion.Main(2, numero, ciudades[numeroCiudad]);
+					accion.investigar(numero, ciudades[numeroCiudad]);
 					VolverJuego();
 				} else {
 					JOptionPane.showMessageDialog(null,
@@ -143,8 +148,14 @@ public class PanelCiudad extends JPanel {
 	// establece el texto que se mostrra por pantalla
 	// ----------------------------------------------
 	public static void setText() {
-		bloqueTexto.setText(ciudades[numeroCiudad] + "\n\n\nEnfermedad principal: "
-				+ "\n\nNivel de enfermedad de la ciudad: " + "\n\n\n\n\n\t\t\t\t\t\t       Que quieres hacer?");
+		String ciudad = (String) jugar.nivelBroteCiudades.get(numeroCiudad).get(0);
+		int codEnfermedad = vacunas.sacarEnfermedadCiudad(ciudad);
+		String nivelBrote = (String) jugar.nivelBroteCiudades.get(numeroCiudad).get(1);
+		String nombreEnfermedad = (String) jugar.vacunasCura.get(codEnfermedad).get(0);
+
+		bloqueTexto.setText(ciudades[numeroCiudad] + "\n\n\nEnfermedad principal: " + nombreEnfermedad
+				+ "\n\nNivel de enfermedad de la ciudad: " + nivelBrote
+				+ "\n\n\n\n\n\t\t\t\t\t\t       Que quieres hacer?");
 	}
 
 	// ------------------

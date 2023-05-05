@@ -16,8 +16,10 @@ public class parametros {
 
 	public static final File archivo = new File("parametros.xml");
 
+	//----------------------
 	// Lee el archivo .xml
-	static String[] leerArchivo() {
+	//----------------------
+	public static String[] leerArchivo() {
 
 		// Variables
 		String numCiudadesInfectadasInicio = "";
@@ -54,8 +56,9 @@ public class parametros {
 		return parametros;
 
 	}
-
+	//----------------------------------------------------------------------------
 	// Actualiza los valores(nombre de archivo, numero de parametro, valor nuevo)
+	//----------------------------------------------------------------------------
 	public static void actualizarValor(File file, int valor1, int valor2, int valor3, int valor4) {
 
 		try {

@@ -8,9 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class AccionBoton {
-
+	//-----------------------------------------------------------------------------
 	// obtine el texto del archivo seleccionado y lo pone en el archivo "info.txt"
 	// para establecerlo en el panel de info mas tarde
+	//-----------------------------------------------------------------------------
 	public static void SetTextoInfo(String Archivo) {
 		String textoArchivo = null;
 		String texto = "";
@@ -32,8 +33,9 @@ public class AccionBoton {
 			}
 		}
 	}
-
+	//-------------------
 	// salir del juego
+	//-------------------
 	public static void Salir() {
 		System.exit(0);
 	}

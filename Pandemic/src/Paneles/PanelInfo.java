@@ -80,6 +80,9 @@ public class PanelInfo extends JPanel {
 		});
 	}
 
+	//--------------------------
+	//vuelve al menu principal
+	//--------------------------
 	void VolverPanelMenu() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -87,6 +90,9 @@ public class PanelInfo extends JPanel {
 		menu.repaint();
 	}
 
+	//------------------------------------------
+	//establece el texto del archivo "Info.txt"
+	//------------------------------------------
 	public static void setTexto(String texto) {
 		try {
 			FileWriter fw = new FileWriter("Info.txt", false);
@@ -99,7 +105,11 @@ public class PanelInfo extends JPanel {
 		}
 
 	}
-
+	
+	
+	//------------------------------------------
+	//establece el texto del JTextPane textMenu
+	//------------------------------------------
 	static void getTexto() {
 		String textoArchivo = "";
 		String texto = "";

@@ -1,4 +1,5 @@
 package Paneles;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -140,7 +141,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 			info();
 		}
 		if (e.getSource() == Version) {
-			backend.AccionBoton.SetTextoInfo("varsion");
+			backend.AccionBoton.SetTextoInfo("version");
 			info();
 		}
 		if (e.getSource() == Salir) {
@@ -149,15 +150,20 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 	}
 
-
-
+	// -------------------------
+	// entra en el menu de info
+	// -------------------------
 	private void info() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.add(new PanelInfo());
 		menu.repaint();
-		
+
 	}
+
+	//----------------------------------
+	//entra en el menu de configuracion
+	//----------------------------------
 	private void config() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

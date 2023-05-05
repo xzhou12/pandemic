@@ -1,4 +1,5 @@
 package Paneles;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -7,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,19 +21,20 @@ import backend.*;
 import java.awt.Font;
 
 public class PanelTablero extends JPanel {
-	private static int[][] coords = new int[48][2];
-	public static String[] nombres = new String[48];
-	JLabel PuntoCiudad, noticias, brotes, OptionLabel;
+	private static int[][] coords = new int[48][3];
+	static String[] nombres = new String[48];
 	private static int numeroCiudad;
-	static int[] Porcentajes = new int[4];
+	private static int[] Porcentajes = new int[4];
 	private static JProgressBar porcentajeA, porcentajeB, porcentajeG, porcentajeD, porcentajeBrotes;
+	private static JLabel PuntoCiudad, noticias, brotes, OptionLabel, ronda, LporcentajeA, LporcentajeB, LporcentajeD,
+			LporcentajeG, enfermedadesActivas;
 
 	public PanelTablero() {
 		setBounds(0, 0, 1550, 850);
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
 
-		backend.jugar.Main();
+		jugar.Main();
 		// boton de opciones (guardar partida/salir del juego)
 		ImageIcon imagen = new ImageIcon("config.png");
 		Image image = imagen.getImage();
@@ -41,54 +45,134 @@ public class PanelTablero extends JPanel {
 		add(OptionLabel);
 		// tabla de porcentajes y numero de brotes
 		// porcentajes
+		// texto alfa
+		LporcentajeA = new JLabel();
+		LporcentajeA.setForeground(new Color(0, 0, 0));
+		LporcentajeA.setBounds(90, 620, 200, 30);
+		add(LporcentajeA);
 		// alfa
 		porcentajeA = new JProgressBar();
-		porcentajeA.setStringPainted(true);
-		porcentajeA.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		porcentajeA.setForeground(new Color(128, 128, 128));
+		porcentajeA.setForeground(new Color(32, 160, 224));
+		porcentajeA.setBorder(BorderFactory.createLineBorder(Color.black));
 		porcentajeA.setBounds(10, 620, 200, 30);
 		add(porcentajeA);
+		// texto beta
+		LporcentajeB = new JLabel();
+		LporcentajeB.setForeground(new Color(0, 0, 0));
+		LporcentajeB.setBounds(90, 670, 200, 30);
+		add(LporcentajeB);
 		// beta
 		porcentajeB = new JProgressBar();
-		porcentajeB.setForeground(new Color(128, 128, 128));
-		porcentajeB.setStringPainted(true);
-		porcentajeB.setLocation(10, 670);
-		porcentajeB.setSize(200, 30);
+		porcentajeB.setForeground(new Color(240, 62, 70));
+		porcentajeB.setBorder(BorderFactory.createLineBorder(Color.black));
+		porcentajeB.setBounds(10, 670, 200, 30);
 		add(porcentajeB);
+		// textogama
+		LporcentajeG = new JLabel();
+		LporcentajeG.setForeground(new Color(0, 0, 0));
+		LporcentajeG.setBounds(90, 720, 200, 30);
+		add(LporcentajeG);
 		// gama
 		porcentajeG = new JProgressBar();
-		porcentajeG.setForeground(new Color(128, 128, 128));
-		porcentajeG.setStringPainted(true);
-		porcentajeG.setLocation(10, 720);
-		porcentajeG.setSize(200, 30);
+		porcentajeG.setForeground(new Color(35, 184, 31));
+		porcentajeG.setBorder(BorderFactory.createLineBorder(Color.black));
+		porcentajeG.setBounds(10, 720, 200, 30);
 		add(porcentajeG);
+		// texto delta
+		LporcentajeD = new JLabel();
+		LporcentajeD.setForeground(new Color(0, 0, 0));
+		LporcentajeD.setBounds(90, 770, 200, 30);
+		add(LporcentajeD);
 		// delta
 		porcentajeD = new JProgressBar();
-		porcentajeD.setForeground(new Color(128, 128, 128));
-		porcentajeD.setStringPainted(true);
-		porcentajeD.setLocation(10, 770);
-		porcentajeD.setSize(200, 30);
+		porcentajeD.setForeground(new Color(253, 240, 0));
+		porcentajeD.setBorder(BorderFactory.createLineBorder(Color.black));
+		porcentajeD.setBounds(10, 770, 200, 30);
 		add(porcentajeD);
+		//enfermedades activas
+		String[] parametro = new String[4];
+		parametro = parametros.leerArchivo();
+		enfermedadesActivas = new JLabel();
+		enfermedadesActivas.setBounds(32, 585, 200, 30);
+		enfermedadesActivas.setText("Enfermedades activas: "+ "/" +parametro[2]);
+		add(enfermedadesActivas);
 		// brotes
 		brotes = new JLabel();
-		brotes.setText("\n\n  4/6");
-		brotes.setBounds(250, 620, 30, 180);
+		brotes.setBounds(220, 620, 50, 180);
 		add(brotes);
 		porcentajeBrotes = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
+		porcentajeBrotes.setBorder(BorderFactory.createLineBorder(Color.black));
 		porcentajeBrotes.setForeground(new Color(255, 78, 78));
-		porcentajeBrotes.setBounds(250, 620, 30, 180);
+		porcentajeBrotes.setBounds(230, 620, 40, 180);
 		add(porcentajeBrotes);
 		// establece los porcentajes y los textos de dentro de los JProgressBar
 		porcentajes();
 		// imagen para representar una ciudad
-		ImageIcon bola1 = new ImageIcon("punto.png");
+		ImageIcon bola10 = new ImageIcon("puntoAlfa0.png");
+		ImageIcon bola20 = new ImageIcon("puntoBeta0.png");
+		ImageIcon bola30 = new ImageIcon("puntoGama0.png");
+		ImageIcon bola40 = new ImageIcon("puntoDelta0.png");
+		ImageIcon bola11 = new ImageIcon("puntoAlfa1.png");
+		ImageIcon bola21 = new ImageIcon("puntoBeta1.png");
+		ImageIcon bola31 = new ImageIcon("puntoGama1.png");
+		ImageIcon bola41 = new ImageIcon("puntoDelta1.png");
+		ImageIcon bola12 = new ImageIcon("puntoAlfa2.png");
+		ImageIcon bola22 = new ImageIcon("puntoBeta2.png");
+		ImageIcon bola32 = new ImageIcon("puntoGama2.png");
+		ImageIcon bola42 = new ImageIcon("puntoDelta2.png");
+		ImageIcon bola13 = new ImageIcon("puntoAlfa3.png");
+		ImageIcon bola23 = new ImageIcon("puntoBeta3.png");
+		ImageIcon bola33 = new ImageIcon("puntoGama3.png");
+		ImageIcon bola43 = new ImageIcon("puntoDelta3.png");
 		// guarda los nombres y coordenadas de las ciudades en dos arrays que se han
 		// creado antes
 		getCiudades();
 
 		// bucle para crear todos los iconos de las ciudades
 		for (int i = 0; i < 48; i++) {
-			PuntoCiudad = new JLabel(bola1);
+			// establece el icono de la ciudad
+			if (coords[i][2] == 0) {
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola10);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola11);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola12);
+				} else {
+					PuntoCiudad = new JLabel(bola13);
+				}
+			} else if (coords[i][2] == 1) {
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola20);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola21);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola22);
+				} else {
+					PuntoCiudad = new JLabel(bola23);
+				}
+			} else if (coords[i][2] == 2) {
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola30);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola31);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola32);
+				} else {
+					PuntoCiudad = new JLabel(bola33);
+				}
+			} else if (coords[i][2] == 3) {
+				if (jugar.nivelBroteCiudades.get(i).get(1).equals("0")) {
+					PuntoCiudad = new JLabel(bola40);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("1")) {
+					PuntoCiudad = new JLabel(bola41);
+				} else if (jugar.nivelBroteCiudades.get(i).get(1).equals("2")) {
+					PuntoCiudad = new JLabel(bola42);
+				} else {
+					PuntoCiudad = new JLabel(bola43);
+				}
+			}
+			// establece las coordenadas y las dimensiones de la ciudad
 			PuntoCiudad.setBounds(coords[i][0], coords[i][1], 15, 15);
 			PuntoCiudad.setToolTipText(nombres[i]);
 			add(PuntoCiudad);
@@ -115,7 +199,16 @@ public class PanelTablero extends JPanel {
 				"¡Pulsa en uno de los puntos para ver la informacion de la ciudad||Al pasar el raton por encima de una ciudad esta te mostrara su nombre||Noticia: Asia tiene demasiadas ciudades, obten las vacunas antes de que sea demasiado tarde!");
 		noticias.setBounds(1550, 0, 1550, 20);
 		add(noticias);
-		TextoAnimado();
+		if (jugar.rondas == 0) {
+			TextoAnimado();
+		}
+
+		// texto con el numero de la ronda
+		ronda = new JLabel();
+		ronda.setFont(new Font("Tahoma", Font.BOLD, 20));
+		ronda.setText("Ronda: " + (jugar.rondas + 1));
+		ronda.setBounds(1240, 700, 150, 30);
+		add(ronda);
 
 		// imagen de fondo(conexiones)
 		ImageIcon Imagen = new ImageIcon("conexiones.png");
@@ -140,6 +233,10 @@ public class PanelTablero extends JPanel {
 				MostrarOpciones();
 			}
 		});
+		if (jugar.comprobarVictoria()) {
+			JOptionPane.showMessageDialog(null,
+					"¡Victoria! has creado las 4 vacunas antes de que todo el mundo se contamine!");
+		}
 	}
 
 	// -----------------------------------------------------------------
@@ -163,6 +260,7 @@ public class PanelTablero extends JPanel {
 					temp[0] = ciudades[i][2].split(",");
 					coords[i][0] = Integer.valueOf(temp[0][0]);
 					coords[i][1] = Integer.valueOf(temp[0][1]);
+					coords[i][2] = Integer.valueOf(ciudades[i][1]);
 					i++;
 				}
 			} while (s != null);
@@ -196,39 +294,39 @@ public class PanelTablero extends JPanel {
 		menu.repaint();
 	}
 
+	// --------------------------------------------------------------------
+	// Muestra por pantalla con un emergente que ciudades se han innfectado
+	// --------------------------------------------------------------------
 	public static void mostrarInfecciones(ArrayList<String> ciudadesAfectadas) {
 		JOptionPane.showMessageDialog(null, "CIUDADES INFECTADAS:\n" + ciudadesAfectadas);
 	}
 
-	// obtine los porcentajes y los actualiza
+	// -------------------------------------------------------------------------------------------
+	// obtine la informacion de porcentaje, brotes, ronda y enfermedades activas y
+	// los actualiza
+	// -------------------------------------------------------------------------------------------
 	static void porcentajes() {
-//		porcentaje = vacunas.getPorcentajes(backend.jugar.vacunasCura);
-//		for (int i = 1; i < 5; i++) {
-//			System.out.println(porcentaje[i]);
-//		}
-
-		/// ------------------------------------------------------------------------------------
-		// este for es solo temporal!!! cuando se pueda cambiar para que lea el
-		// orcentaje real esto se va fuera!!!
-		// -------------------------------------------------------------------------------------
 		for (int i = 0; i < 4; i++) {
 			Porcentajes[i] = Integer.parseInt((String) jugar.vacunasCura.get(i).get(1));
 		}
 		// vacunas
-		porcentajeA.setString(
+		LporcentajeA.setText(
 				(String) jugar.vacunasCura.get(0).get(0) + ": " + (String) jugar.vacunasCura.get(0).get(1) + "%");
 		porcentajeA.setValue(Porcentajes[0]);
-		porcentajeB.setString(
+		LporcentajeB.setText(
 				(String) jugar.vacunasCura.get(1).get(0) + ": " + (String) jugar.vacunasCura.get(1).get(1) + "%");
 		porcentajeB.setValue(Porcentajes[1]);
-		porcentajeG.setString(
+		LporcentajeG.setText(
 				(String) jugar.vacunasCura.get(2).get(0) + ": " + (String) jugar.vacunasCura.get(2).get(1) + "%");
 		porcentajeG.setValue(Porcentajes[2]);
-		porcentajeD.setString(
+		LporcentajeD.setText(
 				(String) jugar.vacunasCura.get(3).get(0) + ": " + (String) jugar.vacunasCura.get(3).get(1) + "%");
 		porcentajeD.setValue(Porcentajes[3]);
 		// brotes
-		porcentajeBrotes.setValue(67);
+		String[] parametro = new String[4];
+		parametro = parametros.leerArchivo();
+		porcentajeBrotes.setValue((100 / Integer.valueOf(parametro[3]) * jugar.numBrotes));
+		brotes.setText("\n\n    " + jugar.numBrotes + "/" + Integer.valueOf(parametro[3]));
 	}
 
 	// ---------------------------------------------------------------------------

@@ -83,6 +83,10 @@ public class PanelCargarPartida extends JPanel {
 		});
 	}
 
+	
+	//---------------------------
+	//velve al menu principal
+	//---------------------------
 	private void volver() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

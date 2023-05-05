@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class vacunas {
-
+	//-----------------------------------
 	// Inicializa la Array de las vacunas
+	//-----------------------------------
 	public static ArrayList<ArrayList> inicializarVacunas() {
 		ArrayList<ArrayList> vacunasVirus = new ArrayList<ArrayList>();
 		String[] nombreVirus = { "Alfa", "Beta", "Gama", "Delta" };
@@ -21,8 +22,9 @@ public class vacunas {
 		// Retorna la vacuna
 		return vacunasVirus;
 	}
-
+	//------------------------------------------------
 	// Investiga la cura que le pasamos por parametro
+	//------------------------------------------------
 	public static void investigarCura(int vacuna) {
 		Random r = new Random();
 
@@ -34,8 +36,9 @@ public class vacunas {
 		}
 		jugar.vacunasCura.get(vacuna).set(1, Integer.toString(porcentaje));
 	}
-
+	//-----------------------------------------------------------
 	// Comprueba si la vacuna ya esta al 100% de su investigación
+	//-----------------------------------------------------------
 	public static boolean comprobarCura(ArrayList<ArrayList> vacunasCura, int vacuna) {
 
 		int porcentaje = Integer.parseInt((String) vacunasCura.get(vacuna).get(1));
@@ -47,8 +50,9 @@ public class vacunas {
 		}
 
 	}
-
+	//-------------------------------------------------------
 	// Devuelve el codigo de la enfermedad que tiene x ciudad
+	//-------------------------------------------------------
 	public static int sacarEnfermedadCiudad(String ciudadSeleccionado) {
 
 		for (ArrayList ciudad : jugar.nivelBroteCiudades) {
@@ -61,8 +65,9 @@ public class vacunas {
 		return -1;
 
 	}
-
+	//----------------------------------------
 	// devuelve los porcentajes de las vacunas
+	//----------------------------------------
 	public static int[] getPorcentajes(ArrayList<ArrayList> vacunasCura) {
 		int[] porcentaje = new int[4];
 

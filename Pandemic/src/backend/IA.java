@@ -1,14 +1,19 @@
 package backend;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class IA {
 	public static final File fileCiudades = new File("ciudades.txt");
 	public static final File fileParametros = new File("parametros.xml");
 
+	// ---------------------------------------------------
 	// Lee las ciudades que hay en el archivo de ciudades
+	// ---------------------------------------------------
 	public static String[][] leerCiudades() {
 		String s = "";
 		int tamano = contarLineas();
@@ -33,7 +38,9 @@ public class IA {
 
 	}
 
+	// ----------------------------------------------------
 	// Cuenta la linea de ciudades que hay en el archivo
+	// ----------------------------------------------------
 	public static int contarLineas() {
 		int contador = 0;
 
@@ -48,7 +55,9 @@ public class IA {
 		return contador;
 	}
 
+	// ----------------------------------
 	// Infecta las ciudades por ronda
+	// ----------------------------------
 	public static ArrayList<String> infectarCiudadesRondas(ArrayList<ArrayList> ciudadesBrotes) {
 		String[] param = parametros.leerArchivo();
 		ArrayList<String> ciudadesAfectadas = new ArrayList<String>();
@@ -66,7 +75,9 @@ public class IA {
 
 	}
 
+	// ---------------------------------------------------------
 	// Comprueba si alguna ciudad tiene el nivel 4 de infección
+	// ---------------------------------------------------------
 	public static int comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes, int numBrotes) {
 		// **************************************************************************
 		// SI UNA CIUDAD YA HA LLEGADO A NIVEL 4, NO PUEDE VOLVER A INFECTASE EN LA
@@ -81,6 +92,7 @@ public class IA {
 			if (nivelBrote >= 4) {
 				numBrotes++;
 				ciudadesNivel4.add((String) ciudad.get(0));
+				Integer.parseInt((String) ciudad.set(1, "3"));
 			}
 
 		}
@@ -90,20 +102,30 @@ public class IA {
 
 	}
 
-	// Comprueba la victoria
-	public static boolean comprobarVictoria(ArrayList<ArrayList> ciudadesBrotes) {
-
+	// ------------------------------------------------------------------------------
+	// Comprueba la victoria de las dos formas(no enfermedades o todas las vacunas)
+	// ------------------------------------------------------------------------------
+	public static boolean comprobarVictoria() {
 		// Comprueba si todas las ciudades han sido curadas o no
-		for (ArrayList ciudad : ciudadesBrotes) {
+		for (ArrayList ciudad : jugar.nivelBroteCiudades) {
 			int nivelBrote = Integer.parseInt((String) ciudad.get(1));
 			if (nivelBrote != 0) {
 				return false;
 			}
 		}
+		int suma = Integer.parseInt((String) jugar.vacunasCura.get(0).get(1))
+				+ Integer.parseInt((String) jugar.vacunasCura.get(1).get(1))
+				+ Integer.parseInt((String) jugar.vacunasCura.get(2).get(1))
+				+ Integer.parseInt((String) jugar.vacunasCura.get(3).get(1));
+		if (suma < -1) {
+			return false;
+		}
 		return true;
 	}
 
-	// Comprueba la derrota, con las dos formas de
+	// -------------------------------------------------------
+	// Comprueba la derrota, con las dos formas de derrota
+	// -------------------------------------------------------
 	public static boolean comprobarDerrota(ArrayList<ArrayList> ciudadesBrotes, int brotes) {
 		String[] param = parametros.leerArchivo();
 
@@ -115,16 +137,20 @@ public class IA {
 
 		// Si el numero de brotes o enfermedades activas superan al de la derrota, se
 		// marca como derrota
-		if (brotes >= numBD || contador >= numEAD) {
-			System.out.println("NUM BROTES: " + brotes);
-			System.out.println("ENF ACTIVAS " + contador);
-			return true;
+		if (brotes >= numBD) {
+			JOptionPane.showMessageDialog(null, "NUM BROTES: " + brotes);
+			return false;
+		} else if (contador >= numEAD) {
+			JOptionPane.showMessageDialog(null, "ENF ACTIVAS " + contador);
+			return false;
 		}
 
 		return false;
 	}
 
+	// -----------------------------------------------------------------
 	// Cuenta el numero de enfermedades activas y devolvuelve el valor
+	// -----------------------------------------------------------------
 	public static int enfermedadesActivas(ArrayList<ArrayList> ciudadesBrotes) {
 		int contador = 0;
 

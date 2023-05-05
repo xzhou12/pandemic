@@ -7,4 +7,4 @@ Enfermedades: Alfa, Beta, Gama, Delta
 Jugadores: 1 jugador, 4 acciones por turno.
 
 
-En cada turno el jugados se puede mover, puede investigar una cura o puede curar una ciudad.
+En cada turno el jugados puede investigar la enfermedad de la ciudad o puede curar una ciudad, si tiene la vacuna la ciudad siempre se cura por completo.

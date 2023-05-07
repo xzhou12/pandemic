@@ -1,18 +1,23 @@
 package Paneles;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import backend.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class PanelMenu extends JPanel implements ActionListener {
 // string para sobreescribir el panel de texto
@@ -93,6 +98,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 		ConfigLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				sonido.pulsarBoton();
 				config();
 			}
 		});
@@ -109,45 +115,50 @@ public class PanelMenu extends JPanel implements ActionListener {
 		MapaMundi.setFocusable(false);
 		MapaMundi.setBounds(0, 0, 1550, 850);
 		add(MapaMundi);
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == NuevaPartida) {
+			sonido.pulsarBoton();
 			JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 			menu.remove(this);
 			menu.add(new PanelNuevaPartida());
 			menu.repaint();
 		}
 		if (e.getSource() == CargarPartida) {
+			sonido.pulsarBoton();
 			JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 			menu.remove(this);
 			menu.add(new PanelCargarPartida());
 			menu.repaint();
 		}
 		if (e.getSource() == ResumenPuntuaciones) {
+			sonido.pulsarBoton();
 			JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 			menu.remove(this);
 			menu.add(new PanelRanking());
 			menu.repaint();
 		}
 		if (e.getSource() == Informacion) {
-			backend.AccionBoton.SetTextoInfo("informacion");
+			sonido.pulsarBoton();
+			AccionBoton.SetTextoInfo("informacion");
 			info();
 		}
 		if (e.getSource() == Autores) {
-			backend.AccionBoton.SetTextoInfo("autores");
+			sonido.pulsarBoton();
+			AccionBoton.SetTextoInfo("autores");
 			info();
 		}
 		if (e.getSource() == Version) {
-			backend.AccionBoton.SetTextoInfo("version");
+			sonido.pulsarBoton();
+			AccionBoton.SetTextoInfo("version");
 			info();
 		}
 		if (e.getSource() == Salir) {
-			backend.AccionBoton.Salir();
+			AccionBoton.Salir();
 		}
-
+		
 	}
 
 	// -------------------------
@@ -161,9 +172,9 @@ public class PanelMenu extends JPanel implements ActionListener {
 
 	}
 
-	//----------------------------------
-	//entra en el menu de configuracion
-	//----------------------------------
+	// ----------------------------------
+	// entra en el menu de configuracion
+	// ----------------------------------
 	private void config() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

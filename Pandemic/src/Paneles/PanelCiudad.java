@@ -44,17 +44,20 @@ public class PanelCiudad extends JPanel {
 				if (jugar.acciones > 0) {
 					int nivelBrote = Integer.parseInt((String) jugar.nivelBroteCiudades.get(numero).get(1));
 					if (nivelBrote >= 1) {
+						sonido.pulsarCurar();
 						jugar.acciones--;
 						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
 						VolverJuego();
 					} else {
 						JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
+						sonido.pulsarBoton();
 					}
 
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para curar.\nNecesarios: 1 Actuales: "
 									+ jugar.acciones);
+					sonido.pulsarBoton();
 				}
 
 			}
@@ -70,13 +73,23 @@ public class PanelCiudad extends JPanel {
 		investigar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (jugar.acciones == 4) {
+					sonido.pulsarInvestigar();
 					jugar.acciones = 0;
 					accion.investigar(numero, ciudades[numeroCiudad]);
-					VolverJuego();
+					if (jugar.comprobarVictoria()) {
+						conexionBD.guardarPartidaAcabada();
+						sonido.sonidaVictoria();
+						JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
+						VolverMenu();
+						sonido.pulsarBoton();
+					} else {
+						VolverJuego();
+					}
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para investigar.\nNecesarios: 4 Actuales: "
 									+ jugar.acciones);
+					sonido.pulsarBoton();
 				}
 
 			}
@@ -90,6 +103,7 @@ public class PanelCiudad extends JPanel {
 		add(cancelar);
 		cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				VolverJuego();
 			}
 		});
@@ -165,6 +179,16 @@ public class PanelCiudad extends JPanel {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.add(new PanelTablero());
+		menu.repaint();
+	}
+
+	// -------------------------
+	// vuelve al menu principal
+	// -------------------------
+	void VolverMenu() {
+		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+		menu.remove(this);
+		menu.add(new PanelMenu());
 		menu.repaint();
 	}
 }

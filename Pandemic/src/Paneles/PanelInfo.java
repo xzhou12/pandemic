@@ -21,6 +21,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import backend.sonido;
+
 public class PanelInfo extends JPanel {
 	JButton VolverMenu;
 	static JTextPane textMenu;
@@ -74,7 +76,7 @@ public class PanelInfo extends JPanel {
 		
 		VolverMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textMenu.setText("");
+				sonido.pulsarBoton();
 				VolverPanelMenu();
 			}
 		});

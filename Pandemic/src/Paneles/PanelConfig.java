@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import backend.*;
 
 public class PanelConfig extends JPanel {
 
@@ -62,41 +65,17 @@ public class PanelConfig extends JPanel {
 		VolumenLable.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		VolumenLable.setBounds(670, 530, 180, 40);
 		add(VolumenLable);
-		// lable de volumen maestro
-		JLabel VolumenMaestroLable = new JLabel("MAESTRO");
-		VolumenMaestroLable.setForeground(new Color(255, 255, 255));
-		VolumenMaestroLable.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		VolumenMaestroLable.setBounds(530, 580, 100, 40);
-		add(VolumenMaestroLable);
-		// lable de volumen musica
-		JLabel VolumenMusicaLable = new JLabel("MUSICA");
-		VolumenMusicaLable.setForeground(new Color(255, 255, 255));
-		VolumenMusicaLable.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		VolumenMusicaLable.setBounds(530, 630, 100, 40);
-		add(VolumenMusicaLable);
 		// lable de volumen SFX
 		JLabel VolumenSFXLable = new JLabel("SFX");
 		VolumenSFXLable.setForeground(new Color(255, 255, 255));
 		VolumenSFXLable.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		VolumenSFXLable.setBounds(530, 690, 100, 40);
 		add(VolumenSFXLable);
-		// slider del volumen maestro
-		JSlider sliderMaestro = new JSlider();
-		sliderMaestro.setOpaque(false);
-		sliderMaestro.setBounds(660, 580, 200, 40);
-		sliderMaestro.setValue(100);
-		add(sliderMaestro);
-		// slider de la musica
-		JSlider sliderMusica = new JSlider();
-		sliderMusica.setOpaque(false);
-		sliderMusica.setBounds(660, 630, 200, 40);
-		sliderMusica.setValue(100);
-		add(sliderMusica);
 		// slider de SFX
 		JSlider sliderSFX = new JSlider();
 		sliderSFX.setOpaque(false);
 		sliderSFX.setBounds(660, 690, 200, 40);
-		sliderSFX.setValue(100);
+		sliderSFX.setValue((int)sonido.sonidoSFX);
 		add(sliderSFX);
 		// imagen trasparente de fondo para efecto de menu
 		ImageIcon imagen = new ImageIcon("transparente.png");
@@ -121,23 +100,36 @@ public class PanelConfig extends JPanel {
 		// configuracion
 		VolverConf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				volver();
 			}
 		});
 
 		FACIL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				SetDificultad(1);
 			}
 		});
 		NORMAL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				SetDificultad(2);
 			}
 		});
 		DIFICIL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				SetDificultad(3);
+			}
+		});
+		sliderSFX.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				JSlider source = (JSlider) e.getSource();
+				if (!source.getValueIsAdjusting()) {
+					sonido.sonidoSFX = source.getValue();
+					sonido.pulsarBoton();
+				}
 			}
 		});
 	}
@@ -148,11 +140,11 @@ public class PanelConfig extends JPanel {
 	static void SetDificultad(int Dificultad) {
 		File archivo = new File("parametros.xml");
 		if (Dificultad == 1) {
-			backend.parametros.actualizarValor(archivo, 6, 3, 50, 10);
+			parametros.actualizarValor(archivo, 6, 3, 50, 10);
 		} else if (Dificultad == 2) {
-			backend.parametros.actualizarValor(archivo, 8, 4, 40, 7);
+			parametros.actualizarValor(archivo, 8, 4, 40, 7);
 		} else if (Dificultad == 3) {
-			backend.parametros.actualizarValor(archivo, 10, 5, 35, 5);
+			parametros.actualizarValor(archivo, 10, 5, 35, 5);
 		}
 	}
 

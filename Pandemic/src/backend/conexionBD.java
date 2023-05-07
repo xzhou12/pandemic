@@ -15,8 +15,8 @@ public class conexionBD {
 
 	private static final String USER = "DAW_PNDC22_23_XIAL";
 	private static final String PWD = "AX123";
-	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
-//	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
+//	private static final String URL = "jdbc:oracle:thin:@192.168.3.26:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@oracle.ilerna.com:1521:xe";
 
 	private static final Connection con = conectarBD();
 
@@ -182,14 +182,12 @@ public class conexionBD {
 		String sql = "INSERT INTO P_GUARDADAS VALUES (" + idJugador + ", vacunas(" + sqlVacunas + "), ciudadesAlfa("
 				+ ciudadesAlfa + "), ciudadesBeta(" + ciudadesBeta + "), ciudadesGama(" + ciudadesGama
 				+ "), ciudadesDelta(" + ciudadesDelta + "), " + jugar.numBrotes + ", " + jugar.rondas + ")";
-
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-
 	}
 
 	// ------------------------------------------------------------
@@ -230,6 +228,9 @@ public class conexionBD {
 		int brotes = 0, rondas = 0;
 		int user = selectIdJugador(nombre);
 
+		// establece el nombre de la partida
+		PanelNuevaPartida.nombreUsuario = nombre;
+
 		// Sentencia sql
 		String sql = "SELECT p.vacunas, p.ciudadesAlfa, p.ciudadesDelta, p.ciudadesGama, p.ciudadesBeta, brotes, rondas FROM p_guardadas p WHERE jugador = "
 				+ user;
@@ -246,8 +247,8 @@ public class conexionBD {
 				ciudadesDelta = ((STRUCT) rs.getObject("CIUDADESDELTA")).getAttributes();
 				ciudadesGama = ((STRUCT) rs.getObject("CIUDADESGAMA")).getAttributes();
 				ciudadesBeta = ((STRUCT) rs.getObject("CIUDADESBETA")).getAttributes();
-				brotes = rs.getInt("BROTES");
-				rondas = rs.getInt("RONDAS");
+				jugar.numBrotes = rs.getInt("BROTES");
+				jugar.rondas = rs.getInt("RONDAS");
 			}
 
 		} catch (SQLException e) {

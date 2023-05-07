@@ -22,6 +22,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import backend.*;
 
@@ -61,6 +62,13 @@ public class PanelCargarPartida extends JPanel {
 		}
 		cajaOpciones.setBounds(640, 300, 200, 30);
 		add(cajaOpciones);
+		// boton de cargar partida
+		JButton CargarPartida = new JButton();
+		CargarPartida.setBackground(new Color(72, 72, 72));
+		CargarPartida.setForeground(new Color(255, 255, 255));
+		CargarPartida.setText("Cargar partida");
+		CargarPartida.setBounds(640, 615, 200, 40);
+		add(CargarPartida);
 		// imagen trasparente de fondo para efecto de menu
 		ImageIcon imagen = new ImageIcon("transparente.png");
 		Image image = imagen.getImage();
@@ -81,11 +89,42 @@ public class PanelCargarPartida extends JPanel {
 		MapaMundi.setBounds(0, 0, 1550, 850);
 		add(MapaMundi);
 
+		// vuelve al menu prinpal
 		VolverConf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				volver();
 			}
 		});
+		// selecciona la partida que has elejido y la carga
+		CargarPartida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
+				if ((String) cajaOpciones.getSelectedItem() != null) {
+					jugar.inicializarPartida();
+					conexionBD.cargarPartida((String) cajaOpciones.getSelectedItem());
+					iniciarJuego();
+					PanelTablero.TextoAnimado();
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Necesitas guardar una partida para poder cargar una partida.  -_-");
+					sonido.pulsarBoton();
+				}
+			}
+		});
+	}
+
+	// ----------------------------------------------------
+	// se va al tablero de juego e inicia la partida
+	// ----------------------------------------------------
+	public void iniciarJuego() {
+		// carga la info de las ciudades
+		PanelCiudad.getText();
+		// Va a la clase jugar
+		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
+		menu.remove(this);
+		menu.add(new PanelTablero());
+		menu.repaint();
 	}
 
 	// ---------------------------

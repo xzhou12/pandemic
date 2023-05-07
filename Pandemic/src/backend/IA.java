@@ -140,10 +140,14 @@ public class IA {
 		// Si el numero de brotes o enfermedades activas superan al de la derrota, se
 		// marca como derrota
 		if (brotes >= numBD) {
+			sonido.pulsarBoton();
 			JOptionPane.showMessageDialog(null, "NUM BROTES: " + brotes);
+			sonido.pulsarBoton();
 			return false;
 		} else if (contador >= numEAD) {
+			sonido.pulsarBoton();
 			JOptionPane.showMessageDialog(null, "ENF ACTIVAS " + contador);
+			sonido.pulsarBoton();
 			return false;
 		}
 

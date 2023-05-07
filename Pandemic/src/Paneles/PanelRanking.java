@@ -21,6 +21,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import backend.conexionBD;
+import backend.sonido;
 
 import java.awt.Dimension;
 
@@ -92,6 +93,7 @@ public class PanelRanking extends JPanel {
 
 		VolverConf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				volver();
 			}
 		});

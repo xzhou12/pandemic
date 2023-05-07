@@ -1,6 +1,7 @@
 package Paneles;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,6 +22,7 @@ import backend.*;
 import java.awt.Font;
 
 public class PanelTablero extends JPanel {
+	private static boolean animacion;
 	private static int[][] coords = new int[48][3];
 	static String[] nombres = new String[48];
 	private static int numeroCiudad;
@@ -33,7 +35,6 @@ public class PanelTablero extends JPanel {
 		setBounds(0, 0, 1550, 850);
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
-
 		jugar.Main();
 		// boton de opciones (guardar partida/salir del juego)
 		ImageIcon imagen = new ImageIcon("config.png");
@@ -179,6 +180,7 @@ public class PanelTablero extends JPanel {
 			PuntoCiudad.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					sonido.pulsarCiudad();
 					numeroCiudad = 0;
 					// obtiene la id de la ciudad
 					for (int j = 0; j < nombres.length; j++) {
@@ -230,16 +232,11 @@ public class PanelTablero extends JPanel {
 		OptionLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				sonido.pulsarBoton();
 				MostrarOpciones();
 			}
 		});
-		if (jugar.comprobarVictoria()) {
-			JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
-			conexionBD.guardarPartidaAcabada();
-			// FALLA
-			VolverMenuPrincipal();
 
-		}
 	}
 
 	// -----------------------------------------------------------------
@@ -282,7 +279,7 @@ public class PanelTablero extends JPanel {
 	public void MostrarInfo() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
-		menu.getContentPane().add(new PanelCiudad(numeroCiudad));
+		menu.add(new PanelCiudad(numeroCiudad));
 		menu.repaint();
 	}
 
@@ -293,7 +290,7 @@ public class PanelTablero extends JPanel {
 	public void MostrarOpciones() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
-		menu.getContentPane().add(new PanelOpciones());
+		menu.add(new PanelOpciones());
 		menu.repaint();
 	}
 
@@ -302,6 +299,7 @@ public class PanelTablero extends JPanel {
 	// --------------------------------------------------------------------
 	public static void mostrarInfecciones(ArrayList<String> ciudadesAfectadas) {
 		JOptionPane.showMessageDialog(null, "CIUDADES INFECTADAS:\n" + ciudadesAfectadas);
+		sonido.pulsarBoton();
 	}
 
 	// -------------------------------------------------------------------------------------------
@@ -336,34 +334,25 @@ public class PanelTablero extends JPanel {
 	// mueve el texto de noticias de izquieda a derecha constantemente, cuando
 	// desaparece por completo vuelve a empezar
 	// ---------------------------------------------------------------------------
-	public void TextoAnimado() {
-
-		Thread animationThread = new Thread(() -> {
-			while (true) {
-				int x = noticias.getLocation().x - 1;
-				if (x < -1550) {
-					x = 1550;
+	public static void TextoAnimado() {
+		if (!animacion) {
+			Thread animationThread = new Thread(() -> {
+				while (true) {
+					int x = noticias.getLocation().x - 1;
+					if (x < -1550) {
+						x = 1550;
+					}
+					noticias.setLocation(x, 0);
+					try {
+						Thread.sleep(16);
+					} catch (InterruptedException e) {
+						break;
+					}
 				}
-				noticias.setLocation(x, 0);
-				try {
-					Thread.sleep(16);
-				} catch (InterruptedException e) {
-					break;
-				}
-			}
-		});
-		animationThread.start();
-	}
-
-	// -------------------------
-	// vuelve al menu principal
-	// FALLA
-	// -------------------------
-	public void VolverMenuPrincipal() {
-		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
-		menu.remove(this);
-		menu.add(new PanelMenu());
-		menu.repaint();
+			});
+			animationThread.start();
+			animacion = true;
+		}
 	}
 
 }

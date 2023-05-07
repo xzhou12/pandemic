@@ -36,18 +36,26 @@ public class PanelOpciones extends JPanel {
 		add(Salir);
 		Salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				String[] opciones = { "Guardar y salir", "Salir sin guardar", "cancelar" };
 				int opcionDialogo = JOptionPane.showOptionDialog(getParent(), "Saliendo al menu principal",
 						"¿Guardar partida?", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null,
 						opciones, opciones[2]);
 
 				if (opcionDialogo == JOptionPane.YES_OPTION) {
+					sonido.pulsarBoton();
 					VolverMenu();
 					conexionBD.guardarPartida();
 				} else if (opcionDialogo == JOptionPane.NO_OPTION) {
+					sonido.pulsarBoton();
 					VolverMenu();
+				} else if (opcionDialogo == JOptionPane.CANCEL_OPTION) {
+					sonido.pulsarBoton();
 				} else if (opcionDialogo == JOptionPane.CLOSED_OPTION) {
+					sonido.pulsarBoton();
 					JOptionPane.showMessageDialog(null, "Has perdido el progreso, felicidades! :3");
+					sonido.pulsarBoton();
+					VolverMenu();
 				}
 			}
 		});
@@ -61,7 +69,10 @@ public class PanelOpciones extends JPanel {
 		add(Guardar);
 		Guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				conexionBD.guardarPartida();
+				JOptionPane.showMessageDialog(null, "Se ha guardado la partida.");
+				sonido.pulsarBoton();
 			}
 		});
 
@@ -74,6 +85,7 @@ public class PanelOpciones extends JPanel {
 		add(Volver);
 		Volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				VolverJuego();
 			}
 		});
@@ -96,19 +108,19 @@ public class PanelOpciones extends JPanel {
 		add(MapaMundi);
 	}
 
-	//---------------------------
-	//vuelve al tablero de juego
-	//---------------------------
+	// ---------------------------
+	// vuelve al tablero de juego
+	// ---------------------------
 	void VolverJuego() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
 		menu.add(new PanelTablero());
 		menu.repaint();
 	}
-	
-	//-------------------------
-	//vuelve al menu principal
-	//-------------------------
+
+	// -------------------------
+	// vuelve al menu principal
+	// -------------------------
 	void VolverMenu() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

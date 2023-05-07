@@ -83,9 +83,11 @@ public class PanelNuevaPartida extends JPanel {
 //			 inicia la partida cargando el mapa
 		IniciarPartida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				nombreUsuario = NombreUsuario.getText();
 				if (nombreUsuario.length() < 3 || nombreUsuario.length() > 50) {
 					JOptionPane.showMessageDialog(null, "Introduce un nombre de entre 3 y 50 caracteres.");
+					sonido.pulsarBoton();
 				} else {
 					if (conexionBD.comprobarUsuario(nombreUsuario)) {
 						conexionBD.guardarUsuario(nombreUsuario);
@@ -99,6 +101,7 @@ public class PanelNuevaPartida extends JPanel {
 		// inicia la partida cargando el mapa
 		Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				sonido.pulsarBoton();
 				VolverMenuPrincipal();
 			}
 		});

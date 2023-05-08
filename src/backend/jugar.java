@@ -34,6 +34,9 @@ public class jugar {
 		// Array con las ciudades y su nivel de brote
 		nivelBroteCiudades = brotes.inicializarNivelBrote(ciudades);
 		vacunasCura = vacunas.inicializarVacunas();
+		numBrotes = 0;
+		acciones = 4;
+		rondas = 0;
 	}
 
 	// --------------------------------------------------

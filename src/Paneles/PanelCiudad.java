@@ -47,7 +47,6 @@ public class PanelCiudad extends JPanel {
 						sonido.pulsarCurar();
 						jugar.acciones--;
 						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
-						VolverJuego();
 						if (jugar.comprobarVictoria()) {
 							conexionBD.guardarPartidaAcabada();
 							sonido.sonidaVictoria();
@@ -58,9 +57,11 @@ public class PanelCiudad extends JPanel {
 							jugar.Main();
 							if (jugar.comprobarDerrota()) {
 								conexionBD.guardarPartidaAcabada();
-								sonido.sonidaVictoria();
+								sonido.sonidaDerrota();
 								VolverMenu();
 								sonido.pulsarBoton();
+							} else if (jugar.comprobarDerrota() == false && jugar.comprobarVictoria() == false) {
+								VolverJuego();
 							}
 						}
 					} else {
@@ -101,7 +102,7 @@ public class PanelCiudad extends JPanel {
 						jugar.Main();
 						if (jugar.comprobarDerrota()) {
 							conexionBD.guardarPartidaAcabada();
-							sonido.sonidaVictoria();
+							sonido.sonidaDerrota();
 							VolverMenu();
 							sonido.pulsarBoton();
 						} else if (jugar.comprobarDerrota() == false && jugar.comprobarVictoria() == false) {

@@ -179,7 +179,7 @@ public class PanelTablero extends JPanel {
 			PuntoCiudad.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					sonido.pulsarCiudad();
+					sonido.pulsarBoton();
 					numeroCiudad = 0;
 					// obtiene la id de la ciudad
 					for (int j = 0; j < nombres.length; j++) {

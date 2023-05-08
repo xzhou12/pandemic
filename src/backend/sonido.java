@@ -7,7 +7,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 public class sonido {
-	public static int sonidoSFX = 50, sonidoMusica = 25;
+	public static int sonidoSFX = 50;
 
 	public static void pulsarBoton() {
 		try {

@@ -31,7 +31,7 @@ public class vacunas {
 
 		// Investiga la vacunas, cada investigación suma entre 15 y 25%
 		int porcentaje = Integer.parseInt((String) jugar.vacunasCura.get(vacuna).get(1));
-		porcentaje += (r.nextInt(10) + 100);
+		porcentaje += (r.nextInt(10) + 19);
 		if (porcentaje > 100) {
 			porcentaje = 100; // Si supera los 100, se queda en 100
 		}

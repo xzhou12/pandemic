@@ -35,7 +35,6 @@ public class PanelTablero extends JPanel {
 		setBounds(0, 0, 1550, 850);
 		setBackground(new Color(6, 153, 209));
 		setLayout(null);
-		jugar.Main();
 		// boton de opciones (guardar partida/salir del juego)
 		ImageIcon imagen = new ImageIcon("config.png");
 		Image image = imagen.getImage();

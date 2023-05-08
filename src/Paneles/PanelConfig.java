@@ -140,11 +140,11 @@ public class PanelConfig extends JPanel {
 	static void SetDificultad(int Dificultad) {
 		File archivo = new File("parametros.xml");
 		if (Dificultad == 1) {
-			parametros.actualizarValor(archivo, 6, 3, 50, 10);
+			parametros.actualizarValor(archivo, 5, 4, 48, 12);
 		} else if (Dificultad == 2) {
-			parametros.actualizarValor(archivo, 8, 4, 40, 7);
+			parametros.actualizarValor(archivo, 8, 4, 40, 9);
 		} else if (Dificultad == 3) {
-			parametros.actualizarValor(archivo, 10, 5, 35, 5);
+			parametros.actualizarValor(archivo, 10, 6, 35, 7);
 		}
 	}
 

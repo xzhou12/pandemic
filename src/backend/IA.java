@@ -141,14 +141,14 @@ public class IA {
 		// marca como derrota
 		if (brotes >= numBD) {
 			sonido.pulsarBoton();
-			JOptionPane.showMessageDialog(null, "NUM BROTES: " + brotes);
+			JOptionPane.showMessageDialog(null, "Perdiste!\nNumero de brotes: " + brotes);
 			sonido.pulsarBoton();
-			return false;
+			return true;
 		} else if (contador >= numEAD) {
 			sonido.pulsarBoton();
-			JOptionPane.showMessageDialog(null, "ENF ACTIVAS " + contador);
+			JOptionPane.showMessageDialog(null, "Perdiste\nCiudades infectadas: " + contador);
 			sonido.pulsarBoton();
-			return false;
+			return true;
 		}
 
 		return false;

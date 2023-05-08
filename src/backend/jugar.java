@@ -14,9 +14,6 @@ public class jugar {
 
 	public static void Main() {
 
-		boolean derrota = false;
-		boolean victoria = false;
-
 		// turno jugador
 		if (acciones > 0) {
 			// Turno IA

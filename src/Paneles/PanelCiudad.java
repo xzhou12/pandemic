@@ -48,11 +48,25 @@ public class PanelCiudad extends JPanel {
 						jugar.acciones--;
 						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
 						VolverJuego();
-					} else {
-						JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
-						sonido.pulsarBoton();
-					}
+						if (jugar.comprobarVictoria()) {
+							conexionBD.guardarPartidaAcabada();
+							sonido.sonidaVictoria();
+							JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
+							VolverMenu();
+							sonido.pulsarBoton();
+						}
+						jugar.Main();
+						if (jugar.comprobarDerrota()) {
+							conexionBD.guardarPartidaAcabada();
+							sonido.sonidaVictoria();
+							VolverMenu();
+							sonido.pulsarBoton();
+						} else {
+							JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
+							sonido.pulsarBoton();
+						}
 
+					}
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para curar.\nNecesarios: 1 Actuales: "
@@ -80,6 +94,13 @@ public class PanelCiudad extends JPanel {
 						conexionBD.guardarPartidaAcabada();
 						sonido.sonidaVictoria();
 						JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
+						VolverMenu();
+						sonido.pulsarBoton();
+					}
+					jugar.Main();
+					if (jugar.comprobarDerrota()) {
+						conexionBD.guardarPartidaAcabada();
+						sonido.sonidaVictoria();
 						VolverMenu();
 						sonido.pulsarBoton();
 					} else {

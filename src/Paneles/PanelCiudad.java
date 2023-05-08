@@ -54,19 +54,20 @@ public class PanelCiudad extends JPanel {
 							JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
 							VolverMenu();
 							sonido.pulsarBoton();
-						}
-						jugar.Main();
-						if (jugar.comprobarDerrota()) {
-							conexionBD.guardarPartidaAcabada();
-							sonido.sonidaVictoria();
-							VolverMenu();
-							sonido.pulsarBoton();
 						} else {
-							JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
-							sonido.pulsarBoton();
+							jugar.Main();
+							if (jugar.comprobarDerrota()) {
+								conexionBD.guardarPartidaAcabada();
+								sonido.sonidaVictoria();
+								VolverMenu();
+								sonido.pulsarBoton();
+							}
 						}
-
+					} else {
+						JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
+						sonido.pulsarBoton();
 					}
+
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para curar.\nNecesarios: 1 Actuales: "
@@ -96,15 +97,16 @@ public class PanelCiudad extends JPanel {
 						JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
 						VolverMenu();
 						sonido.pulsarBoton();
-					}
-					jugar.Main();
-					if (jugar.comprobarDerrota()) {
-						conexionBD.guardarPartidaAcabada();
-						sonido.sonidaVictoria();
-						VolverMenu();
-						sonido.pulsarBoton();
 					} else {
-						VolverJuego();
+						jugar.Main();
+						if (jugar.comprobarDerrota()) {
+							conexionBD.guardarPartidaAcabada();
+							sonido.sonidaVictoria();
+							VolverMenu();
+							sonido.pulsarBoton();
+						} else if (jugar.comprobarDerrota() == false && jugar.comprobarVictoria() == false) {
+							VolverJuego();
+						}
 					}
 				} else {
 					JOptionPane.showMessageDialog(null,

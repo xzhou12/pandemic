@@ -61,7 +61,7 @@ public class PanelRanking extends JPanel {
 		JTextPane posicion = new JTextPane();
 		posicion.setForeground(new Color(255, 255, 255));
 		posicion.setOpaque(false);
-		posicion.setText(puntuaciones);
+		posicion.setText("VICTORIAS: \n" + puntuaciones);
 		posicion.setFont(new Font("Constantia", Font.BOLD, 25));
 		posicion.setEditable(false);
 		posicion.setBounds(500, 200, 500, 400);

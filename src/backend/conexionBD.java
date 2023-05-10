@@ -29,7 +29,6 @@ public class conexionBD {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(URL, USER, PWD);
-			System.out.println("Conectado a la base de datos");
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {
@@ -170,7 +169,7 @@ public class conexionBD {
 	// -------------------------------------------------------
 	public static void guardarPartida() {
 
-		// Guarda la partida
+		// Guarda la partida, con los datos formateados para facilitar su insercción
 		int idJugador = selectIdJugador(PanelNuevaPartida.nombreUsuario);
 		String sqlVacunas = darFormatoVacunas(jugar.vacunasCura);
 		String ciudadesAlfa = darFormatoCiudades(jugar.nivelBroteCiudades, 0);
@@ -178,11 +177,12 @@ public class conexionBD {
 		String ciudadesGama = darFormatoCiudades(jugar.nivelBroteCiudades, 2);
 		String ciudadesDelta = darFormatoCiudades(jugar.nivelBroteCiudades, 3);
 
-		// Insert
+		// Sentencia insert
 		String sql = "INSERT INTO P_GUARDADAS VALUES (" + idJugador + ", vacunas(" + sqlVacunas + "), ciudadesAlfa("
 				+ ciudadesAlfa + "), ciudadesBeta(" + ciudadesBeta + "), ciudadesGama(" + ciudadesGama
 				+ "), ciudadesDelta(" + ciudadesDelta + "), " + jugar.numBrotes + ", " + jugar.rondas + ")";
 		try {
+			// Ejecuta la sentencia insert
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -204,6 +204,7 @@ public class conexionBD {
 
 			while (rs.next()) {
 				nombre = rs.getString("NOMBRE");
+				// Añade los nombres a la ArrayList
 				nombresGuardados.add(nombre);
 
 			}
@@ -286,6 +287,7 @@ public class conexionBD {
 			Object[] ciudadesGama, Object[] ciudadesBeta) {
 		ArrayList<String> sqlciudades = new ArrayList<String>();
 
+		// Añade los valores de los objetos a la ArrayList
 		for (Object ciudadAlfa : ciudadesAlfa) {
 			sqlciudades.add(String.valueOf(ciudadAlfa));
 		}
@@ -314,6 +316,7 @@ public class conexionBD {
 			vacuna[i] = (String) vacunas.get(i).get(1);
 		}
 
+		// Devuelve la array, ya formateada en forma de String
 		return Arrays.toString(vacuna).substring(1, Arrays.toString(vacuna).length() - 1);
 	}
 
@@ -332,6 +335,7 @@ public class conexionBD {
 			}
 		}
 
+		// Devuelve la array, ya formateada en forma de String
 		return Arrays.toString(ciudades).substring(1, Arrays.toString(ciudades).length() - 1);
 	}
 

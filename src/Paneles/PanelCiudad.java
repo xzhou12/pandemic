@@ -41,34 +41,41 @@ public class PanelCiudad extends JPanel {
 		add(curar);
 		curar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// si quedan mas de 1 accion
 				if (jugar.acciones > 0) {
 					int nivelBrote = Integer.parseInt((String) jugar.nivelBroteCiudades.get(numero).get(1));
+					// si se puede curar(mas de 1 enfermedad)
 					if (nivelBrote >= 1) {
 						sonido.pulsarCurar();
 						jugar.acciones--;
 						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
+						// si se ha ganado la partida
 						if (jugar.comprobarVictoria()) {
 							conexionBD.guardarPartidaAcabada();
 							sonido.sonidaVictoria();
 							JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
 							VolverMenu();
 							sonido.pulsarBoton();
+							// el tablero genera mas enfermedades y se actualiza el mapa
 						} else {
 							jugar.Main();
+							// si al pasar esto has perdido
 							if (jugar.comprobarDerrota()) {
 								conexionBD.guardarPartidaAcabada();
 								sonido.sonidaDerrota();
 								VolverMenu();
-								sonido.pulsarBoton();
-							} else if (jugar.comprobarDerrota() == false && jugar.comprobarVictoria() == false) {
+							} // si ni has ganado ni perdido (sigues jugando)
+							else if (jugar.comprobarDerrota() == false && jugar.comprobarVictoria() == false) {
 								VolverJuego();
 							}
 						}
+						// si la ciudad tiene nivel enfermedad 0
 					} else {
 						JOptionPane.showMessageDialog(null, "La ciudad ya esta curada! No se puede curar más");
 						sonido.pulsarBoton();
 					}
-
+					// si no tienes suficientes acciones... Esto no tendria que ser posible pero
+					// aqui esta, por si acaso? :/
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para curar.\nNecesarios: 1 Actuales: "
@@ -88,10 +95,12 @@ public class PanelCiudad extends JPanel {
 
 		investigar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// si tienes los cuatro puntos de accion
 				if (jugar.acciones == 4) {
 					sonido.pulsarInvestigar();
 					jugar.acciones = 0;
 					accion.investigar(numero, ciudades[numeroCiudad]);
+					// si ganas la partida
 					if (jugar.comprobarVictoria()) {
 						conexionBD.guardarPartidaAcabada();
 						sonido.sonidaVictoria();
@@ -99,16 +108,19 @@ public class PanelCiudad extends JPanel {
 						VolverMenu();
 						sonido.pulsarBoton();
 					} else {
+						// el tablero genera mas enfermedades y se actualiza el mapa
 						jugar.Main();
+						// si al pasar esto has perdido
 						if (jugar.comprobarDerrota()) {
 							conexionBD.guardarPartidaAcabada();
 							sonido.sonidaDerrota();
 							VolverMenu();
-							sonido.pulsarBoton();
+							// si ni has ganado ni perdido (sigues jugando)
 						} else if (jugar.comprobarDerrota() == false && jugar.comprobarVictoria() == false) {
 							VolverJuego();
 						}
 					}
+					//si no tienes sufficientes puntos de accion
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"No tienes suficientes acciones en este turno para investigar.\nNecesarios: 4 Actuales: "

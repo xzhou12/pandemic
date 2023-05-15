@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
@@ -20,6 +21,7 @@ import backend.*;
 public class PanelConfig extends JPanel {
 
 	JLabel MapaMundi;
+	public static int difficultad = 2;
 
 	public PanelConfig() {
 		setBounds(0, 0, 1550, 850);
@@ -75,7 +77,7 @@ public class PanelConfig extends JPanel {
 		JSlider sliderSFX = new JSlider();
 		sliderSFX.setOpaque(false);
 		sliderSFX.setBounds(660, 690, 200, 40);
-		sliderSFX.setValue((int)sonido.sonidoSFX);
+		sliderSFX.setValue((int) sonido.sonidoSFX);
 		add(sliderSFX);
 		// imagen trasparente de fondo para efecto de menu
 		ImageIcon imagen = new ImageIcon("transparente.png");
@@ -109,18 +111,27 @@ public class PanelConfig extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				sonido.pulsarBoton();
 				SetDificultad(1);
+				JOptionPane.showMessageDialog(null,
+						"Infecciones primera ronda: 5\nInfecciones por ronda: 4\nMax. ciudades activas : 48\nMax. brotes: 12");
+				sonido.pulsarBoton();
 			}
 		});
 		NORMAL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sonido.pulsarBoton();
 				SetDificultad(2);
+				JOptionPane.showMessageDialog(null,
+						"Infecciones primera ronda: 8\nInfecciones por ronda: 4\nMax. ciudades activas : 43\nMax. brotes: 9");
+				sonido.pulsarBoton();
 			}
 		});
 		DIFICIL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sonido.pulsarBoton();
 				SetDificultad(3);
+				JOptionPane.showMessageDialog(null,
+						"Infecciones primera ronda: 10\nInfecciones por ronda: 6\nMax. ciudades activas : 40\nMax. brotes: 7");
+				sonido.pulsarBoton();
 			}
 		});
 		sliderSFX.addChangeListener(new ChangeListener() {
@@ -137,14 +148,20 @@ public class PanelConfig extends JPanel {
 	// ------------------------
 	// establece la dificultad
 	// ------------------------
-	static void SetDificultad(int Dificultad) {
+	public static void SetDificultad(int Dificultad) {
 		File archivo = new File("parametros.xml");
 		if (Dificultad == 1) {
 			parametros.actualizarValor(archivo, 5, 4, 48, 12);
+			PanelNuevaPartida.dificultadString = "Facil";
+			difficultad = 1;
 		} else if (Dificultad == 2) {
 			parametros.actualizarValor(archivo, 8, 4, 43, 9);
+			PanelNuevaPartida.dificultadString = "Normal";
+			difficultad = 2;
 		} else if (Dificultad == 3) {
 			parametros.actualizarValor(archivo, 10, 6, 40, 7);
+			PanelNuevaPartida.dificultadString = "Dificil";
+			difficultad = 3;
 		}
 	}
 

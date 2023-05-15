@@ -103,6 +103,7 @@ public class PanelTablero extends JPanel {
 		porcentajeBrotes = new JProgressBar(JProgressBar.VERTICAL, 0, 100);
 		porcentajeBrotes.setBorder(BorderFactory.createLineBorder(Color.black));
 		porcentajeBrotes.setForeground(new Color(255, 78, 78));
+		porcentajeBrotes.setToolTipText("Brotes");
 		porcentajeBrotes.setBounds(230, 620, 40, 180);
 		add(porcentajeBrotes);
 		// establece los porcentajes y los textos de dentro de los JProgressBar

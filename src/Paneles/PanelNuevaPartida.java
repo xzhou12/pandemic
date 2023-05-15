@@ -21,7 +21,8 @@ public class PanelNuevaPartida extends JPanel {
 	JButton IniciarPartida, Cancelar;
 	JLabel LabelNombre;
 	JLabel LimagenNueva;
-	public static String nombreUsuario;
+	JLabel Dificultad;
+	public static String nombreUsuario, dificultadString;
 
 	public PanelNuevaPartida() {
 		// panel para nueva partida
@@ -31,7 +32,7 @@ public class PanelNuevaPartida extends JPanel {
 
 		// area de texto para poner el nombre
 		NombreUsuario = new JTextField();
-		NombreUsuario.setForeground(new Color(255, 255, 255));
+		NombreUsuario.setForeground(new Color(0, 0, 0));
 		NombreUsuario.setBackground(new Color(192, 192, 192));
 		NombreUsuario.setBounds(670, 250, 180, 30);
 		NombreUsuario.setColumns(10);
@@ -54,11 +55,18 @@ public class PanelNuevaPartida extends JPanel {
 		add(Cancelar);
 
 		// label indicando donde poner el nombre
-		LabelNombre = new JLabel("Introduze tu nombre");
+		LabelNombre = new JLabel("Introduce tu nombre");
 		LabelNombre.setFont(new Font("Tahoma", Font.BOLD, 20));
 		LabelNombre.setForeground(new Color(255, 255, 255));
 		LabelNombre.setBounds(660, 170, 250, 40);
 		add(LabelNombre);
+
+		// label indicando la dificultad seleccionada
+		Dificultad = new JLabel("Dificultad: " + dificultadString);
+		Dificultad.setFont(new Font("Tahoma", Font.BOLD, 12));
+		Dificultad.setForeground(new Color(255, 255, 255));
+		Dificultad.setBounds(550, 380, 250, 40);
+		add(Dificultad);
 
 		// imagen transparente que hace de marco para el menu
 		ImageIcon imagen = new ImageIcon("transparente.png");
@@ -91,7 +99,7 @@ public class PanelNuevaPartida extends JPanel {
 				} else {
 					if (conexionBD.comprobarUsuario(nombreUsuario)) {
 						conexionBD.guardarUsuario(nombreUsuario);
-					iniciarJuego();
+						iniciarJuego();
 					} else {
 						iniciarJuego();
 					}

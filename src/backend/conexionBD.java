@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import Paneles.PanelConfig;
 import Paneles.PanelNuevaPartida;
 import oracle.sql.STRUCT;
 
@@ -112,7 +113,7 @@ public class conexionBD {
 	// -----------------------------
 	// Guarda la partida terminada
 	// -----------------------------
-	public static void guardarPartidaAcabada() {
+	public static void guardarPartidaAcabada(int dificultad) {
 		String resultado = "";
 		int idJugador = selectIdJugador(PanelNuevaPartida.nombreUsuario);
 
@@ -124,7 +125,8 @@ public class conexionBD {
 		}
 
 		// Se añade al tablero
-		String sql = "BEGIN addPartida(" + idJugador + ", " + jugar.rondas + ", '" + resultado + "'); END;";
+		String sql = "BEGIN addPartida(" + idJugador + ", " + jugar.rondas + ", '" + resultado + "', " + dificultad
+				+ "); END;";
 
 		try {
 			Statement st = con.createStatement();
@@ -140,14 +142,15 @@ public class conexionBD {
 	// -----------------
 	public static ArrayList<ArrayList> cargarRanking() {
 
-		String sql = "SELECT J.nombre, COUNT(p.resultado) AS VICTORIAS FROM JUGADOR J, PARTIDA P WHERE J.ID_JUGADOR= P.JUGADOR AND P.RESULTADO = 'V' GROUP BY J.nombre ORDER BY COUNT(P.RESULTADO) DESC";
+		String sql = "SELECT j.nombre, NVL(COUNT(p.resultado), 0) AS victorias FROM jugador j LEFT JOIN partida p ON j.id_jugador = p.jugador AND p.resultado = 'V' AND p.dificultad = "
+				+ PanelConfig.difficultad + "GROUP BY j.nombre ORDER BY COUNT(p.resultado) DESC";
 		ArrayList<ArrayList> ranking = new ArrayList<ArrayList>();
 
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 
-			for (int i = 0; rs.next(); i++) {
+			while (rs.next()) {
 				ArrayList<String> jugador = new ArrayList<String>();
 
 				jugador.add(rs.getString("NOMBRE"));
@@ -226,7 +229,6 @@ public class conexionBD {
 		// Variables
 		Object[] vacunas, ciudadesAlfa, ciudadesDelta, ciudadesGama, ciudadesBeta;
 		vacunas = ciudadesAlfa = ciudadesDelta = ciudadesGama = ciudadesBeta = null;
-		int brotes = 0, rondas = 0;
 		int user = selectIdJugador(nombre);
 
 		// establece el nombre de la partida

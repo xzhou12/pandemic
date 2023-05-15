@@ -52,15 +52,29 @@ public class PanelRanking extends JPanel {
 		// preparaciones para el textpanel
 		ArrayList<ArrayList> ranking = new ArrayList<ArrayList>();
 		String puntuaciones = "";
-		ranking = conexionBD.cargarRanking();
+		// si la dificlutad esta en dificil muestra el ranking de partidas en dificil
+		if (PanelConfig.difficultad == 3) {
+			ranking = conexionBD.cargarRanking();
+			puntuaciones = "----------Dificil----------";
+			// si la dificlutad esta en normal muestra el ranking de partidas en normal
+		} else if (PanelConfig.difficultad == 2) {
+			ranking = conexionBD.cargarRanking();
+			puntuaciones = "----------Normal----------";
+			// si la dificlutad esta en facil muestra el ranking de partidas en facil
+		} else if (PanelConfig.difficultad == 1) {
+			ranking = conexionBD.cargarRanking();
+			puntuaciones = "----------Facil----------";
+		}
 		for (int i = 0; i < ranking.size(); i++) {
-			puntuaciones = puntuaciones + "\n\n" + (i + 1) + ":\t" + ((String) ranking.get(i).get(0)) + " : "
+			puntuaciones += "\n" + (i + 1) + ":\t" + ((String) ranking.get(i).get(0)) + " : "
 					+ ((String) ranking.get(i).get(1)) + "\n";
 		}
+
 		// textpanel con las puntuaciones
 		JTextPane posicion = new JTextPane();
 		posicion.setForeground(new Color(255, 255, 255));
 		posicion.setOpaque(false);
+		posicion.setFocusable(false);
 		posicion.setText("VICTORIAS: \n" + puntuaciones);
 		posicion.setFont(new Font("Constantia", Font.BOLD, 25));
 		posicion.setEditable(false);

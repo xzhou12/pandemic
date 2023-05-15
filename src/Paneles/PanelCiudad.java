@@ -51,7 +51,7 @@ public class PanelCiudad extends JPanel {
 						accion.curar(numero, PanelTablero.nombres[numeroCiudad]);
 						// si se ha ganado la partida
 						if (jugar.comprobarVictoria()) {
-							conexionBD.guardarPartidaAcabada();
+							conexionBD.guardarPartidaAcabada(PanelConfig.difficultad);
 							sonido.sonidaVictoria();
 							JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
 							VolverMenu();
@@ -61,7 +61,7 @@ public class PanelCiudad extends JPanel {
 							jugar.Main();
 							// si al pasar esto has perdido
 							if (jugar.comprobarDerrota()) {
-								conexionBD.guardarPartidaAcabada();
+								conexionBD.guardarPartidaAcabada(PanelConfig.difficultad);
 								sonido.sonidaDerrota();
 								VolverMenu();
 							} // si ni has ganado ni perdido (sigues jugando)
@@ -102,7 +102,7 @@ public class PanelCiudad extends JPanel {
 					accion.investigar(numero, ciudades[numeroCiudad]);
 					// si ganas la partida
 					if (jugar.comprobarVictoria()) {
-						conexionBD.guardarPartidaAcabada();
+						conexionBD.guardarPartidaAcabada(PanelConfig.difficultad);
 						sonido.sonidaVictoria();
 						JOptionPane.showMessageDialog(null, "¡Victoria! has curado a todo el mundo!");
 						VolverMenu();
@@ -112,7 +112,7 @@ public class PanelCiudad extends JPanel {
 						jugar.Main();
 						// si al pasar esto has perdido
 						if (jugar.comprobarDerrota()) {
-							conexionBD.guardarPartidaAcabada();
+							conexionBD.guardarPartidaAcabada(PanelConfig.difficultad);
 							sonido.sonidaDerrota();
 							VolverMenu();
 							// si ni has ganado ni perdido (sigues jugando)

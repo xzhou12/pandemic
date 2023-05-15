@@ -21,7 +21,7 @@ import backend.*;
 public class PanelConfig extends JPanel {
 
 	JLabel MapaMundi;
-	public static int difficultad;
+	public static int difficultad = 2;
 
 	public PanelConfig() {
 		setBounds(0, 0, 1550, 850);
@@ -157,11 +157,11 @@ public class PanelConfig extends JPanel {
 		} else if (Dificultad == 2) {
 			parametros.actualizarValor(archivo, 8, 4, 43, 9);
 			PanelNuevaPartida.dificultadString = "Normal";
-			difficultad = 1;
+			difficultad = 2;
 		} else if (Dificultad == 3) {
 			parametros.actualizarValor(archivo, 10, 6, 40, 7);
 			PanelNuevaPartida.dificultadString = "Dificil";
-			difficultad = 1;
+			difficultad = 3;
 		}
 	}
 

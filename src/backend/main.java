@@ -1,7 +1,6 @@
 package backend;
 
 import Paneles.PanelConfig;
-import Paneles.PanelNuevaPartida;
 import Paneles.menu;
 
 public class main {

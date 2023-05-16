@@ -87,12 +87,12 @@ public class IA {
 			if (nivelBrote >= 4) {
 				numBrotes++;
 				ciudadesNivel4.add((String) ciudad.get(0));
-				Integer.parseInt((String) ciudad.set(1, "3"));
 			}
 
 		}
 
 		brotes.addBrotesColindante(ciudadesNivel4, ciudadesBrotes);
+		bajarComprobadasNivel4(ciudadesBrotes);
 		return numBrotes;
 
 	}
@@ -170,6 +170,21 @@ public class IA {
 
 		// Devuelve las ciudades contadas
 		return contador;
+
+	}
+
+	// ---------------------------------------------------------------------
+	// Baja el valor a nivel 3 todas las ciudades que ya han sido comprobadas
+	// ----------------------------------------------------------------------
+	public static void bajarComprobadasNivel4(ArrayList<ArrayList> ciudadesBrotes) {
+
+		for (ArrayList ciudad : ciudadesBrotes) {
+			int nivelBrote = Integer.parseInt((String) ciudad.get(1));
+			if (nivelBrote >= 4) {
+				ciudad.set(1, "3");
+			}
+
+		}
 
 	}
 }

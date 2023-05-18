@@ -19,6 +19,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+* Menu principal del juego.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelMenu extends JPanel implements ActionListener {
 // string para sobreescribir el panel de texto
 	JButton NuevaPartida;
@@ -164,6 +170,9 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// -------------------------
 	// entra en el menu de info
 	// -------------------------
+	/**
+	* Abre el panel de informacion, puede ser sobre los autores, la version o las normas del juego.
+	*/
 	private void info() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -175,6 +184,9 @@ public class PanelMenu extends JPanel implements ActionListener {
 	// ----------------------------------
 	// entra en el menu de configuracion
 	// ----------------------------------
+	/**
+	* Abre el panel de configuracion de dificultad y volumen del juego.
+	*/
 	private void config() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

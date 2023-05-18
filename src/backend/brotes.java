@@ -1,12 +1,26 @@
 package backend;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * brotes En esta clase es donde se hacen la mayoria de gestiones relacionadas
+ * con brotes o enfermedades
+ * 
+ * @author Xiaobin Zhou
+ * @version 1.0
+ */
+
 public class brotes {
-	//----------------------------------
-	// Inicializa el nivel de brote a 0
-	//-----------------------------------
+
+	/**
+	 * inicializarNivelBrote: Obtiene las ciudades, las reformatea y las inicializa
+	 * para poder proceder con el juego
+	 * 
+	 * @param ciudades se le pasan la array con las ciudades
+	 * @return ArrayList devuelve la arraylist ya inicializada
+	 */
 	public static ArrayList<ArrayList> inicializarNivelBrote(String[][] ciudades) {
 
 		ArrayList<ArrayList> ciudadesBrotes = new ArrayList<ArrayList>();
@@ -27,9 +41,14 @@ public class brotes {
 		// Retorna la ArrayList
 		return ciudadesBrotes;
 	}
-	//-------------------------------------------
-	// Inicializa los brotes encima de la partida
-	//-------------------------------------------
+
+	/**
+	 * infectarCiudadesInicio: Inicializa los brotes que hay antes de iniciar la
+	 * partida
+	 * 
+	 * @param ciudadesBrotes se le pasa la arraylist de las ciuades con el nivel de
+	 *                       brote
+	 */
 	public static void infectarCiudadesInicio(ArrayList<ArrayList> ciudadesBrotes) {
 		String[] param = parametros.leerArchivo();
 
@@ -43,9 +62,13 @@ public class brotes {
 		}
 
 	}
-	//----------------------------------------
-	// Infecta las ciudades de forma aleatoria
-	//----------------------------------------
+
+	/**
+	 * infectarCiudadesAleatorio: Infecta las ciudades de forma aleatoria
+	 * 
+	 * @param ciudades se le pasa la arraylist de las ciuades con el nivel de brote
+	 * @return String devuevle las ciudades que han sido infectadas
+	 */
 	public static String infectarCiudadesAleatorio(ArrayList<ArrayList> ciudades) {
 		Random r = new Random();
 		// Escoge un numero entre el 0 y el numero de ciudades
@@ -60,9 +83,14 @@ public class brotes {
 		return (String) ciudades.get(numR).get(0);
 
 	}
-	//-----------------------------------------------
-	// Infecta la ciudad que le pasamos por parametro
-	//-----------------------------------------------
+
+	/**
+	 * infectarCiudadParametro: Infecta la ciudad que le pasamos por parametro
+	 * 
+	 * @param ciudadesBrotes se le pasa la arraylist de las ciuades con el nivel de
+	 *                       brote
+	 * @param ciudad         se le pasa la ciudad que queremos que se infecte
+	 */
 	public static void infectarCiudadParametro(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
 
 		// Busca la ciudad que le pasamos por parametro
@@ -76,9 +104,14 @@ public class brotes {
 			}
 		}
 	}
-	//-------------------------------------------------------
-	// Baja un nivel a la ciudad que le pasamos por parametro
-	//-------------------------------------------------------
+
+	/**
+	 * bajarCiudadParametro: Baja un nivel a la ciudad que le pasamos por parametro
+	 * 
+	 * @param ciudadesBrotes se le pasa la arraylist de las ciuades con el nivel de
+	 *                       brote
+	 * @param ciudad         se le pasa la ciudad que queremos que baje
+	 */
 	public static void bajarCiudadParametro(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
 		for (ArrayList ciudades : ciudadesBrotes) {
 			String ciudadA = (String) ciudades.get(0);
@@ -92,7 +125,13 @@ public class brotes {
 		}
 	}
 
-	// Cura toda la ciudad si la vacuna esta hecha
+	/**
+	 * curarTodo: Cura toda la ciudad si la vacuna esta hecha
+	 * 
+	 * @param ciudadesBrotes se le pasa la arraylist de las ciuades con el nivel de
+	 *                       brote
+	 * @param ciudad         se le pasa la ciudad que queremos que baje
+	 */
 	public static void curarTodo(ArrayList<ArrayList> ciudadesBrotes, String ciudad) {
 		for (ArrayList ciudades : ciudadesBrotes) {
 			String ciudadA = (String) ciudades.get(0);
@@ -106,7 +145,15 @@ public class brotes {
 		}
 	}
 
-	// Añade brotes a las ciudades colindantes que han llegado a nivel 4
+	/**
+	 * addBrotesColindante: Añade brotes a las ciudades colindantes que han llegado
+	 * a nivel 4
+	 * 
+	 * @param ciudadesNivel4 se le pasa las ciudades que han llegado a nivel 4
+	 * @param ciudadesBrotes se le pasa la arraylist de las ciuades con el nivel de
+	 *                       brote
+	 * 
+	 */
 	static void addBrotesColindante(ArrayList<String> ciudadesNivel4, ArrayList<ArrayList> ciudadesBrotes) {
 
 		String[][] ciudades = IA.leerCiudades();
@@ -129,6 +176,13 @@ public class brotes {
 	}
 
 	// Busca y devuelve las ciudades colindantes
+	/**
+	 * buscarColindantes: Busca y devuelve las ciudades colindantes
+	 * 
+	 * @param ciudades se le pasa la información de las ciudades
+	 * @param ciudad   se le pasa la ciudad que queremos que busque las colindantes
+	 * @return ArrayList devuelve una arraylist con las colindantes
+	 */
 	static ArrayList buscarColindantes(String[][] ciudades, String ciudad) {
 
 		ArrayList<String> colindante = new ArrayList<String>();

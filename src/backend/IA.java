@@ -7,13 +7,21 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * IA Esta clase es la que se encarga de automatizar todo
+ * 
+ * @author Xiaobin Zhou
+ * @version 1.0
+ */
 public class IA {
 	public static final File fileCiudades = new File("ciudades.txt");
 	public static final File fileParametros = new File("parametros.xml");
 
-	// ---------------------------------------------------
-	// Lee las ciudades que hay en el archivo de ciudades
-	// ---------------------------------------------------
+	/**
+	 * Lee las ciudades que hay en el archivo de ciudades
+	 * 
+	 * @return String[][] devuelve las ciuades
+	 */
 	public static String[][] leerCiudades() {
 		String s = "";
 		int tamano = contarLineas();
@@ -38,9 +46,11 @@ public class IA {
 
 	}
 
-	// ----------------------------------------------------
-	// Cuenta la linea de ciudades que hay en el archivo
-	// ----------------------------------------------------
+	/**
+	 * contarLineas
+	 * 
+	 * @return int devuelve la cantidad de lineas
+	 */
 	public static int contarLineas() {
 		int contador = 0;
 
@@ -55,9 +65,12 @@ public class IA {
 		return contador;
 	}
 
-	// ----------------------------------
-	// Infecta las ciudades por ronda
-	// ----------------------------------
+	/**
+	 * Infecta las ciudades por ronda
+	 * 
+	 * @param ciudadesBrotes se pasan las ciudades para infectar
+	 * @return ArrayList devuelve las ciudades afectadas
+	 */
 	public static ArrayList<String> infectarCiudadesRondas(ArrayList<ArrayList> ciudadesBrotes) {
 		String[] param = parametros.leerArchivo();
 		ArrayList<String> ciudadesAfectadas = new ArrayList<String>();
@@ -75,9 +88,13 @@ public class IA {
 
 	}
 
-	// ---------------------------------------------------------
-	// Comprueba si alguna ciudad tiene el nivel 4 de infección
-	// ---------------------------------------------------------
+	/**
+	 * Comprueba si alguna ciudad tiene el nivel 4 de infección
+	 * 
+	 * @param ciudadesBrotes se pasan las ciudades para infectar
+	 * @param numBrotes      se pasa el numero de brotes
+	 * @return int devuelve el numero de brotes
+	 */
 	public static int comprobarBroteNivel4(ArrayList<ArrayList> ciudadesBrotes, int numBrotes) {
 
 		ArrayList<String> ciudadesNivel4 = new ArrayList<String>();
@@ -97,9 +114,11 @@ public class IA {
 
 	}
 
-	// -----------------------------------------------
-	// Comprueba la victoria de parte de las ciudades
-	// -----------------------------------------------
+	/**
+	 * Comprueba la victoria de parte de las ciudades
+	 * 
+	 * @return boolean devuelve si se ha ganado o no
+	 */
 	public static boolean comprobarVictoriaCiudades() {
 		// Comprueba si todas las ciudades han sido curadas o no
 		for (ArrayList ciudad : jugar.nivelBroteCiudades) {
@@ -111,9 +130,11 @@ public class IA {
 		return true;
 	}
 
-	// --------------------------------------
-	// Comprueba la victoria de las vacunas
-	// --------------------------------------
+	/**
+	 * Comprueba la victoria de parte de las vacunas
+	 * 
+	 * @return boolean devuelve si se ha ganado o no
+	 */
 	public static boolean comprobarVictoriaVacunas() {
 		// Comprueba si todas las vacunas han sido investigadas o no
 		for (ArrayList vacuna : jugar.vacunasCura) {
@@ -125,9 +146,12 @@ public class IA {
 		return true;
 	}
 
-	// -------------------------------------------------------
-	// Comprueba la derrota, con las dos formas de derrota
-	// -------------------------------------------------------
+	/**
+	 * Comprueba la derrota, con las dos formas de derrota
+	 * 
+	 * @param brotes numero de brotes
+	 * @return boolean devuelve si se ha perdido o no
+	 */
 	public static boolean comprobarDerrota(int brotes) {
 		String[] param = parametros.leerArchivo();
 
@@ -154,9 +178,11 @@ public class IA {
 		return false;
 	}
 
-	// -----------------------------------------------------------------
-	// Cuenta el numero de enfermedades activas y devolvuelve el valor
-	// -----------------------------------------------------------------
+	/**
+	 * Cuenta el numero de enfermedades activas y devolvuelve el valor
+	 * 
+	 * @return int devuelve las enfermedades activadadas
+	 */
 	public static int enfermedadesActivas() {
 		int contador = 0;
 
@@ -173,9 +199,12 @@ public class IA {
 
 	}
 
-	// ---------------------------------------------------------------------
-	// Baja el valor a nivel 3 todas las ciudades que ya han sido comprobadas
-	// ----------------------------------------------------------------------
+	/**
+	 * Baja el valor a nivel 3 todas las ciudades que ya han sido comprobadas
+	 * 
+	 * @param ciudadesBrotes se pasan la arraylist con las ciuadades y su nivel de
+	 *                       brote
+	 */
 	public static void bajarComprobadasNivel4(ArrayList<ArrayList> ciudadesBrotes) {
 
 		for (ArrayList ciudad : ciudadesBrotes) {

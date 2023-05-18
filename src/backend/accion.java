@@ -1,10 +1,20 @@
 package backend;
 
+/**
+* Acciones del jugador
+* Esta clase realiza y procede las acciones seleccionadas por el jugador.
+* @author Xiaobin Zhou
+* @version 1.0
+*/
+
 public class accion {
 
-	// -----------------------------------------------------------
-	// investiga la enfermedad de la ciudad en la que se ecuentra
-	// -----------------------------------------------------------
+	/**
+	* INVESTIGAR:
+	* Investiga la enfermedad de la ciudad en la que se ecuentra
+	* @param numero se le pasa el numero de la ciudad
+	* @param ciudad se le pasa la ciudad
+	*/
 	public static void investigar(int numero, String ciudad) {
 		// Saca el codigo de la ciudad que se quiere investigar
 		int codVacuna = Integer.parseInt((String) jugar.nivelBroteCiudades.get(numero).get(2));
@@ -12,10 +22,12 @@ public class accion {
 		vacunas.investigarCura(codVacuna);
 	}
 
-	// --------------------------------------------------------------------------------------------------
-	// cura la ciudad, si tiene la vacuna la cura por completo aunque tenga mas de 1
-	// nivel de enfermedad
-	// --------------------------------------------------------------------------------------------------
+	/**
+	* CURAR:
+	* Cura la ciudad, si tiene la vacuna la cura por completo aunque tenga mas de 1 nivel de enfermedad
+	* @param numero se le pasa el numero de la ciudad
+	* @param ciudad se le pasa la ciudad
+	*/
 	public static void curar(int numero, String ciudad) {
 		// Saca el codigo de la ciudad y comprueba si la cura esta creada
 		int enf = vacunas.sacarEnfermedadCiudad(ciudad);

@@ -23,6 +23,12 @@ import javax.swing.text.StyledDocument;
 
 import backend.sonido;
 
+/**
+* Panel de informacion variada, depende desde donde se entra.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelInfo extends JPanel {
 	JButton VolverMenu;
 	static JTextPane textMenu;
@@ -85,6 +91,9 @@ public class PanelInfo extends JPanel {
 	//--------------------------
 	//vuelve al menu principal
 	//--------------------------
+	/**
+	* Vueve al menu principal del juego.
+	*/
 	void VolverPanelMenu() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -92,26 +101,15 @@ public class PanelInfo extends JPanel {
 		menu.repaint();
 	}
 
-	//------------------------------------------
-	//establece el texto del archivo "Info.txt"
-	//------------------------------------------
-	public static void setTexto(String texto) {
-		try {
-			FileWriter fw = new FileWriter("Info.txt", false);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(texto);
-			bw.close();
-			fw.close();
-		} catch (IOException e) {
-			System.out.println("Error inesperado!! :(" + e);
-		}
 
-	}
 	
 	
 	//------------------------------------------
 	//establece el texto del JTextPane textMenu
 	//------------------------------------------
+	/**
+	* establece el texto del JTextPane textMenu.
+	*/
 	static void getTexto() {
 		String textoArchivo = "";
 		String texto = "";
@@ -133,4 +131,24 @@ public class PanelInfo extends JPanel {
 		textMenu.setText(texto);
 	}
 
+	// ------------------------------------------
+	// establece el texto del archivo "Info.txt"
+	// ------------------------------------------
+	/**
+	 * establece el texto del archivo "Info.txt".
+	 * 
+	 * @param texto string con texto para escribir el archivo "Info.txt".
+	 */
+	public static void setTexto(String texto) {
+		try {
+			FileWriter fw = new FileWriter("Info.txt", false);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(texto);
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Error inesperado!! :(" + e);
+		}
+
+	}
 }

@@ -3,6 +3,14 @@ package backend;
 import java.util.ArrayList;
 import Paneles.*;
 
+/**
+ * jugar
+ * Esta clase se encarga de gestionar los turnos, las rondas y el juego en general
+ * 
+ * @author Xiaobin Zhou
+ * @version 1.0
+ */
+
 public class jugar {
 
 	public static ArrayList<ArrayList> nivelBroteCiudades;
@@ -27,9 +35,9 @@ public class jugar {
 
 	}
 
-	// ----------------------------------------------------------
-	// Inicializa los arraylist nivelBrotesCiudades y vacunasCura
-	// ----------------------------------------------------------
+	/**
+	 * Inicializa los arraylist nivelBrotesCiudades y vacunasCura
+	 */
 	public static void inicializarPartida() {
 		// Array con las ciudades y su nivel de brote
 		nivelBroteCiudades = brotes.inicializarNivelBrote(ciudades);
@@ -39,9 +47,10 @@ public class jugar {
 		rondas = 0;
 	}
 
-	// --------------------------------------------------
-	// Comprobar si el jugador ha ganado mediante ciudades
-	// ---------------------------------------------------
+	/**
+	 * Comprobar si el jugador ha ganado
+	 * @return boolean devuelve si ha sido victoria o derrota
+	 */
 	public static boolean comprobarVictoria() {
 		boolean ciudades = IA.comprobarVictoriaCiudades();
 		boolean vacunas = IA.comprobarVictoriaVacunas();
@@ -54,16 +63,19 @@ public class jugar {
 
 	}
 
-	// --------------------------------------
-	// Comprobar si el jugador ha perdido
-	// --------------------------------------
+	/**
+	 * Comprobar si el jugador ha perdido
+	 * @return boolean devuelve si ha sido victoria o derrota
+	 */
 	public static boolean comprobarDerrota() {
 		return IA.comprobarDerrota(numBrotes);
 	}
 
-	// -------------------------------
-	// carga los datos de la partida
-	// -------------------------------
+	/**
+	 * Carga los datos de la partida
+	 * @param sqlvacunas se le pasan las vacunas cargadas
+	 * @param sqlciudades se le pasan las ciudades cargadas
+	 */
 	public static void cargarDatosPartida(ArrayList<String> sqlvacunas, ArrayList<String> sqlciudades) {
 
 		int x = 0;

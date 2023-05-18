@@ -21,6 +21,12 @@ import javax.swing.SwingUtilities;
 import backend.*;
 import java.awt.Font;
 
+/**
+* Tablero de juego, aqui se ven las ciudades, las enfermedades y los brotes.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelTablero extends JPanel {
 	private static boolean animacion;
 	private static int[][] coords = new int[48][3];
@@ -242,6 +248,10 @@ public class PanelTablero extends JPanel {
 	// -----------------------------------------------------------------
 	// Obtiene los nombres y las coordenadas de todas las ciudades (48)
 	// -----------------------------------------------------------------
+	/**
+	* Obtiene los nombres y las coordenadas de todas las ciudades (48).
+	* @throws cierra el juego si no puede obtener las ciudades.
+	*/
 	static void getCiudades() {
 		String s;
 		String[] lineas = new String[48];
@@ -276,6 +286,10 @@ public class PanelTablero extends JPanel {
 	// cambia al panel de informacion de las cudades con las opciones de
 	// cura/investigacion de la ciudad que se ha seleccionado
 	// --------------------------------------------------------------------
+	/**
+	* cambia al panel de informacion de las cudades con las opciones de
+	* cura/investigacion de la ciudad que se ha seleccionado
+	*/
 	public void MostrarInfo() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -284,9 +298,11 @@ public class PanelTablero extends JPanel {
 	}
 
 	// --------------------------------------------------------------------
-	// cambia al panel de informacion de las cudades con las opciones de
-	// cura/investigacion de la ciudad que se ha seleccionado
+	// cambia al panel de guardado de partida
 	// --------------------------------------------------------------------
+	/**
+	 * Cambia al panel de guardado de partida.
+	 */
 	public void MostrarOpciones() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -297,6 +313,10 @@ public class PanelTablero extends JPanel {
 	// --------------------------------------------------------------------
 	// Muestra por pantalla con un emergente que ciudades se han innfectado
 	// --------------------------------------------------------------------
+	/**
+	 * Muestra por pantalla con un emergente que ciudades se han innfectado
+	 * @param ciudadesAfectadas arraylist de Strings con las ciudades infectadas en el turno.
+	 */
 	public static void mostrarInfecciones(ArrayList<String> ciudadesAfectadas) {
 		JOptionPane.showMessageDialog(null, "CIUDADES INFECTADAS:\n" + ciudadesAfectadas);
 		sonido.pulsarBoton();
@@ -306,6 +326,10 @@ public class PanelTablero extends JPanel {
 	// obtine la informacion de porcentaje, brotes, ronda y enfermedades activas y
 	// los actualiza
 	// -------------------------------------------------------------------------------------------
+	/**
+	 * obtine la informacion de porcentaje, brotes, ronda y enfermedades activas y
+	// los actualiza
+	 */
 	static void porcentajes() {
 		for (int i = 0; i < 4; i++) {
 			Porcentajes[i] = Integer.parseInt((String) jugar.vacunasCura.get(i).get(1));
@@ -334,6 +358,10 @@ public class PanelTablero extends JPanel {
 	// mueve el texto de noticias de izquieda a derecha constantemente, cuando
 	// desaparece por completo vuelve a empezar
 	// ---------------------------------------------------------------------------
+	/**
+	 * mueve el texto de noticias de izquieda a derecha constantemente, cuando
+	// desaparece por completo vuelve a empezar.
+	 */
 	public static void TextoAnimado() {
 		if (!animacion) {
 			Thread animationThread = new Thread(() -> {

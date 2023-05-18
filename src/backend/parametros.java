@@ -1,4 +1,5 @@
 package backend;
+
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,13 +13,22 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+/**
+ * parametros Esta clase es la que se encarga de inteactuar con el archivo de
+ * parametros que hay para el juego
+ * 
+ * @author Xiaobin Zhou
+ * @version 1.0
+ */
 public class parametros {
 
 	public static final File archivo = new File("parametros.xml");
 
-	//----------------------
-	// Lee el archivo .xml
-	//----------------------
+	/**
+	 * Lee el archivo .xml
+	 * 
+	 * @return String[] devuelve la información del archivo xml
+	 */
 	public static String[] leerArchivo() {
 
 		// Variables
@@ -56,9 +66,16 @@ public class parametros {
 		return parametros;
 
 	}
-	//----------------------------------------------------------------------------
-	// Actualiza los valores(nombre de archivo, numero de parametro, valor nuevo)
-	//----------------------------------------------------------------------------
+
+	/**
+	 * Actualiza los valores(nombre de archivo, numero de parametro, valor nuevo)
+	 * 
+	 * @param file nombre del archivo donde se guardan los parametros
+	 * @param valor1 numCiudadesInfectadasInicio
+	 * @param valor2 numCuidadesInfectadasRonda
+	 * @param valor3 numEnfermedadesActivasDerrota
+	 * @param valor4 numBrotesDerrota
+	 */
 	public static void actualizarValor(File file, int valor1, int valor2, int valor3, int valor4) {
 
 		try {

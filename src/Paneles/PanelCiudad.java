@@ -21,11 +21,20 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+* Informacion sobre la ciudad seleccionada, muestra el nivel de enfermedad, nombre de ciudad y colindantes.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelCiudad extends JPanel {
 	static String[] ciudades = new String[48];
 	static JTextPane bloqueTexto;
 	static int numeroCiudad;
 
+	/**
+	* @param numero numero de la ciudad seleccionada en el panel tablero.
+	*/
 	public PanelCiudad(int numero) {
 		numeroCiudad = numero;
 		setBounds(0, 0, 1550, 850);
@@ -173,6 +182,9 @@ public class PanelCiudad extends JPanel {
 	// ----------------------------------------------------------
 	// Obtiene la informacion de las ciudades(para el juagador)
 	// ----------------------------------------------------------
+	/**
+	* Lee la ciudad corespondiente a la seleccionada en el mapa del archivo "ciudadesRedactadas.txt".
+	*/
 	static void getText() {
 		String textoArchivo = "";
 		String texto = "";
@@ -197,6 +209,9 @@ public class PanelCiudad extends JPanel {
 	// ----------------------------------------------
 	// establece el texto que se mostrra por pantalla
 	// ----------------------------------------------
+	/**
+	* Establece el texto del "JTextPane" con el texto obtenido en la funcion "getText" de la misma clase.
+	*/
 	public static void setText() {
 		String ciudad = (String) jugar.nivelBroteCiudades.get(numeroCiudad).get(0);
 		int codEnfermedad = vacunas.sacarEnfermedadCiudad(ciudad);
@@ -211,6 +226,9 @@ public class PanelCiudad extends JPanel {
 	// ------------------
 	// Vuelve al tablero
 	// -------------------
+	/**
+	* Vuelve al tablero de juego.
+	*/
 	void VolverJuego() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -221,6 +239,9 @@ public class PanelCiudad extends JPanel {
 	// -------------------------
 	// vuelve al menu principal
 	// -------------------------
+	/**
+	* Vuelve al menu principal del juego.
+	*/
 	void VolverMenu() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

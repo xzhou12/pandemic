@@ -6,12 +6,21 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * sonido Es la clase la cual se encarga de gestionar con los sonidos
+ * 
+ * @author Albert Barrachina
+ * @version 1.0
+ */
+
+
 public class sonido {
 	public static int sonidoSFX = 50;
 
-	// ----------------------------------
-	// sonido especifico para seleccionar boton
-	// ----------------------------------
+	/**
+	 * Sonido especifico para seleccionar boton
+	 * 
+	 */
 	public static void pulsarBoton() {
 		try {
 			// Nombre del archivo (.wav)
@@ -32,9 +41,10 @@ public class sonido {
 		}
 	}
 
-	// ----------------------------------
-	// sonido especifico para investigar
-	// ----------------------------------
+	/**
+	 * Sonido especifico para investigar
+	 * 
+	 */
 	public static void pulsarInvestigar() {
 		try {
 			// Nombre del archivo (.wav)
@@ -56,9 +66,10 @@ public class sonido {
 		}
 	}
 
-	// ----------------------------------
-	// sonido especifico para curar
-	// ----------------------------------
+	/**
+	 * Sonido especifico para curar
+	 * 
+	 */
 	public static void pulsarCurar() {
 		try {
 			// Nombre del archivo (.wav)
@@ -80,9 +91,10 @@ public class sonido {
 		}
 	}
 
-	// ----------------------------------
-	// sonido especifico para victoria
-	// ----------------------------------
+	/**
+	 * Sonido especifico para victoria
+	 * 
+	 */
 	public static void sonidaVictoria() {
 		try {
 			// Nombre del archivo (.wav)
@@ -104,9 +116,10 @@ public class sonido {
 		}
 	}
 
-	// ----------------------------------
-	// sonido especifico para derrota
-	// ----------------------------------
+	/**
+	 * Sonido especifico para derrota
+	 * 
+	 */
 	public static void sonidaDerrota() {
 		try {
 			// Nombre del archivo (.wav)

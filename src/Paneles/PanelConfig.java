@@ -18,6 +18,12 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import backend.*;
 
+/**
+* Panel de configuracion de dificultad y volumen de juego.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelConfig extends JPanel {
 
 	JLabel MapaMundi;
@@ -148,6 +154,10 @@ public class PanelConfig extends JPanel {
 	// ------------------------
 	// establece la dificultad
 	// ------------------------
+	/**
+	* Establece la difucultad del juego, cambiando parametros y cambiando el texto indicativo de esta en nueva partida.
+	* @param Dificultad numero del 1 al 3 que indica la dificultad.
+	*/
 	public static void SetDificultad(int Dificultad) {
 		File archivo = new File("parametros.xml");
 		if (Dificultad == 1) {
@@ -168,6 +178,9 @@ public class PanelConfig extends JPanel {
 	// ---------------------------
 	// vuelve al menu principal
 	// ---------------------------
+	/**
+	* Vuelve al menu principal del juego.
+	*/
 	private void volver() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

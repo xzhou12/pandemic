@@ -16,6 +16,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import backend.*;
 
+/**
+* Panel para empezar una partida.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelNuevaPartida extends JPanel {
 	JTextField NombreUsuario;
 	JButton IniciarPartida, Cancelar;
@@ -118,6 +124,9 @@ public class PanelNuevaPartida extends JPanel {
 	// ----------------------------------------------------
 	// se va al panel de iniciar juego e inicia la partida
 	// ----------------------------------------------------
+	/**
+	 * Se va al panel de iniciar juego e inicia la partida.
+	 */
 	public void iniciarJuego() {
 		// carga la info de las ciudades
 		PanelCiudad.getText();
@@ -132,6 +141,9 @@ public class PanelNuevaPartida extends JPanel {
 	// ----------------------------------
 	// se va al panel del menu principal
 	// ----------------------------------
+	/**
+	 * Vuelve al menu principal del juego.
+	 */
 	public void VolverMenuPrincipal() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

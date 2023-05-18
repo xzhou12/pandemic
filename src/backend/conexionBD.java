@@ -12,6 +12,13 @@ import Paneles.PanelConfig;
 import Paneles.PanelNuevaPartida;
 import oracle.sql.STRUCT;
 
+/**
+ * conexionBD Esta clase es la que se encarga de inteactuar con la base de datos
+ * 
+ * @author Xiaobin Zhou
+ * @version 1.0
+ */
+
 public class conexionBD {
 
 	private static final String USER = "DAW_PNDC22_23_XIAL";
@@ -21,9 +28,11 @@ public class conexionBD {
 
 	private static final Connection con = conectarBD();
 
-	// -------------------------------
-	// Se conecta a la Base de datos
-	// -------------------------------
+	/**
+	 * conectarBD: Se conecta a la Base de datos
+	 * 
+	 * @return Connection devuelve la conexión a la BD
+	 */
 	public static Connection conectarBD() {
 		Connection con = null;
 
@@ -40,9 +49,12 @@ public class conexionBD {
 
 	}
 
-	// --------------------------------
-	// Comprueba si el usuario existe
-	// --------------------------------
+	/**
+	 * comprobarUsuario: Comprueba si el usuario existe
+	 * 
+	 * @param nombre se pasa el nombre del jugador
+	 * @return boolean devuelve si el jugador existe
+	 */
 	public static boolean comprobarUsuario(String nombre) {
 		int count = 99;
 		String sql = "SELECT COUNT(*) FROM JUGADOR WHERE nombre =  '" + nombre + "'";
@@ -69,9 +81,13 @@ public class conexionBD {
 
 	}
 
-	// ------------------------------------------------------------------
-	// Retorna el numero de ID del jugador que le pasamos por parametro
-	// ------------------------------------------------------------------
+	/**
+	 * selectIdJugador: Retorna el numero de ID del jugador que le pasamos por
+	 * parametro
+	 * 
+	 * @param nombre se pasa el nombre del jugador
+	 * @return int devuelve el id del jugador
+	 */
 	public static int selectIdJugador(String nombre) {
 		int idJugador = 0;
 		String sql = "SELECT ID_JUGADOR FROM JUGADOR WHERE nombre =  '" + nombre + "'";
@@ -93,9 +109,11 @@ public class conexionBD {
 
 	}
 
-	// --------------------------
-	// Guardar un nuevo usuario
-	// --------------------------
+	/**
+	 * guardarUsuario: Guardar un nuevo usuario
+	 * 
+	 * @param nombre Guarda el nombre del usuario que le pasamos por parametro
+	 */
 	public static void guardarUsuario(String nombre) {
 		// Sentencia
 		String sql = "BEGIN addJugador('" + nombre + "'); END;";
@@ -110,9 +128,11 @@ public class conexionBD {
 
 	}
 
-	// -----------------------------
-	// Guarda la partida terminada
-	// -----------------------------
+	/**
+	 * guardarPartidaAcabada: Guarda la partida terminada
+	 * 
+	 * @param dificultad Guarda la partida acabada en la base de datos
+	 */
 	public static void guardarPartidaAcabada(int dificultad) {
 		String resultado = "";
 		int idJugador = selectIdJugador(PanelNuevaPartida.nombreUsuario);
@@ -137,9 +157,11 @@ public class conexionBD {
 
 	}
 
-	// -----------------
-	// Carga el ranking
-	// -----------------
+	/**
+	 * cargarRanking: Carga el ranking
+	 * 
+	 * @return ArrayList devuelve la arraylist con el ranking
+	 */
 	public static ArrayList<ArrayList> cargarRanking() {
 
 		String sql = "SELECT j.nombre, NVL(COUNT(p.resultado), 0) AS victorias FROM jugador j LEFT JOIN partida p ON j.id_jugador = p.jugador AND p.resultado = 'V' AND p.dificultad = "
@@ -167,9 +189,10 @@ public class conexionBD {
 
 	}
 
-	// -------------------------------------------------------
-	// guarda la partida para seguir jugando en otro momento
-	// -------------------------------------------------------
+	/**
+	 * guardarPartid: Guarda la partida para seguir jugando en otro momento
+	 * 
+	 */
 	public static void guardarPartida() {
 
 		// Guarda la partida, con los datos formateados para facilitar su insercción
@@ -193,9 +216,13 @@ public class conexionBD {
 		}
 	}
 
-	// ------------------------------------------------------------
-	// Carga los nombres de todos los que tienen partidas guardadas
-	// ------------------------------------------------------------
+	/**
+	 * cargarNombresPartidas: Carga los nombres de todos los que tienen partidas
+	 * guardadas
+	 * 
+	 * @return ArrayList devuelve un arraylist con el nombre de todas las partidas
+	 *         guardadas
+	 */
 	public static ArrayList<String> cargarNombresPartidas() {
 		ArrayList<String> nombresGuardados = new ArrayList<String>();
 		String nombre = "";
@@ -221,9 +248,11 @@ public class conexionBD {
 
 	}
 
-	// -------------------------------------------------
-	// Carga la partida guardada en la base de datos
-	// -------------------------------------------------
+	/**
+	 * cargarPartida: Carga la partida guardada en la base de datos
+	 * 
+	 * @param nombre carga la partida que le pasamos por parametro
+	 */
 	public static void cargarPartida(String nombre) {
 
 		// Variables
@@ -267,9 +296,13 @@ public class conexionBD {
 		jugar.cargarDatosPartida(sqlvacunas, sqlciudades);
 	}
 
-	// ----------------------------------------------------------
-	// Da un formato legible a los datos recuperados (vacunas)
-	// ----------------------------------------------------------
+
+	/**
+	 * conversionDatosVacunas: Da un formato legible a los datos recuperados (vacunas)
+	 * 
+	 * @param vacunas las vacunas en formato objeto
+	 * @return ArrayList devuelve el formato legible
+	 */
 	public static ArrayList<String> conversionDatosVacunas(Object[] vacunas) {
 		ArrayList<String> sqlvacunas = new ArrayList<String>();
 
@@ -282,9 +315,15 @@ public class conexionBD {
 
 	}
 
-	// -------------------------------------------------------
-	// Da un formato legible a los datos recuperados (ciudades)
-	// -------------------------------------------------------
+	/**
+	 * conversionDatosCiudades: Da un formato legible a los datos recuperados (ciudades)
+	 * 
+	 * @param ciudadesAlfa ciudad para dar convertir
+	 * @param ciudadesDelta ciudad para dar convertir
+	 * @param ciudadesGama ciudad para dar convertir
+	 * @param ciudadesBeta ciudad para dar convertir
+	 * @return ArrayList devuelve el formato legible
+	 */
 	public static ArrayList<String> conversionDatosCiudades(Object[] ciudadesAlfa, Object[] ciudadesDelta,
 			Object[] ciudadesGama, Object[] ciudadesBeta) {
 		ArrayList<String> sqlciudades = new ArrayList<String>();
@@ -308,9 +347,13 @@ public class conexionBD {
 
 	}
 
-	// ---------------------------------------------------------------------------
-	// Da un formato a la ArrayList vacunas, para facilitar la insercion de datos
-	// ---------------------------------------------------------------------------
+
+	/**
+	 * darFormatoVacunas: Da un formato a la ArrayList vacunas, para facilitar la insercion de datos
+	 * 
+	 * @param vacunas vacunas para dar convertir
+	 * @return String devuelve el formato legible
+	 */
 	public static String darFormatoVacunas(ArrayList<ArrayList> vacunas) {
 
 		String[] vacuna = new String[vacunas.size()];
@@ -322,9 +365,14 @@ public class conexionBD {
 		return Arrays.toString(vacuna).substring(1, Arrays.toString(vacuna).length() - 1);
 	}
 
-	// ----------------------------------------------------------------------------
-	// Da un formato a la ArrayList ciudades, para facilitar la insercion de datos
-	// ----------------------------------------------------------------------------
+
+	/**
+	 * darFormatoCiuades: Da un formato a la ArrayList ciudades, para facilitar la insercion de datos
+	 * 
+	 * @param ciudadesBrotes vacunas para dar convertir
+	 * @param enfermedad codigo de la enfermedad
+	 * @return String devuelve el formato para insertar
+	 */
 	public static String darFormatoCiudades(ArrayList<ArrayList> ciudadesBrotes, int enfermedad) {
 		String[] ciudades = new String[12];
 		int x = 0;

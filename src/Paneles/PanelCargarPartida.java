@@ -26,6 +26,13 @@ import javax.swing.JOptionPane;
 
 import backend.*;
 
+/**
+* Panel de cargar partida.
+* muestra lista de partidas que se pueden cargar.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelCargarPartida extends JPanel {
 	public PanelCargarPartida() {
 		setBounds(0, 0, 1550, 850);
@@ -117,6 +124,9 @@ public class PanelCargarPartida extends JPanel {
 	// ----------------------------------------------------
 	// se va al tablero de juego e inicia la partida
 	// ----------------------------------------------------
+	/**
+	* Inicia la partida en el panel tablero, tablien llama a la funcion "getText" de la clase "PanelCiudad".
+	*/
 	public void iniciarJuego() {
 		// carga la info de las ciudades
 		PanelCiudad.getText();
@@ -130,6 +140,9 @@ public class PanelCargarPartida extends JPanel {
 	// ---------------------------
 	// velve al menu principal
 	// ---------------------------
+	/**
+	* velve al menu principal del juego.
+	*/
 	private void volver() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

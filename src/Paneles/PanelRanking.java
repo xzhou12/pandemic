@@ -25,6 +25,12 @@ import backend.sonido;
 
 import java.awt.Dimension;
 
+/**
+* Ranking con de las partidas acabadas, separado por dificultades.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelRanking extends JPanel {
 
 	public PanelRanking() {
@@ -116,6 +122,9 @@ public class PanelRanking extends JPanel {
 	// ------------------------
 	// vuelve al menu principal
 	// ------------------------
+	/**
+	* Vuelve al menu principal del juego.
+	*/
 	private void volver() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);

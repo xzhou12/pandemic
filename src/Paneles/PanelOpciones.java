@@ -20,6 +20,12 @@ import javax.swing.SwingUtilities;
 
 import backend.*;
 
+/**
+* Panel para guardar partida y volver al menu principal.
+* @author Albert Barrachina
+* @version 1.0
+*/
+
 public class PanelOpciones extends JPanel {
 
 	public PanelOpciones() {
@@ -111,6 +117,9 @@ public class PanelOpciones extends JPanel {
 	// ---------------------------
 	// vuelve al tablero de juego
 	// ---------------------------
+	/**
+	 * Vuelve al tablero de juego.
+	 */
 	void VolverJuego() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
@@ -121,6 +130,9 @@ public class PanelOpciones extends JPanel {
 	// -------------------------
 	// vuelve al menu principal
 	// -------------------------
+	/**
+	 * Vuelve al menu princiapl del juego.
+	 */
 	void VolverMenu() {
 		JFrame menu = (JFrame) SwingUtilities.getWindowAncestor(this);
 		menu.remove(this);
